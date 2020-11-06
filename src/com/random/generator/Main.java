@@ -1,10 +1,18 @@
 package com.random.generator;
 
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Document;
+import org.w3c.dom.DocumentType;
+import org.w3c.dom.Element;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws ParserConfigurationException {
         Parameter p = new Parameter();
         p.setLenght(2000);
         p.setMin_max_height(3, 8);
