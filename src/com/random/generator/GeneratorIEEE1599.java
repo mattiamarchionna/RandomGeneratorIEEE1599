@@ -22,6 +22,8 @@ public class GeneratorIEEE1599 {
     private String path;
     private String nameOfFile;
     public Parameter configuration;
+    private String[] formats = {"application_excel", "application_mac-binhex40", "application_msword", "application_octet-stream", "application_pdf", "application_x-director", "application_x-gzip", "application_x-javascript", "application_x-macbinary", "application_x-pn-realaudio",  "application_x-shockwave_flash", "application_x-tar", "application_zip", "audio_aiff", "audio_avi", "audio_mp3", "audio_mpeg", "audio_mpeg3", "audio_mpg", "audio_wav", "audio_x_aiff", "audio_x_midi", "audio_x_wav", "audio_x-mp3", "audio_x-mpeg", "audio_x-mpeg3", "audio_x-mpegaudio", "audio_x-mpg", "audio_x-ms-wma", "image_avi", "image_bmp", "image_x-bmp", "image_x-bitmap", "image_x-xbitmap", "image_x-win-bitmap", "image_x-windows-bmp", "image_ms-bmp", "image_x-ms-bmp", "application_bmp", "application_x-bmp", "application_x-win-bitmap", "application_preview", "image_gif", "image_jpeg", "image_pict", "image_png","application_png","application_x-png","image_tiff","text_html","text_plain_application_postscript","video_avi","video_mpeg","video_msvideo" ,"video_quicktime" ,"video_x-msvideo", "video_x-ms-wmv" ,"video_x-qtc", "video_xmpg2"};
+
 
 
 
@@ -79,6 +81,198 @@ public class GeneratorIEEE1599 {
     }
 
 
+    
+    private Element generate_random_midi_event_sequence(Document doc, NodeList events) {
+        Element midi_event_sequence = doc.createElement("midi_event_sequence");
+        String[] type = {"metrical", "timecode"};
+        String[] unit = {"ticks", "sec"};
+        Random r = new Random();
+        midi_event_sequence.setAttribute("division_value", String.valueOf(r.nextFloat()).substring(0, 5));
+        midi_event_sequence.setAttribute("type", type[r.nextInt(type.length)]);
+        midi_event_sequence.setAttribute("measurement_unit", unit[r.nextInt(unit.length)]);
+        return midi_event_sequence;
+    }
+
+    private Element generate_random_midi_event(Document doc, NodeList events){
+        Element midi_event = doc.createElement("midi_event");
+        ArrayList<String> idsEvents = new ArrayList<>(getIds(events));
+        Random r = new Random();
+        midi_event.setAttribute("event_ref", idsEvents.get(r.nextInt(idsEvents.size())));
+        midi_event.setAttribute("timing", "timing_" + r.nextInt(100));
+        return midi_event;
+    }
+
+    private Element generate_random_metronomic_indication(Document doc, NodeList events){
+        Random r = new Random();
+        Element metronomic_indication = doc.createElement("metronomic_indication");
+        metronomic_indication.setAttribute("num", String.valueOf(r.nextInt(5) + 1));
+        metronomic_indication.setAttribute("den", String.valueOf(r.nextInt(7) + 1));
+        metronomic_indication.setAttribute("value", String.valueOf(r.nextInt(200)));
+        metronomic_indication.setAttribute("dots", String.valueOf(r.nextInt(200)));
+        ArrayList<String> idsEvents = new ArrayList<>(getIds(events));
+        metronomic_indication.setAttribute("event_ref", idsEvents.get(r.nextInt(idsEvents.size())));
+        return metronomic_indication;
+    }
+
+    private Element generate_random_measure_repeat(Document doc, NodeList events) {
+        Element measure_repeat = doc.createElement("measure_repeat");
+        Random rand = new Random();
+        if (isGenerateElement()) {
+            ArrayList<String> idEvents = getIds(events);
+            measure_repeat.setAttribute("event_ref", idEvents.get(rand.nextInt(idEvents.size())));
+        }
+        measure_repeat.setAttribute("number_of_measures", String.valueOf(rand.nextInt(100)));
+        return measure_repeat;
+    }
+
+    private Element generate_random_measure(Document doc, int id){
+        Element measure = doc.createElement("measure");
+        if(isGenerateElement()) measure.setAttribute("id", String.valueOf(id));
+        Random rand = new Random();
+        measure.setAttribute("number", String.valueOf(rand.nextInt(100)));
+        String[] show = {"yes", "no"};
+        String[] style = {"arabic_numbers", "roman_number", "small_letters", "capital_letters"};
+        if(isGenerateElement()) measure.setAttribute("show_number", show[rand.nextInt(show.length)]);
+        if(isGenerateElement()) measure.setAttribute("numbering_style", style[rand.nextInt(style.length)]);
+        return measure;
+    }
+
+    private Element generate_random_main_title(Document doc){
+        Element main_title = doc.createElement("main_title");
+        main_title.setTextContent("title_" + new Random().nextInt(20));
+        return main_title;
+    }
+
+    private Element generate_random_lyrics(Document doc, NodeList parts, NodeList voices){
+        Element lyrics = doc.createElement("lyrics");
+        ArrayList<String> partIds = getIds(parts);
+        ArrayList<String> voiceIds = getIds(voices);
+        Random rand = new Random();
+
+        lyrics.setAttribute("part_ref", partIds.get(rand.nextInt(partIds.size())));
+        lyrics.setAttribute("voice_ref", voiceIds.get(rand.nextInt(voiceIds.size())));
+        return lyrics;
+    }
+
+    private Element generate_random_los(Document doc){
+        return doc.createElement("los");
+    }
+
+    private Element generate_random_logic(Document doc){
+        return doc.createElement("logic");
+    }
+
+    private Element generate_random_layout(Document doc){
+        String[] measurement_unit = {"centimeters", "millimeters", "inches", "decimal_inches", "points", "picas", "pixels", "twips"};
+        Random rand = new Random();
+        Element layout = doc.createElement("layout");
+        layout.setAttribute("hpos_per_unit", String.valueOf(rand.nextInt(20)));
+        layout.setAttribute("measurement_unit", measurement_unit[rand.nextInt(measurement_unit.length)]);
+        return layout;
+    }
+
+    private Element generate_random_layout_system(Document doc, int id){
+        Element layout_system = doc.createElement("layout_system");
+        if(isGenerateElement()) layout_system.setAttribute("id", String.valueOf(id));
+        Random rand = new Random();
+        layout_system.setAttribute("upper_left_x", String.valueOf(rand.nextInt(20)));
+        layout_system.setAttribute("upper_left_y", String.valueOf(rand.nextInt(20)));
+        layout_system.setAttribute("lower_right_x", String.valueOf(rand.nextInt(20)));
+        layout_system.setAttribute("lower_right_x", String.valueOf(rand.nextInt(20)));
+        return layout_system;
+    }
+
+    private Element generate_random_layout_staff(Document doc, int id, NodeList staffs){
+        Element layout_staff = doc.createElement("layout_staff");
+        if(isGenerateElement()) layout_staff.setAttribute("id", String.valueOf(id));
+        ArrayList<String> idStaffs = getIds(staffs);
+        String[] values = {"yes", "no"};
+        Random rand = new Random();
+        layout_staff.setAttribute("staff_ref", idStaffs.get(new Random().nextInt(idStaffs.size())));
+        layout_staff.setAttribute("vertical_offset", String.valueOf(rand.nextInt(20)));
+        layout_staff.setAttribute("height", String.valueOf(rand.nextInt(20)));
+        layout_staff.setAttribute("ossia", values[rand.nextInt(values.length)]);
+        layout_staff.setAttribute("show_time_signature", values[rand.nextInt(values.length)]);
+        layout_staff.setAttribute("show_key_clef", values[rand.nextInt(values.length)]);
+        layout_staff.setAttribute("show_key_signature", values[rand.nextInt(values.length)]);
+        return layout_staff;
+    }
+
+    private Element generate_random_layout_shapes(Document doc) {
+        Element layout_shapes = doc.createElement("layout_shapes");
+        Random rand = new Random();
+        layout_shapes.setAttribute("horizontal_offset", String.valueOf(rand.nextInt(20)));
+        layout_shapes.setAttribute("vertical_offset", String.valueOf(rand.nextInt(20)));
+        return layout_shapes;
+    }
+
+    private Element generate_random_layout_images(Document doc) {
+        Element layout_images = doc.createElement("layout_images");
+        Random rand = new Random();
+        layout_images.setAttribute("file_name", "file_" + rand.nextInt(50));
+        layout_images.setAttribute("file_format", this.formats[rand.nextInt(formats.length)]);
+        layout_images.setAttribute("encoding_format", this.formats[rand.nextInt(formats.length)]);
+        layout_images.setAttribute("horizontal_offset", String.valueOf(rand.nextInt(20)));
+        layout_images.setAttribute("vertical_offset", String.valueOf(rand.nextInt(20)));
+        if (isGenerateElement()) layout_images.setAttribute("description", "description_" + rand.nextInt(40));
+        if (isGenerateElement()) layout_images.setAttribute("copyright", "copyright_" + rand.nextInt(40));
+        if (isGenerateElement()) layout_images.setAttribute("notes", "notes_" + rand.nextInt(40));
+        return layout_images;
+    }
+
+    private Element generate_random_custom_key_signature(Document doc, NodeList events){
+        String[] accidental = {"none", "double_flat", "flat_and_a_half", "flat", "demiflat", "natural", "demisharp", "sharp", "sharp_and_a_half", "double_sharp"};
+        Element custom_key_signature = doc.createElement("custom_key_signature");
+        ArrayList<String> idEvents = getIds(events);
+        Random rand = new Random();
+        custom_key_signature.setAttribute("event_ref", idEvents.get(new Random().nextInt(idEvents.size())));
+
+        int number_key_accidental = rand.nextInt(10);
+        String[] steps = {"A", "B", "C", "D", "E", "F", "G"};
+        for(int i = 0; i < number_key_accidental; i++){
+            Element key_accidental = doc.createElement("key_accidental");
+            key_accidental.setAttribute("step", steps[rand.nextInt(steps.length)]);
+            key_accidental.setAttribute("accidental", accidental[rand.nextInt(accidental.length)]);
+            custom_key_signature.appendChild(key_accidental);
+        }
+        return custom_key_signature;
+    }
+
+    private Element generate_random_key_signature(Document doc, int id, NodeList events){
+        Element key_signature = doc.createElement("key_signature");
+        ArrayList<String> idEvents = getIds(events);
+        Random rand = new Random();
+        key_signature.setAttribute("event_ref", idEvents.get(new Random().nextInt(idEvents.size())));
+        Element num;
+        if(isGenerateElement()) num = doc.createElement("sharp_num");
+        else num = doc.createElement("flat_num");
+        String[] number = {"0", "1", "2", "3", "4", "5", "6", "7"};
+        num.setAttribute("number", number[rand.nextInt(number.length)]);
+        key_signature.appendChild(num);
+
+        return key_signature;
+    }
+
+    private Element generate_random_key(Document doc, int id, NodeList staffs){
+        Element key = doc.createElement("key");
+        if(isGenerateElement()) key.setAttribute("id", String.valueOf(id));
+        ArrayList<String> idStaffs = getIds(staffs);
+        if(isGenerateElement()) key.setAttribute("staff_ref", idStaffs.get(new Random().nextInt(idStaffs.size())));
+        return key;
+    }
+
+    private Element generate_random_jump_to(Document doc, int id, NodeList events){
+        Element jump_to = doc.createElement("jump_to");
+        if(isGenerateElement()) jump_to.setAttribute("id", String.valueOf(id));
+        ArrayList<String> idEvents = getIds(events);
+        jump_to.setAttribute("event_ref", idEvents.get(new Random().nextInt(idEvents.size())));
+        return jump_to;
+    }
+
+    private Element generate_random_horizontal_symbols(Document doc){
+        return doc.createElement("horizontal_symbols");
+    }
+
     private Element generate_random_hairpin(Document doc, int id, NodeList events, NodeList staffs){
         Element hairpin = doc.createElement("hairpine");
         Random rand = new Random();
@@ -132,8 +326,6 @@ public class GeneratorIEEE1599 {
         graphic_instance.setAttribute("position_in_group", "position_" + rand.nextInt(50));
         graphic_instance.setAttribute("file_name", "file_" + rand.nextInt(50));
         graphic_instance.setAttribute("position_in_group", "position_" + rand.nextInt(50));
-
-        String[] formats = {"application_excel", "application_mac-binhex40", "application_msword", "application_octet-stream", "application_pdf", "application_x-director", "application_x-gzip", "application_x-javascript", "application_x-macbinary", "application_x-pn-realaudio",  "application_x-shockwave_flash", "application_x-tar", "application_zip", "audio_aiff", "audio_avi", "audio_mp3", "audio_mpeg", "audio_mpeg3", "audio_mpg", "audio_wav", "audio_x_aiff", "audio_x_midi", "audio_x_wav", "audio_x-mp3", "audio_x-mpeg", "audio_x-mpeg3", "audio_x-mpegaudio", "audio_x-mpg", "audio_x-ms-wma", "image_avi", "image_bmp", "image_x-bmp", "image_x-bitmap", "image_x-xbitmap", "image_x-win-bitmap", "image_x-windows-bmp", "image_ms-bmp", "image_x-ms-bmp", "application_bmp", "application_x-bmp", "application_x-win-bitmap", "application_preview", "image_gif", "image_jpeg", "image_pict", "image_png","application_png","application_x-png","image_tiff","text_html","text_plain_application_postscript","video_avi","video_mpeg","video_msvideo" ,"video_quicktime" ,"video_x-msvideo", "video_x-ms-wmv" ,"video_x-qtc", "video_xmpg2"};
 
         graphic_instance.setAttribute("file_format", formats[rand.nextInt(formats.length)]);
         graphic_instance.setAttribute("encoding_format", formats[rand.nextInt(formats.length)]);
@@ -708,18 +900,7 @@ public class GeneratorIEEE1599 {
 
 
 
-    private Element generate_random_metronomic_indication(Document doc, NodeList events){
-        Random r = new Random();
-        Element metronomic_indication = doc.createElement("metronomic_indication");
-        metronomic_indication.setAttribute("num", String.valueOf(r.nextInt(5) + 1));
-        metronomic_indication.setAttribute("den", String.valueOf(r.nextInt(5) + 1));
-        metronomic_indication.setAttribute("value", String.valueOf(r.nextInt(200)));
-        if(isGenerateElement()) metronomic_indication.setAttribute("dots", String.valueOf(r.nextInt(200)));
-        ArrayList<String> idsEvents = new ArrayList<>(getIds(events));
-        metronomic_indication.setAttribute("event", idsEvents.get(r.nextInt(idsEvents.size())));
-        return metronomic_indication;
 
-    }
 
 
     private void save_xml_file(Document doc, String description){
