@@ -118,10 +118,10 @@ public class GeneratorIEEE1599 {
                 }
 
 
-                for(int j = 0; j < r.nextInt(10); j++){
+                for(int j = 0; j < r.nextInt(10) + 1; j++){
                     // <!ELEMENT graphic_instance (graphic_event+, rights?)>
                     Element graphic_instance = generate_random_graphic_instance(doc);
-                    if(isGenerateElement()) graphic_instance.appendChild(generate_random_graphic_event(doc));
+                    graphic_instance.appendChild(generate_random_graphic_event(doc));
 
                     graphic_instance_group.appendChild(graphic_instance);
                 }
@@ -134,7 +134,7 @@ public class GeneratorIEEE1599 {
                 for(int j = 0; j < r.nextInt(10); j++){
                     // <!ELEMENT notation_instance (notation_event+, rights?)>
                     Element notation_instance = generate_random_notation_instance(doc);
-                    for(int k = 0; k < r.nextInt(10); k++){
+                    for(int k = 0; k < r.nextInt(10)+1; k++){
                         notation_instance.appendChild(generate_random_notation_event(doc));
                     }
                     if(isGenerateElement()) notation_instance.appendChild(generate_random_rights(doc));
@@ -202,7 +202,6 @@ public class GeneratorIEEE1599 {
         Element pitch = generate_random_pitch(doc);
         notehead.appendChild(pitch);
 
-        notehead.appendChild(generate_random_fingering(doc));
 
         if(isGenerateElement()){
             Element print_accidentals = generate_random_printed_accidentals(doc);
@@ -212,6 +211,8 @@ public class GeneratorIEEE1599 {
         if(isGenerateElement()){
             notehead.appendChild(generator_random_tie(doc));
         }
+
+        notehead.appendChild(generate_random_fingering(doc));
 
     }
 
@@ -237,7 +238,7 @@ public class GeneratorIEEE1599 {
         Element duration = generate_random_duration(doc);
         if(isGenerateElement()) {
             Element tuplet_ratio = generator_random_tuplet_ratio(doc);
-            for (int i = 0; i < r.nextInt(10); i++) tuplet_ratio.appendChild(generator_random_tuplet_ratio(doc));
+            tuplet_ratio.appendChild(generator_random_tuplet_ratio(doc));
             duration.appendChild(tuplet_ratio);
         }
         tablature_symbol.appendChild(duration);
@@ -278,7 +279,7 @@ public class GeneratorIEEE1599 {
         }
 
 
-        for(int i = 0; i < r.nextInt(100)+20; i++) {
+        for(int i = 0; i < r.nextInt(10)+2; i++) {
             Element notehead = generate_random_notehead(doc);
             append_children_to_notehead(doc, notehead, root);
             chord.appendChild(notehead);
@@ -365,28 +366,25 @@ public class GeneratorIEEE1599 {
 
     private void append_children_to_los(Document doc, Element los, Element root){
         // <!ELEMENT los (agogics*, text_field*, metronomic_indication*, staff_list, part+, horizontal_symbols?, ornaments?, lyrics*)>
+        for (int i = 0; i < r.nextInt(10) + 1; i++) los.appendChild(generate_random_agogics(doc));
+        for (int i = 0; i < r.nextInt(10) + 1; i++) los.appendChild(generator_random_text_field(doc));
+        for (int i = 0; i < r.nextInt(10) + 1; i++) los.appendChild(generate_random_metronomic_indication(doc));
+
+        Element staff_list = generate_random_staff_list(doc);
+        append_children_to_staff_list(doc, staff_list, root);
+        los.appendChild(staff_list);
+
+
         for (int i = 0; i < r.nextInt(10) + 1; i++) {
-            los.appendChild(generate_random_agogics(doc));
-            los.appendChild(generator_random_text_field(doc));
-            los.appendChild(generate_random_metronomic_indication(doc));
-            los.appendChild(generate_random_horizontal_symbols(doc));
-            los.appendChild(generate_random_ornaments(doc));
-
-
-            Element staff_list = generate_random_staff_list(doc);
-            append_children_to_staff_list(doc, staff_list, root);
-            los.appendChild(staff_list);
-
             Element part = generate_random_part(doc);
             this.parts.add(part);
             append_children_to_part(doc, part, root);
             los.appendChild(part);
-
-            los.appendChild(generate_random_lyrics(doc));
         }
 
-
-
+            los.appendChild(generate_random_horizontal_symbols(doc));
+            los.appendChild(generate_random_ornaments(doc));
+        for (int i = 0; i < r.nextInt(10) + 1; i++) los.appendChild(generate_random_lyrics(doc));
     }
 
     private void append_children_to_page(Document doc, Element page, Element root){
@@ -433,10 +431,14 @@ public class GeneratorIEEE1599 {
 
         for(int i = 0; i < r.nextInt(10); i++){
             Element midi_event_sequence = generate_random_midi_event_sequence(doc);
-            for(int j = 0; j < r.nextInt(10); j++){
-                if(isGenerateElement()) midi_event_sequence.appendChild(generate_random_midi_event(doc));
-                else midi_event_sequence.appendChild(generate_random_sys_ex(doc));
-            }
+                if(isGenerateElement()) {
+                    for(int j = 0; j < r.nextInt(10)+1; j++)
+                        midi_event_sequence.appendChild(generate_random_midi_event(doc));
+                }
+                else {
+                    for(int j = 0; j < r.nextInt(10)+1; j++)
+                        midi_event_sequence.appendChild(generate_random_sys_ex(doc));
+                }
             midi_mapping.appendChild(midi_event_sequence);
         }
     }
@@ -445,10 +447,13 @@ public class GeneratorIEEE1599 {
         //<!ELEMENT midi_instance (midi_mapping+, rights?)>
 
             //midi_mapping
-            for(int j = 0; j < r.nextInt(10); j++){
+            for(int j = 0; j < r.nextInt(10)+1; j++){
                 Element midi_mapping = generate_random_midi_mapping(doc);
                 append_children_to_midi_mapping(doc, midi_mapping, root);
+                midi_instance.appendChild(midi_mapping);
             }
+
+            if(isGenerateElement()) midi_instance.appendChild(generate_random_rights(doc));
 
     }
 
@@ -469,6 +474,13 @@ public class GeneratorIEEE1599 {
                 // <!ELEMENT csound_orchestra (csound_instrument_mapping*, rights?)>
                 for(int j = 0; j < r.nextInt(10); j++){
                     Element csound_instrument_mapping = generate_random_csound_instrument_mapping(doc);
+                    // <!ELEMENT csound_instrument_mapping (csound_part_ref | csound_spine_ref)+>
+                    if(isGenerateElement()) {
+                        for(int k = 0; k < r.nextInt(10) +1;k++)  csound_instrument_mapping.appendChild(generate_random_csound_part_ref(doc));
+                    }
+                    else{
+                        for(int k = 0; k < r.nextInt(10) +1;k++)  csound_instrument_mapping.appendChild(generate_random_csound_spine_ref(doc));
+                    }
                     csound_orchestra.appendChild(csound_instrument_mapping);
                 }
                 if(isGenerateElement()) csound_orchestra.appendChild(generate_random_rights(doc));
@@ -548,15 +560,14 @@ public class GeneratorIEEE1599 {
         // <!ELEMENT logic (spine, los?, layout?)>
 
         // spine
-        for(int i = 0; i < r.nextInt(5); i++){
-            Element spine = generate_random_spine(doc);
-            for(int j = 0; j < r.nextInt(50); j++) {
-                Element event = generate_random_event(doc);
-                this.events.add(event);
-                spine.appendChild(event);
-            }
-            logic.appendChild(spine);
+        Element spine = generate_random_spine(doc);
+        for(int i = 0; i < r.nextInt(20); i++){
+            Element event = generate_random_event(doc);
+            this.events.add(event);
+            spine.appendChild(event);
         }
+        logic.appendChild(spine);
+
 
         // los
         //if(isGenerateElement()) {
@@ -578,7 +589,11 @@ public class GeneratorIEEE1599 {
       //  <!ELEMENT segment (segment_event+, feature_object*)>
 
         for(int i = 0; i < r.nextInt(10); i++) segment.appendChild(generate_random_segment_event(doc));
-        for(int i = 0; i < r.nextInt(10); i++) segment.appendChild(generate_feature_object(doc));
+        for(int i = 0; i < r.nextInt(10); i++) {
+            Element fo = generate_feature_object(doc);
+            fo.appendChild(generate_random_simple_description(doc));
+            segment.appendChild(fo);
+        }
 
     }
 
@@ -626,9 +641,11 @@ public class GeneratorIEEE1599 {
                 Element mir_object = generate_random_mir_object(doc);
                 Element mir_morphism = generate_random_mir_morphism(doc);
 
-                for (int i = 0; i < r.nextInt(10); i++) {
+                for (int i = 0; i < r.nextInt(10)+1; i++) {
                     Element mir_subobject = generate_random_mir_subobject(doc);
                     Element mir_feature = generate_random_mir_feature(doc);
+                    // da confermare
+                    domains.add(mir_feature); codomains.add(mir_feature);
 
                     mir_object.appendChild(mir_feature);
                     mir_morphism.appendChild(mir_feature);
@@ -677,9 +694,6 @@ public class GeneratorIEEE1599 {
 
 
     private void append_children_to_general(Element general, Element root, Document doc){
-        // description
-        Element description = generate_random_description(doc);
-        append_children_to_description(description, doc);
 
         // analog_media
         Element analog_media = generate_random_analog_media(doc);
@@ -692,10 +706,14 @@ public class GeneratorIEEE1599 {
         Element related_files = generate_random_related_files(doc);
 
 
+        // description
+        Element description = generate_random_description(doc);
+        append_children_to_description(description, doc);
+
+        general.appendChild(description);
         if(isGenerateElement()) general.appendChild(related_files);
         if(isGenerateElement()) general.appendChild(analog_media);
         if(isGenerateElement()) general.appendChild(notes);
-        general.appendChild(description);
     }
 
 
@@ -1100,7 +1118,7 @@ public class GeneratorIEEE1599 {
 
     private Element generate_random_segmentation(Document doc){
         Element segmentation = doc.createElement("segmentation");
-        if(isGenerateElement()) segmentation.setAttribute("id", id_generator());
+        if(isGenerateElement()) segmentation.setAttribute("id", "segmentation_" + id_generator());
         if(isGenerateElement()) segmentation.setAttribute("description", "description_" + r.nextInt());
         if(isGenerateElement()) segmentation.setAttribute("method", "method_" + r.nextInt());
         return segmentation;
@@ -1331,7 +1349,7 @@ public class GeneratorIEEE1599 {
         String[] pitch = {"A", "B", "C", "D", "E", "F", "G"};
         String[] accidental = {"none", "double_flat", "flat_and_a_half", "flat", "demiflat", "natural", "demisharp", "sharp", "sharp_and_a_half", "double_sharp"};
         Element part = doc.createElement("part");
-        part.setAttribute("id", id_generator());
+        part.setAttribute("id", "part_" + id_generator());
         if(isGenerateElement()) part.setAttribute("transposition_pitch", pitch[r.nextInt(pitch.length)]);
         if(isGenerateElement()) part.setAttribute("transposition_accidental", accidental[r.nextInt(accidental.length)]);
         if(isGenerateElement()) part.setAttribute("performers_number", "unknown");
@@ -1441,6 +1459,10 @@ public class GeneratorIEEE1599 {
 
     }
 
+    private Element generate_random_simple_description(Document doc){
+        return doc.createElement("simple_description");
+    }
+
     private Element generate_random_music_font(Document doc){
         return doc.createElement("music_font");
     }
@@ -1496,7 +1518,7 @@ public class GeneratorIEEE1599 {
     }
 
     private Element generate_random_mpeg4score(Document doc){
-        Element mpeg4score = doc.createElement("mpeg4score");
+        Element mpeg4score = doc.createElement("mpeg4_score");
         
         mpeg4score.setAttribute("file_name", "file_" + r.nextInt(100));
         return mpeg4score;
@@ -1574,7 +1596,7 @@ public class GeneratorIEEE1599 {
         ArrayList<String> idCodomains = getIds(this.codomains);
         
         Element mir_morphism = doc.createElement("mir_morphism");
-        if(isGenerateElement()) mir_morphism.setAttribute("id", id_generator());
+        if(isGenerateElement()) mir_morphism.setAttribute("id", "mir_morphism_" + id_generator());
         if(isGenerateElement()) mir_morphism.setAttribute("description", "description_" + r.nextInt(100));
 
         if(idDomains.size() > 0) {
@@ -1599,7 +1621,7 @@ public class GeneratorIEEE1599 {
     private Element generate_random_mir_feature(Document doc){
         
         Element mir_feature = doc.createElement("mir_feature");
-        if(isGenerateElement()) mir_feature.setAttribute("id", id_generator());
+        if(isGenerateElement()) mir_feature.setAttribute("id", "mir_feature_" + id_generator());
         if(isGenerateElement()) mir_feature.setAttribute("description", "description_" + r.nextInt(100));
         if(isGenerateElement()) mir_feature.setAttribute("displacement_ref", "displacement_" + r.nextInt(100));
         return mir_feature;
@@ -1612,7 +1634,7 @@ public class GeneratorIEEE1599 {
     private Element generate_random_midi_mapping(Document doc){
         ArrayList<String> idVoices = getIds(this.voices);
         ArrayList<String> idParts = getIds(this.parts);
-        Element midi_mapping = doc.createElement("midi_event");
+        Element midi_mapping = doc.createElement("midi_mapping");
         if (idParts.size() > 0)
             midi_mapping.setAttribute("part_ref", idParts.get(r.nextInt(idParts.size())));
         if (idVoices.size() > 0)
@@ -1638,7 +1660,7 @@ public class GeneratorIEEE1599 {
         String[] unit = {"ticks", "sec"};
         
         midi_event_sequence.setAttribute("division_value", String.valueOf(r.nextFloat()).substring(0, 5));
-        midi_event_sequence.setAttribute("type", type[r.nextInt(type.length)]);
+        midi_event_sequence.setAttribute("division_type", type[r.nextInt(type.length)]);
         midi_event_sequence.setAttribute("measurement_unit", unit[r.nextInt(unit.length)]);
         return midi_event_sequence;
     }
@@ -1737,7 +1759,7 @@ public class GeneratorIEEE1599 {
 
     private Element generate_random_layout_staff(Document doc){
         Element layout_staff = doc.createElement("layout_staff");
-        if(isGenerateElement()) layout_staff.setAttribute("id", id_generator());
+        if(isGenerateElement()) layout_staff.setAttribute("id", "layout_staff_" + id_generator());
         ArrayList<String> idStaffs = getIds(this.staffs);
         String[] values = {"yes", "no"};
 
@@ -2175,13 +2197,13 @@ public class GeneratorIEEE1599 {
     private Element generate_random_chord_grid(Document doc){
         String id = id_generator();
         Element chord_grid = doc.createElement("chord_grid");
-        if(isGenerateElement()) chord_grid.setAttribute("id", id);
+        if(isGenerateElement()) chord_grid.setAttribute("id", "chord_grid_" + id);
         if(isGenerateElement()) chord_grid.setAttribute("author", "author_" + r.nextInt(20));
         if(isGenerateElement()) chord_grid.setAttribute("description", "description_" + r.nextInt(20));
         int number_chord_name = r.nextInt(10);
         for(int i = 0; i < number_chord_name; i++){
             Element chord_name = doc.createElement("chord_name");
-            chord_name.setAttribute("root_id", id_generator());
+            chord_name.setAttribute("root_id", "root_id_" + id_generator());
             chord_grid.appendChild(chord_name);
         }
         return chord_grid;
@@ -2331,7 +2353,7 @@ public class GeneratorIEEE1599 {
     private Element generate_random_analysis(Document doc){
         
         Element analysis = doc.createElement("analysis");
-        if(isGenerateElement()) analysis.setAttribute("id", id_generator());
+        if(isGenerateElement()) analysis.setAttribute("id", "analysis_" + id_generator());
         if(isGenerateElement()) analysis.setAttribute("author", "author_" + r.nextInt(100));
         if(isGenerateElement()) analysis.setAttribute("description", "description_" + r.nextInt(100));
         return analysis;
