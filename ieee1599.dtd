@@ -15,13 +15,13 @@
 
 <!-- Import of external DTDs -->
 
-<!ENTITY % svg SYSTEM "svg11.dtd" >
-%svg;
+<!--<!ENTITY % svg SYSTEM "svg11.dtd" >
+%svg; -->
 
 <!ENTITY % ChannelRequired "#REQUIRED">
 
-<!ENTITY % midixml SYSTEM "midixml.dtd" >
-%midixml;
+<!-- <!ENTITY % midixml SYSTEM "midixml.dtd" >
+%midixml; -->
 
 
 <!--================================================================================================================-->
@@ -360,7 +360,7 @@
 
 <!ELEMENT close_mute EMPTY>
 
-<!ELEMENT custom_articulation (svg)>
+<!ELEMENT custom_articulation EMPTY>
 
 <!ELEMENT notehead_ref EMPTY>
 <!ATTLIST notehead_ref
@@ -523,7 +523,7 @@
   type (play_on_border | stop_drumhead | muffle_with_harmonics | muffle | rub | shake) #REQUIRED
   %spine_ref;>
 
-<!ELEMENT slur (svg?)>
+<!ELEMENT slur EMPTY>
 <!ATTLIST slur
   id ID #IMPLIED
 	%spine_start_end_ref;
@@ -599,7 +599,7 @@
   %spine_start_end_ref;
   return_to IDREF #IMPLIED>
 
-<!ELEMENT custom_hsymbol (svg)>
+<!ELEMENT custom_hsymbol EMPTY>
 <!ATTLIST custom_hsymbol
   id ID #IMPLIED
 	start_event_ref IDREF #REQUIRED
@@ -715,14 +715,14 @@
   copyright CDATA #IMPLIED
   notes CDATA #IMPLIED>
 
-<!ELEMENT layout_shapes (svg)>
+<!ELEMENT layout_shapes EMPTY>
 <!ATTLIST layout_shapes
   horizontal_offset CDATA #REQUIRED
   vertical_offset CDATA #REQUIRED>
 
-<!ELEMENT text_font (font)>
+<!ELEMENT text_font EMPTY>
 
-<!ELEMENT music_font (font)>
+<!ELEMENT music_font EMPTY>
 
 <!--================================================================================================================-->
 
@@ -926,12 +926,12 @@
 	division_value NMTOKEN #REQUIRED
   measurement_unit (ticks | sec) #REQUIRED>
 
-<!ELEMENT midi_event (%MIDIChannelMessage;)*>
+<!ELEMENT midi_event EMPTY>
 <!ATTLIST midi_event
 	timing CDATA #REQUIRED
   %spine_ref;>
 
-<!ELEMENT sys_ex (SysEx)>
+<!ELEMENT sys_ex EMPTY>
 <!ATTLIST sys_ex
 	%spine_ref;>
 
