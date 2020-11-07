@@ -89,19 +89,21 @@ public class GeneratorIEEE1599 {
         append_children_to_structural(doc, structural, root);
         root.appendChild(structural);
 
-        append_children_to_performance(doc, performance, root);
-        root.appendChild(performance);
-
         append_children_to_notational(doc, notational, root);
         root.appendChild(notational);
 
-        append_children_to_audio(doc, audio, root);
-        root.appendChild(audio);
+        append_children_to_performance(doc, performance, root);
+        root.appendChild(performance);
+
+        //append_children_to_audio(doc, audio, root);
+        //root.appendChild(audio);
     }
 
 
     private void append_children_to_audio(Document doc, Element audio, Element root){
-        
+        /*for(int i = 0; i < r.nextInt(10)+1; i++){
+
+        }*/
     }
 
 
@@ -164,7 +166,11 @@ public class GeneratorIEEE1599 {
                 }
                 break;
             case 2:
-                for(int i = 0; i < r.nextInt(10); i++) staff.appendChild(generator_random_time_signature(doc));
+                for(int i = 0; i < r.nextInt(10); i++){
+                    Element time_signature = generator_random_time_signature(doc);
+                    for(int j = 0; j < r.nextInt(10)+1; j++) time_signature.appendChild(generator_random_time_indication(doc));
+                    staff.appendChild(time_signature);
+                }
                 break;
             case 3:
                 for(int i = 0; i < r.nextInt(10); i++) staff.appendChild(generate_random_barline(doc));
@@ -384,7 +390,7 @@ public class GeneratorIEEE1599 {
         // layout_system
         for(int i = 0; i < r.nextInt(10); i++){
             Element layout_system = generate_random_layout_system(doc);
-            for(int j = 0; j < r.nextInt(10); j++){
+            for(int j = 0; j < r.nextInt(10)+1; j++){
                 layout_system.appendChild(generate_random_layout_staff(doc));
             }
             page.appendChild(layout_system);
@@ -399,7 +405,7 @@ public class GeneratorIEEE1599 {
         // <!ELEMENT layout (page+, text_font?, music_font?)>
 
         // page
-        for(int i = 0; i < r.nextInt(5); i++){
+        for(int i = 0; i < r.nextInt(5)+1; i++){
             Element page = generate_random_page(doc);
             append_children_to_page(doc, page, root);
             layout.appendChild(page);
@@ -691,28 +697,28 @@ public class GeneratorIEEE1599 {
         // <!ELEMENT structural (chord_grid*, analysis*, petri_nets*, mir*)>
 
         // chord_grid
-        for(int i = 0; i < r.nextInt(10); i++) {
+        for(int i = 0; i < r.nextInt(10)+1; i++) {
             Element chord_grid = generate_random_chord_grid(doc);
 
             structural.appendChild(chord_grid);
         }
 
         // analysis
-        for(int i = 0; i < r.nextInt(10); i++){
+        for(int i = 0; i < r.nextInt(10)+1; i++){
             Element analysis = generate_random_analysis(doc);
             append_children_to_analysis(doc, analysis, root);
             structural.appendChild(analysis);
         }
 
         // petri_nets
-        for(int i = 0; i < r.nextInt(10); i++){
+        for(int i = 0; i < r.nextInt(10)+1; i++){
             Element petri_nets = generate_random_petri_nets(doc);
             append_children_to_petri_nets(doc, petri_nets, root);
             structural.appendChild(petri_nets);
         }
 
         // mir
-        for(int i = 0; i < r.nextInt(10); i++){
+        for(int i = 0; i < r.nextInt(10)+1; i++){
             Element mir = generate_random_mir(doc);
             append_children_to_mir(doc, mir, root);
             structural.appendChild(mir);
@@ -726,7 +732,7 @@ public class GeneratorIEEE1599 {
 
         // analog_media
         Element analog_media = generate_random_analog_media(doc);
-        for(int i = 0; i < r.nextInt(10); i++) analog_media.appendChild(generate_random_analog_medium(doc));
+        for(int i = 0; i < r.nextInt(10)+1; i++) analog_media.appendChild(generate_random_analog_medium(doc));
 
         // notes
         Element notes = generate_random_notes(doc);
@@ -1230,7 +1236,7 @@ public class GeneratorIEEE1599 {
 
     private Element generate_random_related_files(Document doc){
         Element related_files = doc.createElement("related_files");
-        int number_related_file = r.nextInt(10);
+        int number_related_file = r.nextInt(10)+1;
         for(int i = 0; i < number_related_file; i++) {
             Element related_file = doc.createElement("related_file");
             if(events.size() > 0) {
@@ -1788,7 +1794,7 @@ public class GeneratorIEEE1599 {
         if (events.size() > 0)
             custom_key_signature.setAttribute("event_ref", events.get(new Random().nextInt(events.size())));
 
-        int number_key_accidental = r.nextInt(10);
+        int number_key_accidental = r.nextInt(10)+1;
         String[] steps = {"A", "B", "C", "D", "E", "F", "G"};
         for(int i = 0; i < number_key_accidental; i++){
             Element key_accidental = doc.createElement("key_accidental");
@@ -1918,7 +1924,7 @@ public class GeneratorIEEE1599 {
     private Element generate_random_genres(Document doc){
         
         Element genres = doc.createElement("genres");
-        int number_genre = r.nextInt(10);
+        int number_genre = r.nextInt(10)+1;
         for(int i = 0; i < number_genre; i++) {
             Element genre = doc.createElement("genre");
             genre.setAttribute("name", "name_" + r.nextInt(20));
