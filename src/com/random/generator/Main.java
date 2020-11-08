@@ -28,5 +28,16 @@ public class Main {
         GeneratorIEEE1599 g1 = new GeneratorIEEE1599("", "ieee1599.xml", p);
         g1.generate_file();
 
+        // example of GFG
+        GFG g2 = new GFG();
+        int arr[] = {1, 2, 3, 4};
+        int probabilities[] = {30, 25, 25, 25}; // 30%, 25%, 25%, 25%
+        int i, n = arr.length;
+
+        // Let us generate 10 random numbers accroding to
+        // given distribution
+        for (i = 0; i < 5; i++)
+            System.out.println(g2.myRand(arr, probabilities, n));
+
     }
 }
