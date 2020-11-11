@@ -1,16 +1,35 @@
 package com.random.generator;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.TreeMap;
 
 public class Main {
     public static void main(String[] args) {
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            // If Nimbus is not available, you can set the GUI to another look and feel.
+        }
+
+        JFrame jframe = new JFrame("Generatore IEEE1599");
+        CustomGrid grid = new CustomGrid();
+        jframe.setContentPane(grid.mainPanel);
+        jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        jframe.setSize(1200, 500);
+        jframe.setVisible(true);
+
         Parameter p = new Parameter();
         p.setLenght(2000);
         p.setMin_max_height(3, 8);
-        p.setMin_max_numerator(1, 5);
-        p.setMin_max_denominator(1, 5);
+
 
         // SHARP, FLAT, NATURAL, DOUBLESHARP, DOUBLEFLAT, UNDEFINED
         p.setAccidentals(new ArrayList<>(Arrays.asList("NATURAL", "DOUBLEFLAT", "FLAT", "SHARP")));
@@ -25,7 +44,18 @@ public class Main {
         p.setNotes(notes_freq);
 
 
-        IEEE1599Generator g1 = new IEEE1599Generator("", "ieee1599.xml", p);
+        TreeMap<String, Integer> durations_freq = new TreeMap<>();
+        for(int i = 1; i < 8; i++){
+            for(int j = 1; j < 8; j++){
+                durations_freq.put(i + "/" + j, new Random().nextInt(10));
+            }
+        }
+        p.setDurations(durations_freq);
+
+
+
+        String path = ""; // e.g: "C:\\Users\\matti\\Desktop\\"
+        IEEE1599Generator g1 = new IEEE1599Generator(path, "example_IEEE1599.xml", p);
         g1.generate_file();
 
 

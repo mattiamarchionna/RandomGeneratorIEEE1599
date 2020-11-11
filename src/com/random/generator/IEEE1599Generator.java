@@ -1,7 +1,9 @@
 package com.random.generator;
 
 import org.w3c.dom.*;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -38,6 +40,21 @@ public class IEEE1599Generator {
         factory.setValidating(true);
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
+
+            builder.setErrorHandler(new ErrorHandler() {
+                @Override
+                public void warning(SAXParseException exception) throws SAXException {
+                }
+
+                @Override
+                public void error(SAXParseException exception) throws SAXException {
+                }
+
+                @Override
+                public void fatalError(SAXParseException exception) throws SAXException {
+                }
+            });
+
             save_xml_file(builder.newDocument(), "new"); // inizializzazione dell'XML 'vuoto'
             File file = new File(this.path + this.nameOfFile);
             Document doc = builder.parse(file);
@@ -47,7 +64,6 @@ public class IEEE1599Generator {
 
             save_xml_file(doc, "save");
         } catch (ParserConfigurationException | SAXException | IOException e) {
-            System.out.println(e);
             System.out.println("Errore nell'elaborazione del file");
             System.exit(1);
         }
@@ -348,7 +364,6 @@ public class IEEE1599Generator {
         Element voice_list = g_element.generate_random_voice_list(doc);
         for (int i = 0; i < r.nextInt(number_elements) + 1; i++) {
             Element voice_item = g_element.generate_random_voice_item(doc);
-            System.out.println("ciaoooooo" + voice_item.getAttribute("id"));
             g_element.voice_items.add(voice_item.getAttribute("id"));
             voice_list.appendChild(voice_item);
         }
@@ -389,7 +404,7 @@ public class IEEE1599Generator {
                         voice.appendChild(gregoryan_syboml);
                         break;
                     default:
-                        System.out.println("-- Errore nella creazione dei figli...");
+                        System.out.println("Errore nella creazione dei figli...");
                 }
                 measure.appendChild(voice);
             }

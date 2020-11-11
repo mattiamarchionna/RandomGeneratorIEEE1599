@@ -1,6 +1,8 @@
 package com.random.generator;
 
 
+import sun.reflect.generics.tree.Tree;
+
 import java.util.*;
 
 // classe che riceverà i vari parametri per la generazione del file
@@ -9,9 +11,14 @@ public class Parameter {
     private int lenght;
     private int[] min_max_height = new int[2];
     private TreeMap<String, Integer> notes;
+    private TreeMap<String, Integer> durations;
 
     public TreeMap<String, Integer> getNotes() {
         return notes;
+    }
+
+    public void setDurations(TreeMap<String, Integer> durations) {
+        this.durations = durations;
     }
 
     private ArrayList<String> accidentals;
@@ -87,5 +94,21 @@ public class Parameter {
 
         int i, n = arr.size();
         return g.myRand(arr.toArray(new String[arr.size()]), freq.toArray(new Integer[freq.size()]), n);
+    }
+
+    public String[] generate_duration_with_probability(){
+        RandomValueProbability<String> g = new RandomValueProbability<>();
+        ArrayList<String> arr = new ArrayList<>();
+        ArrayList<Integer> freq = new ArrayList<>();
+        Set<Map.Entry<String, Integer>> entrySet = this.durations.entrySet();
+        List<Map.Entry<String, Integer>> listEntries = new ArrayList<>(entrySet);
+
+        for(Map.Entry<String, Integer> entry : listEntries ){
+            arr.add(entry.getKey());
+            freq.add(entry.getValue());
+        }
+
+        int i, n = arr.size();
+        return g.myRand(arr.toArray(new String[arr.size()]), freq.toArray(new Integer[freq.size()]), n).split("/");
     }
 }

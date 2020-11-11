@@ -209,8 +209,9 @@ public class ElementGenerator {
 
     public Element generate_random_time_indication(Document doc){
         Element time_indication = doc.createElement("time_indication");
-        if(isGenerateElement()) time_indication.setAttribute("den", String.valueOf(r.nextInt(8)));
-        time_indication.setAttribute("num", String.valueOf(r.nextInt(8)));
+        String[] dur = configuration.generate_duration_with_probability();
+        if(isGenerateElement()) time_indication.setAttribute("den", dur[1]);
+        time_indication.setAttribute("num", dur[0]);
         String[] abbrevation = {"yes", "no"};
         if(isGenerateElement()) time_indication.setAttribute("vtu_amount", String.valueOf(r.nextInt(40)));
         time_indication.setAttribute("abbreviation", abbrevation[r.nextInt(abbrevation.length)]);
@@ -933,10 +934,10 @@ public class ElementGenerator {
     }
 
     public Element generate_random_metronomic_indication(Document doc){
-
+        String[] duration = configuration.generate_duration_with_probability();
         Element metronomic_indication = doc.createElement("metronomic_indication");
-        metronomic_indication.setAttribute("num", String.valueOf(r.nextInt(5) + 1));
-        metronomic_indication.setAttribute("den", String.valueOf(r.nextInt(7) + 1));
+        metronomic_indication.setAttribute("num", duration[0]);
+        metronomic_indication.setAttribute("den", duration[1]);
         metronomic_indication.setAttribute("value", String.valueOf(r.nextInt(200)));
         metronomic_indication.setAttribute("dots", String.valueOf(r.nextInt(200)));
         if (events.size() > 0)
@@ -975,8 +976,6 @@ public class ElementGenerator {
 
     public Element generate_random_lyrics(Document doc){
         Element lyrics = doc.createElement("lyrics");
-        System.out.println("helloooo" + this.voice_items.size() + this.voice_items);
-
 
         if (parts.size() > 0) lyrics.setAttribute("part_ref", parts.get(r.nextInt(parts.size())));
         if (voice_items.size() > 0) lyrics.setAttribute("voice_ref", voice_items.get(r.nextInt(voice_items.size())));
@@ -1262,16 +1261,18 @@ public class ElementGenerator {
     }
 
     public Element generate_random_duration(Document doc){
-
+        String[] dur = configuration.generate_duration_with_probability();
         Element duration = doc.createElement("duration");
-        duration.setAttribute("num", String.valueOf(r.nextInt(5)));
-        duration.setAttribute("den", String.valueOf(r.nextInt(5)));
+        duration.setAttribute("num", dur[0]);
+        duration.setAttribute("den", dur[1]);
         if(isGenerateElement()){
             Element tuplet_ratio = doc.createElement("tuplet_ratio");
-            tuplet_ratio.setAttribute("enter_num", String.valueOf(r.nextInt(5)));
-            tuplet_ratio.setAttribute("enter_den", String.valueOf(r.nextInt(8)));
-            tuplet_ratio.setAttribute("in_num", String.valueOf(r.nextInt(5)));
-            tuplet_ratio.setAttribute("in_den", String.valueOf(r.nextInt(5)));
+            dur = configuration.generate_duration_with_probability();
+            tuplet_ratio.setAttribute("enter_num", dur[0]);
+            tuplet_ratio.setAttribute("enter_den", dur[1]);
+            dur = configuration.generate_duration_with_probability();
+            tuplet_ratio.setAttribute("in_num", dur[0]);
+            tuplet_ratio.setAttribute("in_den", dur[1]);
             if(isGenerateElement()) tuplet_ratio.setAttribute("in_dots", String.valueOf(r.nextInt(5)));
             duration.appendChild(tuplet_ratio);
         }
@@ -1643,15 +1644,8 @@ public class ElementGenerator {
     // vedere SaveMelody.java nel file xml.pdf
     // <pitch octave="6" step="D" actual_accidental="natural" />
     public Element generate_random_pitch(Document doc){
-        //ArrayList<String> notes = configuration.getNotes();
         int[] max_min_height = configuration.getMin_max_height();
-        //ArrayList<String> accidentals = configuration.getAccidentals();
-        int[] max_min_numerator = configuration.getMin_max_numerator();
-        int[] max_min_denominator = configuration.getMin_max_denominator();
         int octave = r.nextInt(max_min_height[1] - max_min_height[0]) + max_min_height[0];
-        //String[] pitchs = {"A", "B", "C", "D", "E", "F", "G"};
-        //int numerator = r.nextInt(max_min_numerator[1] - max_min_numerator[0]) + max_min_numerator[0];
-        //int denominator = r.nextInt(max_min_denominator[1] - max_min_denominator[0]) + max_min_denominator[0];
         Element pitch = doc.createElement("pitch");
         String[] accidental = {"none", "double_flat", "flat_and_a_half", "flat", "demiflat", "natural", "demisharp", "sharp", "sharp_and_a_half", "double_sharp"};
         pitch.setAttribute("actual_accidental", accidental[r.nextInt(accidental.length)]);
