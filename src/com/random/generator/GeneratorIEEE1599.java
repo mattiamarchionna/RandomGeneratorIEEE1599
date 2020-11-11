@@ -1105,11 +1105,11 @@ public class GeneratorIEEE1599 {
     }
 
     private Element generate_random_string(Document doc){
-        String[] pitch = {"A", "B", "C", "D", "E", "F", "G"};
+        //String[] pitch = {"A", "B", "C", "D", "E", "F", "G"};
         String[] accidental = {"none", "double_flat", "flat_and_a_half", "flat", "demiflat", "natural", "demisharp", "sharp", "sharp_and_a_half", "double_sharp"};
         Element string = doc.createElement("string");
         string.setAttribute("number", String.valueOf(r.nextInt(200)));
-        string.setAttribute("string_pitch", pitch[r.nextInt(pitch.length)]);
+        string.setAttribute("string_pitch", configuration.generate_note_with_probability());
         if(isGenerateElement()) string.setAttribute("string_accidental", accidental[r.nextInt(accidental.length)]);
         string.setAttribute("string_octave", String.valueOf(r.nextInt(number_elements)));
         return string;
@@ -1402,11 +1402,11 @@ public class GeneratorIEEE1599 {
     }
 
     private Element generate_random_part(Document doc){
-        String[] pitch = {"A", "B", "C", "D", "E", "F", "G"};
+        //String[] pitch = {"A", "B", "C", "D", "E", "F", "G"};
         String[] accidental = {"none", "double_flat", "flat_and_a_half", "flat", "demiflat", "natural", "demisharp", "sharp", "sharp_and_a_half", "double_sharp"};
         Element part = doc.createElement("part");
         part.setAttribute("id", "part_" + id_generator());
-        if(isGenerateElement()) part.setAttribute("transposition_pitch", pitch[r.nextInt(pitch.length)]);
+        if(isGenerateElement()) part.setAttribute("transposition_pitch", configuration.generate_note_with_probability());
         if(isGenerateElement()) part.setAttribute("transposition_accidental", accidental[r.nextInt(accidental.length)]);
         if(isGenerateElement()) part.setAttribute("performers_number", "unknown");
         else part.setAttribute("performers_number", String.valueOf(r.nextInt(20)));
@@ -1843,10 +1843,10 @@ public class GeneratorIEEE1599 {
             custom_key_signature.setAttribute("event_ref", events.get(new Random().nextInt(events.size())));
 
         int number_key_accidental = r.nextInt(number_elements)+1;
-        String[] steps = {"A", "B", "C", "D", "E", "F", "G"};
+        //String[] steps = {"A", "B", "C", "D", "E", "F", "G"};
         for(int i = 0; i < number_key_accidental; i++){
             Element key_accidental = doc.createElement("key_accidental");
-            key_accidental.setAttribute("step", steps[r.nextInt(steps.length)]);
+            key_accidental.setAttribute("step", configuration.generate_note_with_probability());
             key_accidental.setAttribute("accidental", accidental[r.nextInt(accidental.length)]);
             custom_key_signature.appendChild(key_accidental);
         }
@@ -2252,13 +2252,13 @@ public class GeneratorIEEE1599 {
     private Element generate_random_bend(Document doc){
         Element bend = doc.createElement("bend");
         String[] type = {"single", "double"};
-        String[] pitch = {"A", "B", "C", "D", "E", "F", "up", "down"};
+        //String[] pitch = {"A", "B", "C", "D", "E", "F", "up", "down"};
         String[] accidental = {"none", "double_flat", "flat_and_a_half", "flat", "demiflat", "natural", "demisharp", "sharp", "sharp_and_a_half", "double_sharp"};
 
         if(isGenerateElement()) bend.setAttribute("id", id_generator());
         if (events.size() > 0)
             bend.setAttribute("event_ref", events.get(r.nextInt(events.size())));
-        bend.setAttribute("to_pitch", pitch[r.nextInt(pitch.length)]);
+        bend.setAttribute("to_pitch", configuration.generate_note_with_probability());
         bend.setAttribute("type", type[r.nextInt(type.length)]);
         if(isGenerateElement()) bend.setAttribute("to_accindental", accidental[r.nextInt(accidental.length)]);
         if(isGenerateElement()) bend.setAttribute("to_octave", String.valueOf(r.nextInt(12)));
@@ -2432,13 +2432,13 @@ public class GeneratorIEEE1599 {
         int[] max_min_numerator = configuration.getMin_max_numerator();
         int[] max_min_denominator = configuration.getMin_max_denominator();
         int octave = r.nextInt(max_min_height[1] - max_min_height[0]) + max_min_height[0];
-        String[] pitchs = {"A", "B", "C", "D", "E", "F", "G"};
+        //String[] pitchs = {"A", "B", "C", "D", "E", "F", "G"};
         //int numerator = r.nextInt(max_min_numerator[1] - max_min_numerator[0]) + max_min_numerator[0];
         //int denominator = r.nextInt(max_min_denominator[1] - max_min_denominator[0]) + max_min_denominator[0];
         Element pitch = doc.createElement("pitch");
         String[] accidental = {"none", "double_flat", "flat_and_a_half", "flat", "demiflat", "natural", "demisharp", "sharp", "sharp_and_a_half", "double_sharp"};
         pitch.setAttribute("actual_accidental", accidental[r.nextInt(accidental.length)]);
-        pitch.setAttribute("step", pitchs[r.nextInt(pitchs.length)]);
+        pitch.setAttribute("step", configuration.generate_note_with_probability());
         pitch.setAttribute("octave", String.valueOf(octave));
         return pitch;
     }

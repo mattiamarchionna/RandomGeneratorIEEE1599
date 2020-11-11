@@ -1,14 +1,22 @@
 package com.random.generator;
 
 
-import java.util.ArrayList;
+import sun.reflect.generics.tree.Tree;
+
+import java.lang.reflect.Array;
+import java.util.*;
 
 // classe che riceverà i vari parametri per la generazione del file
 public class Parameter {
 
     private int lenght;
     private int[] min_max_height = new int[2];
-    private ArrayList<String> notes;
+    private TreeMap<String, Integer> notes;
+
+    public TreeMap<String, Integer> getNotes() {
+        return notes;
+    }
+
     private ArrayList<String> accidentals;
     private ArrayList<String> struments;
     private int[] min_max_numerator = new int[2];
@@ -60,15 +68,27 @@ public class Parameter {
         return min_max_height;
     }
 
-    public ArrayList<String> getNotes() {
-        return new ArrayList<>(notes);
-    }
-
     public void setMin_max_height(int min, int max){
         min_max_height[0] = min; min_max_height[1] = max;
     }
 
-    public void setNotes(ArrayList<String> notes){
-        this.notes = new ArrayList<>(notes);
+    public void setNotes(TreeMap<String,Integer> notes){
+        this.notes = new TreeMap<String, Integer>(notes);
+    }
+
+    public String generate_note_with_probability(){
+        GFG<String> g = new GFG<>();
+        ArrayList<String> arr = new ArrayList<>();
+        ArrayList<Integer> freq = new ArrayList<>();
+        Set<Map.Entry<String, Integer>> entrySet = this.notes.entrySet();
+        List<Map.Entry<String, Integer>> listEntries = new ArrayList<>(entrySet);
+
+        for(Map.Entry<String, Integer> entry : listEntries ){
+            arr.add(entry.getKey());
+            freq.add(entry.getValue());
+        }
+
+        int i, n = arr.size();
+        return g.myRand(arr.toArray(new String[arr.size()]), freq.toArray(new Integer[freq.size()]), n);
     }
 }
