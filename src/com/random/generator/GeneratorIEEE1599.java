@@ -2,6 +2,8 @@ package com.random.generator;
 
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
+
+import javax.print.Doc;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -43,7 +45,7 @@ public class GeneratorIEEE1599 {
         this.nameOfFile = nameOfFile;
         this.configuration = configuration;
         this.id_gen = 0;
-        this.number_elements = 4;
+        this.number_elements = 40;
         this.r = new Random();
     }
 
@@ -86,28 +88,96 @@ public class GeneratorIEEE1599 {
         append_children_to_logic(logic, root, doc);
         root.appendChild(logic);
 
-        // structural
-        append_children_to_structural(doc, structural, root);
-        root.appendChild(structural);
+        if(isGenerateElement()) {
+            // structural
+            append_children_to_structural(doc, structural, root);
+            root.appendChild(structural);
+        }
 
-        // notational
-        append_children_to_notational(doc, notational, root);
-        root.appendChild(notational);
+        if(isGenerateElement()) {
+            // notational
+            append_children_to_notational(doc, notational, root);
+            root.appendChild(notational);
+        }
 
-        // performance
-        append_children_to_performance(doc, performance, root);
-        root.appendChild(performance);
+        if(isGenerateElement()) {
+            // performance
+            append_children_to_performance(doc, performance, root);
+            root.appendChild(performance);
+        }
 
-        // audio
-        //append_children_to_audio(doc, audio, root);
-        //root.appendChild(audio);
+        if(isGenerateElement()) {
+            // audio
+            append_children_to_audio(doc, audio, root);
+            root.appendChild(audio);
+        }
     }
 
+    private void append_children_to_track_general(Document doc, Element track_general, Element root){
+        // <!ELEMENT track_general (recordings?, genres?, albums?, performers?, notes?)>
+        if(isGenerateElement()){
+            Element recordings = generate_random_recordings(doc);
+            for(int i = 0; i < r.nextInt(number_elements)+1; i++) recordings.appendChild(generate_random_recording(doc));
+            track_general.appendChild(recordings);
+        }
+        if(isGenerateElement()){
+            Element genres = generate_random_genres(doc);
+            track_general.appendChild(genres);
+        }
+        if(isGenerateElement()){
+            Element albums = generate_random_albums(doc);
+            for(int i = 0; i < r.nextInt(number_elements)+1; i++) albums.appendChild(generate_random_album(doc));
+            track_general.appendChild(albums);
+        }
+        if(isGenerateElement()){
+            Element performers = generate_random_performers(doc);
+            track_general.appendChild(performers);
+        }
+        if(isGenerateElement()){
+            Element notes = generate_random_notes(doc);
+            track_general.appendChild(notes);
+
+        }
+    }
+
+    private void append_children_to_track_indexing(Document doc, Element track_indexing, Element root){
+        // <!ELEMENT track_indexing (track_region*, track_event+)>
+        for(int i = 0; i < r.nextInt(number_elements); i++){
+            Element track_region = generator_random_track_region(doc);
+            track_indexing.appendChild(track_region);
+        }
+        for(int i = 0; i < r.nextInt(number_elements)+1; i++){
+            Element track_event = generator_random_track_event(doc);
+            track_indexing.appendChild(track_event);
+        }
+
+    }
+
+    private void append_children_to_track(Document doc, Element track, Element root){
+        // <!ELEMENT track (track_general?, track_indexing?, rights?)>
+        if(isGenerateElement()){
+            Element track_general = generator_random_track_general(doc);
+            append_children_to_track_general(doc, track_general, root);
+            track.appendChild(track_general);
+        }
+        if(isGenerateElement()){
+            Element track_indexing = generator_random_track_indexing(doc);
+            append_children_to_track_indexing(doc, track_indexing, root);
+            track.appendChild(track_indexing);
+        }
+        if(isGenerateElement()){
+            Element rights = generate_random_rights(doc);
+            track.appendChild(rights);
+        }
+    }
 
     private void append_children_to_audio(Document doc, Element audio, Element root){
-        /*for(int i = 0; i < r.nextInt(number_elements)+1; i++){
-
-        }*/
+        for(int i = 0; i < r.nextInt(number_elements)+1; i++){
+            // track
+            Element track = generate_random_track(doc);
+            append_children_to_track(doc, track, root);
+            audio.appendChild(track);
+        }
     }
 
 
@@ -1202,6 +1272,15 @@ public class GeneratorIEEE1599 {
         return feature_object_relationships;
     }
 
+    private Element generate_random_track(Document doc){
+        Element track = doc.createElement("track");
+        int number_related_file = r.nextInt(number_elements)+1;
+        track.setAttribute("file_name", "file_" + r.nextInt(100));
+        track.setAttribute("file_format", formats[r.nextInt(formats.length)]);
+        track.setAttribute("encoding_format", formats[r.nextInt(formats.length)]);
+        return track;
+    }
+
 
     private Element generate_random_related_files(Document doc){
         Element related_files = doc.createElement("related_files");
@@ -1269,7 +1348,7 @@ public class GeneratorIEEE1599 {
 
     private Element generate_random_performers(Document doc){
         Element performers = doc.createElement("performers");
-        int number_perfomer = r.nextInt(number_elements);
+        int number_perfomer = r.nextInt(number_elements)+1;
         for(int i = 0; i < number_perfomer; i++){
             Element performer = doc.createElement("performer");
             performer.setAttribute("name", "name_" + i);
@@ -2309,7 +2388,7 @@ public class GeneratorIEEE1599 {
         if(isGenerateElement()) album.setAttribute("carrier_type", "carrier_" + r.nextInt(200));
         if(isGenerateElement()) album.setAttribute("catalogue_number", String.valueOf(r.nextInt(200)));
         if(isGenerateElement()) album.setAttribute("number_of_tracks", String.valueOf(r.nextInt(200)));
-        if(isGenerateElement()) album.setAttribute("pubblication_date", generate_date());
+        if(isGenerateElement()) album.setAttribute("publication_date", generate_date());
         if(isGenerateElement()) album.setAttribute("label", "label_" + r.nextInt(200));
         return album;
     }
