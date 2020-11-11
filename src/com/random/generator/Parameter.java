@@ -1,9 +1,6 @@
 package com.random.generator;
 
 
-import sun.reflect.generics.tree.Tree;
-
-import java.lang.reflect.Array;
 import java.util.*;
 
 // classe che riceverà i vari parametri per la generazione del file
@@ -77,7 +74,7 @@ public class Parameter {
     }
 
     public String generate_note_with_probability(){
-        GFG<String> g = new GFG<>();
+        RandomValueProbability<String> g = new RandomValueProbability<>();
         ArrayList<String> arr = new ArrayList<>();
         ArrayList<Integer> freq = new ArrayList<>();
         Set<Map.Entry<String, Integer>> entrySet = this.notes.entrySet();

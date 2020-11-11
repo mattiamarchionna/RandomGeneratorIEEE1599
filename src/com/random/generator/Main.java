@@ -1,19 +1,11 @@
 package com.random.generator;
 
-import org.w3c.dom.DOMImplementation;
-import org.w3c.dom.Document;
-import org.w3c.dom.DocumentType;
-import org.w3c.dom.Element;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.TreeMap;
 
 public class Main {
-    public static void main(String[] args) throws ParserConfigurationException {
+    public static void main(String[] args) {
         Parameter p = new Parameter();
         p.setLenght(2000);
         p.setMin_max_height(3, 8);
@@ -33,7 +25,7 @@ public class Main {
         p.setNotes(notes_freq);
 
 
-        GeneratorIEEE1599 g1 = new GeneratorIEEE1599("", "ieee1599.xml", p);
+        IEEE1599Generator g1 = new IEEE1599Generator("", "ieee1599.xml", p);
         g1.generate_file();
 
 
