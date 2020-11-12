@@ -1,16 +1,17 @@
 package com.random.generator;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.TreeMap;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -23,7 +24,9 @@ public class Main {
         CustomGrid grid = new CustomGrid();
         jframe.setContentPane(grid.mainPanel);
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jframe.setSize(1200, 500);
+        jframe.pack();
+        jframe.setResizable(false);
+        //jframe.setSize(1200, 750);
         jframe.setVisible(true);
 
         Parameter p = new Parameter();

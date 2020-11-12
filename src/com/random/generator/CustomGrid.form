@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.random.generator.CustomGrid">
-  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="9" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="29" y="26" width="1443" height="423"/>
+      <xy x="29" y="26" width="1443" height="869"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
       <grid id="34ea5" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
@@ -22,7 +22,7 @@
               <text value="Cartella di destinazione:"/>
             </properties>
           </component>
-          <component id="56201" class="javax.swing.JTextArea" binding="textArea4" default-binding="true">
+          <component id="d4534" class="javax.swing.JTextField" binding="textField4">
             <constraints/>
             <properties>
               <columns value="20"/>
@@ -57,9 +57,9 @@
           </grid>
         </children>
       </grid>
-      <grid id="23088" layout-manager="FlowLayout" hgap="10" vgap="0" flow-align="0">
+      <grid id="23088" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="bevel-lowered" title="Parametro altezza" title-position="2">
@@ -78,13 +78,14 @@
               <component id="b5fa0" class="javax.swing.JLabel">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="16" style="1"/>
+                  <font name="Montserrat" size="15" style="1"/>
                   <text value="Altezza minima:"/>
                 </properties>
               </component>
-              <component id="6c2d8" class="javax.swing.JComboBox" default-binding="true">
+              <component id="6c2d8" class="javax.swing.JComboBox" binding="comboBox3">
                 <constraints/>
                 <properties>
+                  <font name="Montserrat" size="16"/>
                   <preferredSize width="90" height="30"/>
                 </properties>
               </component>
@@ -98,13 +99,14 @@
               <component id="f1fd5" class="javax.swing.JLabel">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="16" style="1"/>
+                  <font name="Montserrat" size="15" style="1"/>
                   <text value="Altezza massima:"/>
                 </properties>
               </component>
-              <component id="8ac99" class="javax.swing.JComboBox" default-binding="true">
+              <component id="8ac99" class="javax.swing.JComboBox" binding="comboBox4">
                 <constraints/>
                 <properties>
+                  <font name="Montserrat" size="16"/>
                   <preferredSize width="90" height="30"/>
                 </properties>
               </component>
@@ -112,9 +114,9 @@
           </grid>
         </children>
       </grid>
-      <grid id="98c7a" layout-manager="FlowLayout" hgap="10" vgap="0" flow-align="0">
+      <grid id="98c7a" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="bevel-lowered" title="Parametro note" title-position="2">
@@ -275,9 +277,9 @@
           </grid>
         </children>
       </grid>
-      <grid id="a6f20" layout-manager="FlowLayout" hgap="10" vgap="0" flow-align="0">
+      <grid id="a6f20" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="bevel-lowered" title="Parametro durata" title-position="2">
@@ -295,13 +297,14 @@
               <component id="df08e" class="javax.swing.JLabel">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="16" style="1"/>
+                  <font name="Montserrat" size="15" style="1"/>
                   <text value="Durata minima:"/>
                 </properties>
               </component>
               <component id="654b1" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
                 <constraints/>
                 <properties>
+                  <font name="Montserrat" size="16"/>
                   <preferredSize width="90" height="30"/>
                 </properties>
               </component>
@@ -315,13 +318,14 @@
               <component id="75abd" class="javax.swing.JLabel">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="16" style="1"/>
+                  <font name="Montserrat" size="15" style="1"/>
                   <text value="Durata massima:"/>
                 </properties>
               </component>
               <component id="4d206" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
                 <constraints/>
                 <properties>
+                  <font name="Montserrat" size="16"/>
                   <preferredSize width="90" height="30"/>
                 </properties>
               </component>
@@ -329,9 +333,9 @@
           </grid>
         </children>
       </grid>
-      <grid id="15ae8" layout-manager="FlowLayout" hgap="10" vgap="-1" flow-align="0">
+      <grid id="15ae8" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="bevel-lowered" title="Parametro note/pause" title-position="2">
@@ -350,7 +354,7 @@
               <component id="53bd" class="javax.swing.JCheckBox" binding="soloNoteCheckBox" default-binding="true">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="16" style="1"/>
+                  <font name="Montserrat" size="15" style="1"/>
                   <text value="Solo note"/>
                 </properties>
               </component>
@@ -364,7 +368,7 @@
               <component id="48c6e" class="javax.swing.JCheckBox" binding="soloPauseCheckBox" default-binding="true">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="16" style="1"/>
+                  <font name="Montserrat" size="15" style="1"/>
                   <text value="Solo pause"/>
                 </properties>
               </component>
@@ -378,7 +382,7 @@
               <component id="6cdeb" class="javax.swing.JCheckBox" binding="entrambeCheckBox" default-binding="true">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="16" style="1"/>
+                  <font name="Montserrat" size="15" style="1"/>
                   <text value="Entrambe"/>
                 </properties>
               </component>
@@ -386,6 +390,112 @@
           </grid>
         </children>
       </grid>
+      <grid id="97c2a" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="bevel-lowered" title="Parametro lunghezza brano" title-position="2">
+          <font size="16" style="2"/>
+        </border>
+        <children>
+          <vspacer id="79789">
+            <constraints/>
+          </vspacer>
+          <grid id="685f8" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
+            <constraints/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="f8db6" class="javax.swing.JLabel">
+                <constraints/>
+                <properties>
+                  <font name="Montserrat" size="15" style="1"/>
+                  <text value="Lunghezza brano:"/>
+                </properties>
+              </component>
+              <component id="3026a" class="javax.swing.JSpinner" binding="spinnerLunghezzaBrano">
+                <constraints/>
+                <properties>
+                  <font name="Montserrat" size="18"/>
+                  <maximumSize width="120" height="35"/>
+                  <minimumSize width="120" height="35"/>
+                  <preferredSize width="70" height="35"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="d428c" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="bevel-lowered" title="Parametro numero strumenti" title-position="2">
+          <font size="16" style="2"/>
+        </border>
+        <children>
+          <vspacer id="9455e">
+            <constraints/>
+          </vspacer>
+          <grid id="bb740" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
+            <constraints/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="a7789" class="javax.swing.JLabel">
+                <constraints/>
+                <properties>
+                  <font name="Montserrat" size="15" style="1"/>
+                  <text value="Numero strumenti: "/>
+                </properties>
+              </component>
+              <component id="67895" class="javax.swing.JSpinner" binding="spinnerNumeroStrumenti">
+                <constraints/>
+                <properties>
+                  <font name="Montserrat" size="18"/>
+                  <preferredSize width="70" height="35"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <toolbar id="57d69" binding="toolbar1">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="-1" height="20"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Montserrat" size="18"/>
+          <margin top="0" left="0" bottom="0" right="0"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="a21d6" class="javax.swing.JButton" binding="saveButton">
+            <constraints/>
+            <properties>
+              <icon value="com/random/generator/Save-icon.png"/>
+              <margin top="0" left="0" bottom="0" right="0"/>
+              <preferredSize width="90" height="30"/>
+              <text value=""/>
+              <toolTipText value="Salva configurazione"/>
+            </properties>
+          </component>
+          <component id="6eed3" class="javax.swing.JButton" binding="buttonOpen">
+            <constraints/>
+            <properties>
+              <icon value="com/random/generator/open.png"/>
+              <margin top="0" left="0" bottom="0" right="0"/>
+              <preferredSize width="90" height="30"/>
+              <text value=""/>
+              <toolTipText value="Apri file configurazione"/>
+            </properties>
+          </component>
+        </children>
+      </toolbar>
     </children>
   </grid>
 </form>
