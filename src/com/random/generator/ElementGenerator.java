@@ -209,7 +209,7 @@ public class ElementGenerator {
 
     public Element generate_random_time_indication(Document doc){
         Element time_indication = doc.createElement("time_indication");
-        String[] dur = configuration.generate_duration_with_probability();
+        String[] dur = configuration.generate_duration();
         if(isGenerateElement()) time_indication.setAttribute("den", dur[1]);
         time_indication.setAttribute("num", dur[0]);
         String[] abbrevation = {"yes", "no"};
@@ -934,7 +934,7 @@ public class ElementGenerator {
     }
 
     public Element generate_random_metronomic_indication(Document doc){
-        String[] duration = configuration.generate_duration_with_probability();
+        String[] duration = configuration.generate_duration();
         Element metronomic_indication = doc.createElement("metronomic_indication");
         metronomic_indication.setAttribute("num", duration[0]);
         metronomic_indication.setAttribute("den", duration[1]);
@@ -1261,16 +1261,16 @@ public class ElementGenerator {
     }
 
     public Element generate_random_duration(Document doc){
-        String[] dur = configuration.generate_duration_with_probability();
+        String[] dur = configuration.generate_duration();
         Element duration = doc.createElement("duration");
         duration.setAttribute("num", dur[0]);
         duration.setAttribute("den", dur[1]);
         if(isGenerateElement()){
             Element tuplet_ratio = doc.createElement("tuplet_ratio");
-            dur = configuration.generate_duration_with_probability();
+            dur = configuration.generate_duration();
             tuplet_ratio.setAttribute("enter_num", dur[0]);
             tuplet_ratio.setAttribute("enter_den", dur[1]);
-            dur = configuration.generate_duration_with_probability();
+            dur = configuration.generate_duration();
             tuplet_ratio.setAttribute("in_num", dur[0]);
             tuplet_ratio.setAttribute("in_den", dur[1]);
             if(isGenerateElement()) tuplet_ratio.setAttribute("in_dots", String.valueOf(r.nextInt(5)));
@@ -1644,13 +1644,12 @@ public class ElementGenerator {
     // vedere SaveMelody.java nel file xml.pdf
     // <pitch octave="6" step="D" actual_accidental="natural" />
     public Element generate_random_pitch(Document doc){
-        int[] max_min_height = configuration.getMin_max_height();
-        int octave = r.nextInt(max_min_height[1] - max_min_height[0]) + max_min_height[0];
         Element pitch = doc.createElement("pitch");
+        String octave = configuration.generate_height();
         String[] accidental = {"none", "double_flat", "flat_and_a_half", "flat", "demiflat", "natural", "demisharp", "sharp", "sharp_and_a_half", "double_sharp"};
         pitch.setAttribute("actual_accidental", accidental[r.nextInt(accidental.length)]);
         pitch.setAttribute("step", configuration.generate_note_with_probability());
-        pitch.setAttribute("octave", String.valueOf(octave));
+        pitch.setAttribute("octave", octave);
         return pitch;
     }
 

@@ -31,30 +31,21 @@ public class Main {
 
         Parameter p = new Parameter();
         p.setLenght(2000);
-        p.setMin_max_height(3, 8);
 
 
         // SHARP, FLAT, NATURAL, DOUBLESHARP, DOUBLEFLAT, UNDEFINED
         p.setAccidentals(new ArrayList<>(Arrays.asList("NATURAL", "DOUBLEFLAT", "FLAT", "SHARP")));
 
-        p.setStruments(new ArrayList<>(Arrays.asList("Violino1", "Piano1", "Piano2", "Violino2")));
-
+        p.setNumber_struments(100);
+        p.setLenght(500);
+        p.setMin_duration("1/8"); p.setMax_duration("1/2");
+        p.setMin_height(1); p.setMax_height(8);
 
         TreeMap<String, Integer> notes_freq = new TreeMap<>();
         notes_freq.put("C", 10); notes_freq.put("D", 20); notes_freq.put("E", 5);
         notes_freq.put("F", 5); notes_freq.put("G", 40); notes_freq.put("A", 10);
         notes_freq.put("B", 20);
         p.setNotes(notes_freq);
-
-
-        TreeMap<String, Integer> durations_freq = new TreeMap<>();
-        for(int i = 1; i < 8; i++){
-            for(int j = 1; j < 8; j++){
-                durations_freq.put(i + "/" + j, new Random().nextInt(10));
-            }
-        }
-        p.setDurations(durations_freq);
-
 
 
         String path = ""; // e.g: "C:\\Users\\matti\\Desktop\\"

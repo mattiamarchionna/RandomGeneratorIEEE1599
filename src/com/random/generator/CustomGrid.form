@@ -84,11 +84,13 @@
                   <text value="Altezza minima:"/>
                 </properties>
               </component>
-              <component id="6c2d8" class="javax.swing.JComboBox" binding="comboBox3">
+              <component id="a2628" class="javax.swing.JSpinner">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="16"/>
-                  <preferredSize width="90" height="30"/>
+                  <font name="Montserrat" size="18"/>
+                  <maximumSize width="120" height="35"/>
+                  <minimumSize width="120" height="35"/>
+                  <preferredSize width="70" height="35"/>
                 </properties>
               </component>
             </children>
@@ -105,11 +107,13 @@
                   <text value="Altezza massima:"/>
                 </properties>
               </component>
-              <component id="8ac99" class="javax.swing.JComboBox" binding="comboBox4">
+              <component id="46165" class="javax.swing.JSpinner">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="16"/>
-                  <preferredSize width="90" height="30"/>
+                  <font name="Montserrat" size="18"/>
+                  <maximumSize width="120" height="35"/>
+                  <minimumSize width="120" height="35"/>
+                  <preferredSize width="70" height="35"/>
                 </properties>
               </component>
             </children>

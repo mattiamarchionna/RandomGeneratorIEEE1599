@@ -62,7 +62,7 @@ public class CustomGrid {
             for(int j = 1; j < 9; j++){
                 String s = i + "/" + j;
                 comboBox1.addItem(s); comboBox2.addItem(s);
-                comboBox3.addItem(s); comboBox4.addItem(s);
+                //comboBox3.addItem(i); comboBox4.addItem(i);
             }
         }
 

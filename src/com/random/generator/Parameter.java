@@ -9,56 +9,55 @@ import java.util.*;
 public class Parameter {
 
     private int lenght;
-    private int[] min_max_height = new int[2];
     private TreeMap<String, Integer> notes;
-    private TreeMap<String, Integer> durations;
+    private String min_duration;
+    private String max_duration;
 
-    public TreeMap<String, Integer> getNotes() {
-        return notes;
-    }
+    private int min_height;
+    private int max_height;
 
-    public void setDurations(TreeMap<String, Integer> durations) {
-        this.durations = durations;
-    }
-
+    private int number_struments;
     private ArrayList<String> accidentals;
-    private ArrayList<String> struments;
-    private int[] min_max_numerator = new int[2];
-    private int[] min_max_denominator = new int[2];
 
-    public int[] getMin_max_numerator() {
-        return min_max_numerator;
+    public Parameter(){}
+
+
+    public void setMin_height(int min_height) {
+        this.min_height = min_height;
     }
 
-    public void setMin_max_numerator(int min, int max) {
-        this.min_max_numerator[0] = min; this.min_max_numerator[1] = max;
+    public void setMax_height(int max_height) {
+        this.max_height = max_height;
     }
 
-    public int[] getMin_max_denominator() {
-        return min_max_denominator;
+
+    private String convertDecimalToFraction(double x){
+        if (x < 0){
+            return "-" + convertDecimalToFraction(-x);
+        }
+        double tolerance = 1.0E-6;
+        double h1=1; double h2=0;
+        double k1=0; double k2=1;
+        double b = x;
+        do {
+            double a = Math.floor(b);
+            double aux = h1; h1 = a*h1+h2; h2 = aux;
+            aux = k1; k1 = a*k1+k2; k2 = aux;
+            b = 1/(b-a);
+        } while (Math.abs(x-h1/k1) > x*tolerance);
+
+        return ((int)h1)+"/"+((int)k1);
     }
 
-    public void setMin_max_denominator(int min, int max) {
-        this.min_max_denominator[0] = min; this.min_max_denominator[1] = max;
-    }
 
-    public ArrayList<String> getStruments() {
-        return struments;
-    }
+    public int getNumber_struments(){ return number_struments; }
 
-    public void setStruments(ArrayList<String> struments) {
-        this.struments = struments;
-    }
-
-    public ArrayList<String> getAccidentals() {
-        return new ArrayList<>(accidentals);
-    }
+    public void setNumber_struments(int n){ number_struments = n; }
 
     public void setAccidentals(ArrayList<String> accidental) {
         this.accidentals = accidental;
     }
 
-    public Parameter(){}
 
     public void setLenght(int l){
         this.lenght = l;
@@ -66,14 +65,6 @@ public class Parameter {
 
     public int getLenght() {
         return lenght;
-    }
-
-    public int[] getMin_max_height() {
-        return min_max_height;
-    }
-
-    public void setMin_max_height(int min, int max){
-        min_max_height[0] = min; min_max_height[1] = max;
     }
 
     public void setNotes(TreeMap<String,Integer> notes){
@@ -86,29 +77,49 @@ public class Parameter {
         ArrayList<Integer> freq = new ArrayList<>();
         Set<Map.Entry<String, Integer>> entrySet = this.notes.entrySet();
         List<Map.Entry<String, Integer>> listEntries = new ArrayList<>(entrySet);
-
         for(Map.Entry<String, Integer> entry : listEntries ){
             arr.add(entry.getKey());
             freq.add(entry.getValue());
         }
-
         int i, n = arr.size();
         return g.myRand(arr.toArray(new String[arr.size()]), freq.toArray(new Integer[freq.size()]), n);
     }
 
-    public String[] generate_duration_with_probability(){
-        RandomValueProbability<String> g = new RandomValueProbability<>();
-        ArrayList<String> arr = new ArrayList<>();
-        ArrayList<Integer> freq = new ArrayList<>();
-        Set<Map.Entry<String, Integer>> entrySet = this.durations.entrySet();
-        List<Map.Entry<String, Integer>> listEntries = new ArrayList<>(entrySet);
 
-        for(Map.Entry<String, Integer> entry : listEntries ){
-            arr.add(entry.getKey());
-            freq.add(entry.getValue());
-        }
+    public String getMin_duration() {
+        return min_duration;
+    }
 
-        int i, n = arr.size();
-        return g.myRand(arr.toArray(new String[arr.size()]), freq.toArray(new Integer[freq.size()]), n).split("/");
+    public void setMin_duration(String min_duration) {
+        this.min_duration = min_duration;
+    }
+
+    public String getMax_duration() {
+        return max_duration;
+    }
+
+    public void setMax_duration(String max_duration) {
+        this.max_duration = max_duration;
+    }
+
+    public String[] generate_duration(){
+        // min_duration e.g 1/2
+        String[] min_duration_split = min_duration.split("/");
+        int min_num = Integer.parseInt(min_duration_split[0]);
+        int min_den = Integer.parseInt(min_duration_split[1]);
+        double min = (Math.round((((float)min_num)/min_den) * 10) / 10.0);
+
+
+        String[] max_duration_split = max_duration.split("/");
+        int max_num = Integer.parseInt(max_duration_split[0]);
+        int max_den = Integer.parseInt(max_duration_split[1]);
+        double max = (Math.round((((float)max_num)/max_den) * 10) / 10.0);
+
+        Random r = new Random();
+        return convertDecimalToFraction(min + (Math.round(r.nextFloat() * 10) / 10.0) * (max - min)).split("/");
+    }
+
+    public String generate_height(){
+        return String.valueOf(new Random().nextInt(max_height-min_height) + min_height);
     }
 }
