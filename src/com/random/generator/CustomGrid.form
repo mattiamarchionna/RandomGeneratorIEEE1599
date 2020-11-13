@@ -25,7 +25,9 @@
           <component id="d4534" class="javax.swing.JTextField" binding="textField4">
             <constraints/>
             <properties>
+              <background color="-2696737"/>
               <columns value="20"/>
+              <editable value="false"/>
               <font name="Montserrat" size="16"/>
             </properties>
           </component>
@@ -473,28 +475,7 @@
           <margin top="0" left="0" bottom="0" right="0"/>
         </properties>
         <border type="none"/>
-        <children>
-          <component id="a21d6" class="javax.swing.JButton" binding="saveButton">
-            <constraints/>
-            <properties>
-              <icon value="com/random/generator/Save-icon.png"/>
-              <margin top="0" left="0" bottom="0" right="0"/>
-              <preferredSize width="90" height="30"/>
-              <text value=""/>
-              <toolTipText value="Salva configurazione"/>
-            </properties>
-          </component>
-          <component id="6eed3" class="javax.swing.JButton" binding="buttonOpen">
-            <constraints/>
-            <properties>
-              <icon value="com/random/generator/open.png"/>
-              <margin top="0" left="0" bottom="0" right="0"/>
-              <preferredSize width="90" height="30"/>
-              <text value=""/>
-              <toolTipText value="Apri file configurazione"/>
-            </properties>
-          </component>
-        </children>
+        <children/>
       </toolbar>
     </children>
   </grid>

@@ -33,10 +33,25 @@ public class CustomGrid {
     private Random r = new Random();
 
     public CustomGrid() throws IOException {
+        // parametro strumenti = numero eventi
         toolbar1.setFloatable(false);
-        buttonOpen.setBorder(BorderFactory.createEmptyBorder());
-        saveButton.setBorder(BorderFactory.createEmptyBorder());
-        toolbar1.addSeparator();
+        toolbar1.setMargin(new Insets(10, 10, 5, 0));
+        textField4.setBackground(new Color(214, 217, 223));
+        //toolbar1.addSeparator(new Dimension(10, 10));
+        JButton save = new JButton();
+        save.setIcon(new ImageIcon("C:\\Users\\matti\\Desktop\\RandomGeneratorIEEE1599\\src\\com\\random\\generator\\Save-icon.png"));
+        save.setToolTipText("Salva configurazione");
+        toolbar1.add(save);
+        toolbar1.addSeparator(new Dimension(15, 10));
+
+        JButton open = new JButton();
+        open.setToolTipText("Apri configurazione");
+        open.setIcon(new ImageIcon("C:\\Users\\matti\\Desktop\\RandomGeneratorIEEE1599\\src\\com\\random\\generator\\open.png"));
+        toolbar1.add(open);
+
+        open.setBorder(BorderFactory.createEmptyBorder());
+        save.setBorder(BorderFactory.createEmptyBorder());
+
         spinner1.setValue(r.nextInt(20)); spinner2.setValue(r.nextInt(20)); spinner3.setValue(r.nextInt(20));
         spinner4.setValue(r.nextInt(20)); spinner5.setValue(r.nextInt(20)); spinner6.setValue(r.nextInt(20));
         spinner7.setValue(r.nextInt(20));
@@ -59,10 +74,10 @@ public class CustomGrid {
                     JFileChooser fs = new JFileChooser(new File("C:\\"));
                     fs.setFileFilter( new FolderFilter() );
                     fs.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                    fs.setDialogTitle("Selezione cartella destinazione");
+                    fs.setDialogTitle("Seleziona cartella destinazione");
                     fs.showOpenDialog(mainPanel);
                     File fi = fs.getSelectedFile();
-                    textField4.setBackground(Color.lightGray);
+                    //textField4.setBackground(Color.lightGray);
                     if(fi != null) {
                         textField4.setText(fi.getPath());
                         //textField4.setOpaque(true);
@@ -72,13 +87,13 @@ public class CustomGrid {
         });
 
 
-        saveButton.addActionListener(new ActionListener() {
+        save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame parentFrame = new JFrame();
 
                 JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setDialogTitle("Specify a file to save");
+                fileChooser.setDialogTitle("Specifica dove salvare il file di configurazione");
 
                 int userSelection = fileChooser.showSaveDialog(parentFrame);
 
