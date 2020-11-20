@@ -17,7 +17,7 @@ public class Main {
                 }
             }
         } catch (Exception e) {
-            // If Nimbus is not available, you can set the GUI to another look and feel.
+            System.out.println("Nimbus look isn't available");
         }
 
         JFrame jframe = new JFrame("Generatore IEEE1599");
