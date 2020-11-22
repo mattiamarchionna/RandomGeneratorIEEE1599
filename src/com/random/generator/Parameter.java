@@ -12,6 +12,43 @@ public class Parameter {
     private TreeMap<String, Integer> notes;
     private String min_duration;
     private String max_duration;
+    private String path;
+
+    private boolean onlyNote;
+    private boolean onlyRest;
+    private boolean bothNoteRest;
+
+    public boolean isOnlyNote() {
+        return onlyNote;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public boolean isOnlyRest() {
+        return onlyRest;
+    }
+
+    public boolean isBothNoteRest() {
+        return bothNoteRest;
+    }
+
+    public void setOnlyNote(boolean onlyNote) {
+        this.onlyNote = onlyNote;
+    }
+
+    public void setOnlyRest(boolean onlyRest) {
+        this.onlyRest = onlyRest;
+    }
+
+    public void setBothNoteRest(boolean bothNoteRest) {
+        this.bothNoteRest = bothNoteRest;
+    }
 
     private int min_height;
     private int max_height;

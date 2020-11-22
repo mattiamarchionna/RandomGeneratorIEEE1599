@@ -84,7 +84,7 @@
                   <text value="Altezza minima:"/>
                 </properties>
               </component>
-              <component id="a2628" class="javax.swing.JSpinner">
+              <component id="a2628" class="javax.swing.JSpinner" binding="spinner8">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="18"/>
@@ -107,7 +107,7 @@
                   <text value="Altezza massima:"/>
                 </properties>
               </component>
-              <component id="46165" class="javax.swing.JSpinner">
+              <component id="46165" class="javax.swing.JSpinner" binding="spinner9">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="18"/>
@@ -357,7 +357,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="53bd" class="javax.swing.JCheckBox" binding="soloNoteCheckBox" default-binding="true">
+              <component id="53bd" class="javax.swing.JCheckBox" binding="onlyNoteCheckBox">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="15" style="1"/>
@@ -371,7 +371,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="48c6e" class="javax.swing.JCheckBox" binding="soloPauseCheckBox" default-binding="true">
+              <component id="48c6e" class="javax.swing.JCheckBox" binding="onlyRestCheckBox">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="15" style="1"/>
@@ -385,7 +385,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="6cdeb" class="javax.swing.JCheckBox" binding="entrambeCheckBox" default-binding="true">
+              <component id="6cdeb" class="javax.swing.JCheckBox" binding="bothRestNoteCheckBox">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="15" style="1"/>

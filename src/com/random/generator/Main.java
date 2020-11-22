@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 import java.util.TreeMap;
 
 public class Main {
@@ -29,9 +28,11 @@ public class Main {
         //jframe.setSize(1200, 750);
         jframe.setVisible(true);
 
-        Parameter p = new Parameter();
-        p.setLenght(2000);
+        //Parameter p = grid.configuration;
 
+        /*p.setOnlyRest(true);
+        p.setOnlyNote(false);
+        p.setBothNoteRest(false);
 
         // SHARP, FLAT, NATURAL, DOUBLESHARP, DOUBLEFLAT, UNDEFINED
         p.setAccidentals(new ArrayList<>(Arrays.asList("NATURAL", "DOUBLEFLAT", "FLAT", "SHARP")));
@@ -45,12 +46,10 @@ public class Main {
         notes_freq.put("C", 10); notes_freq.put("D", 20); notes_freq.put("E", 5);
         notes_freq.put("F", 5); notes_freq.put("G", 40); notes_freq.put("A", 10);
         notes_freq.put("B", 20);
-        p.setNotes(notes_freq);
+        p.setNotes(notes_freq);*/
 
 
-        String path = ""; // e.g: "C:\\Users\\matti\\Desktop\\"
-        IEEE1599Generator g1 = new IEEE1599Generator(path, "example_IEEE1599.xml", p);
-        g1.generate_file();
+
 
 
     }

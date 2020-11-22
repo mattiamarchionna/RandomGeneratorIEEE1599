@@ -303,7 +303,8 @@ public class IEEE1599Generator {
             tablature_symbol.appendChild(argumentation_dots);
         }
 
-        //key
+        if (configuration.isOnlyNote() || configuration.isBothNoteRest()) {
+            //key
         for (int i = 0; i < r.nextInt(number_elements) + 1; i++) {
             Element key = g_element.generate_random_key(doc);
             key.appendChild(g_element.generate_random_tablature_pitch(doc));
@@ -311,6 +312,7 @@ public class IEEE1599Generator {
             if (isGenerateElement()) key.appendChild(g_element.generate_random_tie(doc));
             if (isGenerateElement()) key.appendChild(g_element.generate_random_tablature_fingering(doc));
             tablature_symbol.appendChild(key);
+        }
         }
 
     }
@@ -329,11 +331,14 @@ public class IEEE1599Generator {
 
         if (isGenerateElement()) {
             for (int i = 0; i < r.nextInt(number_elements) + 2; i++) {
-                Element notehead = g_element.generate_random_notehead(doc);
-                append_children_to_notehead(doc, notehead, root);
-                chord.appendChild(notehead);
-                // notehead
+                if(configuration.isOnlyNote() || configuration.isBothNoteRest()) {
+                    Element notehead = g_element.generate_random_notehead(doc);
+                    append_children_to_notehead(doc, notehead, root);
+                    chord.appendChild(notehead);
+                }
             }
+                // notehead
+
         } else {
             // repetition
             Element repetition = g_element.generate_random_repetition(doc);
@@ -375,39 +380,45 @@ public class IEEE1599Generator {
             int choice1 = r.nextInt(3);
             if (choice1 == 0) {
 
-                for (int i = 0; i < r.nextInt(number_elements + 5) + 5; i++) {
-                    Element voice = g_element.generate_random_voice(doc);
-                    g_element.voices.add(voice.getAttribute("id"));
-                    // <!ELEMENT voice (chord | rest | tablature_symbol | gregorian_symbol)+>
-                    int choice2 = r.nextInt(4);
-                    //choice2 = 0;
-                    switch (choice2) {
-                        case 0: // chord
-                            Element chord = g_element.generate_random_chord(doc);
-                            //System.out.println(root.getElementsByTagName("spine").getLength());
-                            append_children_to_chord(doc, chord, root);
-                            voice.appendChild(chord);
-                            break;
-                        case 1: // rest
-                            Element rest = g_element.generate_random_rest(doc);
-                            append_children_to_rest(doc, rest, root);
-                            voice.appendChild(rest);
-                            break;
-                        case 2: // tablature-symbol
-                            Element tablature_symbol = g_element.generate_random_tablature_symbol(doc);
-                            append_children_to_tablature_symbol(doc, tablature_symbol, root);
-                            voice.appendChild(tablature_symbol);
-                            break;
-                        case 3: // gregorian-symbol
-                            Element gregoryan_syboml = g_element.generate_random_gregorian_symbol(doc);
-                            append_children_to_gregorian_sybomol(doc, gregoryan_syboml, root);
-                            voice.appendChild(gregoryan_syboml);
-                            break;
-                        default:
-                            System.out.println("Errore nella creazione dei figli...");
+                    for (int i = 0; i < r.nextInt(number_elements + 5) + 5; i++) {
+                        Element voice = g_element.generate_random_voice(doc);
+                        g_element.voices.add(voice.getAttribute("id"));
+                        // <!ELEMENT voice (chord | rest | tablature_symbol | gregorian_symbol)+>
+                        int choice2 = r.nextInt(4);
+                        //choice2 = 0;
+                        switch (choice2) {
+                            case 0: // chord
+                                if (configuration.isOnlyNote() || configuration.isBothNoteRest()) {
+                                    Element chord = g_element.generate_random_chord(doc);
+                                    //System.out.println(root.getElementsByTagName("spine").getLength());
+                                    append_children_to_chord(doc, chord, root);
+                                    voice.appendChild(chord);
+                                }
+                                break;
+                            case 1: // rest
+                                if (configuration.isOnlyRest() || configuration.isBothNoteRest()) {
+                                    Element rest = g_element.generate_random_rest(doc);
+                                    append_children_to_rest(doc, rest, root);
+                                    voice.appendChild(rest);
+                                }
+                                break;
+                            case 2: // tablature-symbol
+                                Element tablature_symbol = g_element.generate_random_tablature_symbol(doc);
+                                append_children_to_tablature_symbol(doc, tablature_symbol, root);
+                                voice.appendChild(tablature_symbol);
+                                break;
+                            case 3: // gregorian-symbol
+                                if (configuration.isOnlyNote() || configuration.isBothNoteRest()) {
+                                    Element gregoryan_syboml = g_element.generate_random_gregorian_symbol(doc);
+                                    append_children_to_gregorian_sybomol(doc, gregoryan_syboml, root);
+                                    voice.appendChild(gregoryan_syboml);
+                                }
+                                break;
+                            default:
+                                System.out.println("Errore nella creazione dei figli...");
+                        }
+                        measure.appendChild(voice);
                     }
-                    measure.appendChild(voice);
-                }
             } else if (choice1 == 1) measure.appendChild(g_element.generate_random_multiple_rest(doc));
             else {
                 if (isGenerateElement()) measure.appendChild(g_element.generate_random_measure_repeat(doc));

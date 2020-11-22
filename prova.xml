@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE ieee1599 SYSTEM "C:\Users\matti\Desktop\RandomGeneratorIEEE1599\ieee1599.dtd">
+<ieee1599 version="1.0">
+   <general>
+      <description>
+         <main_title>title_3</main_title>
+      </description>
+      <notes/>
+   </general>
+   <logic>
+      <spine/>
+      <los>
+         <agogics bracketed="no"/>
+         <text_field/>
+         <metronomic_indication den="100" dots="154" num="19" value="61"/>
+         <metronomic_indication den="50" dots="157" num="23" value="170"/>
+         <staff_list>
+            <staff id="staff_0" line_number="1" ossia="no" tablature="italian">
+               <clef octave_num="-8" shape="gregorian_F" staff_step="7"/>
+               <custom_key_signature>
+                  <key_accidental accidental="none" step="E"/>
+                  <key_accidental accidental="flat" step="B"/>
+                  <key_accidental accidental="double_sharp" step="A"/>
+               </custom_key_signature>
+            </staff>
+            <staff id="staff_1" line_number="1" ossia="yes">
+               <clef octave_num="-8" shape="percussion" staff_step="18"/>
+               <time_signature visible="no">
+                  <time_indication abbreviation="no" den="25" num="16" vtu_amount="6"/>
+               </time_signature>
+            </staff>
+            <staff id="staff_2" line_number="0" ossia="yes" tablature="none">
+               <clef octave_num="15" shape="gregorian_C" staff_step="8"/>
+               <clef octave_num="8" shape="C" staff_step="0"/>
+            </staff>
+            <staff id="staff_3" line_number="1" ossia="no" tablature="italian">
+               <clef octave_num="-8" shape="G" staff_step="12"/>
+               <time_signature visible="no">
+                  <time_indication abbreviation="no" den="100" num="37"/>
+                  <time_indication abbreviation="no" num="16" vtu_amount="18"/>
+                  <time_indication abbreviation="no" den="50" num="23" vtu_amount="37"/>
+                  <time_indication abbreviation="yes" den="50" num="41"/>
+               </time_signature>
+            </staff>
+         </staff_list>
+         <part id="part_4" octave_offset="-7" performers_number="17" transposition_accidental="flat_and_a_half">
+            <voice_list>
+               <voice_item id="id_5" notation_style="blank" staff_ref="staff_1"/>
+               <voice_item id="id_6" notation_style="slash" staff_ref="staff_1"/>
+            </voice_list>
+         </part>
+         <horizontal_symbols/>
+         <ornaments/>
+         <lyrics part_ref="part_4" voice_ref="id_6">
+            <syllable hyphen="yes"/>
+         </lyrics>
+         <lyrics part_ref="part_4" voice_ref="id_5">
+            <syllable hyphen="no"/>
+            <syllable hyphen="no"/>
+            <syllable hyphen="no"/>
+         </lyrics>
+         <lyrics part_ref="part_4" voice_ref="id_6">
+            <syllable hyphen="no"/>
+         </lyrics>
+      </los>
+      <layout hpos_per_unit="17" measurement_unit="millimeters">
+         <page id="7" number="17">
+            <custom_page_format height="222" width="260"/>
+            <layout_system lower_right_x="14" lower_right_y="0" upper_left_x="0" upper_left_y="17">
+               <layout_staff height="11" id="layout_staff_8" ossia="no" show_clef="no" show_key_signature="no" show_time_signature="no" staff_ref="staff_3" vertical_offset="7"/>
+            </layout_system>
+            <layout_shapes horizontal_offset="18" vertical_offset="1"/>
+         </page>
+         <page id="9">
+            <custom_page_format height="302" width="675"/>
+            <layout_images description="description_36" encoding_format="audio_x-mpeg" file_format="application_x-bmp" file_name="file_17" horizontal_offset="4" notes="notes_19" vertical_offset="7"/>
+            <layout_images description="description_33" encoding_format="audio_x_aiff" file_format="audio_x-mpegaudio" file_name="file_44" horizontal_offset="0" notes="notes_4" vertical_offset="6"/>
+            <layout_shapes horizontal_offset="3" vertical_offset="11"/>
+            <layout_shapes horizontal_offset="18" vertical_offset="2"/>
+         </page>
+         <text_font/>
+         <music_font/>
+      </layout>
+   </logic>
+   <performance>
+      <midi_instance file_name="file_58" format="2">
+         <midi_mapping channel="channel_65" part_ref="part_4" track="track_12" voice_ref="id_6">
+            <midi_event_sequence division_type="timecode" division_value="0.817" measurement_unit="sec">
+               <sys_ex/>
+               <sys_ex/>
+            </midi_event_sequence>
+            <midi_event_sequence division_type="metrical" division_value="0.982" measurement_unit="ticks">
+               <sys_ex/>
+               <sys_ex/>
+               <sys_ex/>
+               <sys_ex/>
+            </midi_event_sequence>
+         </midi_mapping>
+         <midi_mapping channel="channel_83" part_ref="part_4" track="track_0" voice_ref="id_6">
+            <midi_event_sequence division_type="metrical" division_value="0.665" measurement_unit="sec">
+               <sys_ex/>
+               <sys_ex/>
+               <sys_ex/>
+               <sys_ex/>
+            </midi_event_sequence>
+         </midi_mapping>
+         <rights file_name="file_22"/>
+      </midi_instance>
+      <midi_instance file_name="file_16" format="0">
+         <midi_mapping channel="channel_90" part_ref="part_4" track="track_85" voice_ref="id_6">
+            <midi_event_sequence division_type="timecode" division_value="0.515" measurement_unit="ticks">
+               <midi_event timing="timing_74"/>
+            </midi_event_sequence>
+         </midi_mapping>
+         <rights file_name="file_69"/>
+      </midi_instance>
+   </performance>
+</ieee1599>
