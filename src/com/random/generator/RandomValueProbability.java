@@ -1,10 +1,8 @@
 package com.random.generator;
 
-// Java program to generate random elements
-// according to given frequency distribution
+// Class to generate random elements according to given frequency distribution
 class RandomValueProbability<T> {
 
-    // Utility function to find ceiling of r in arr[l..h]
     static int findCeil(int arr[], int r, int l, int h) {
         int mid;
         while (l < h) {
@@ -17,9 +15,7 @@ class RandomValueProbability<T> {
         return (arr[l] >= r) ? l : -1;
     }
 
-    // The main function that returns a random number
-// from arr[] according to distribution array
-// defined by freq[]. n is size of arrays.
+    // The main function that returns a random number from arr[] according to distribution array defined by freq[]. n is size of arrays.
     public T myRand(T[] arr, Integer[] freq, int n) {
         // Create and fill prefix array
         int prefix[] = new int[n], i;
@@ -38,22 +34,5 @@ class RandomValueProbability<T> {
     }
 }
 
-    // Driver code
-    /* example of main
-    public static void main(String args[])
-    {
-        int arr[] = {1, 2, 3, 4};
-        int freq[] = {10, 5, 20, 100};
-        int i, n = arr.length;
 
-        // Let us generate 10 random numbers accroding to
-        // given distribution
-        for (i = 0; i < 5; i++)
-            System.out.println( myRand(arr, freq, n) );
-    }
-
-é/
-     */
-
-// This code is contributed by Arnab Kundu
 

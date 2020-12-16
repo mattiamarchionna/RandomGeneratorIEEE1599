@@ -1641,7 +1641,6 @@ public class ElementGenerator {
     }
 
 
-    // vedere SaveMelody.java nel file xml.pdf
     // <pitch octave="6" step="D" actual_accidental="natural" />
     public Element generate_random_pitch(Document doc){
         Element pitch = doc.createElement("pitch");

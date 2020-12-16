@@ -1,7 +1,5 @@
 package com.random.generator;
 
-import javafx.scene.control.Separator;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,23 +10,18 @@ import java.util.TreeMap;
 
 public class CustomGrid {
     public JPanel mainPanel;
-    private JButton generaIEEE1599Button;
-    private JButton cartellaDiDestinazioneButton;
+    private JButton generaIEEE1599Button; private JButton cartellaDiDestinazioneButton;
     private JTextField textField4;
-    private JCheckBox onlyNoteCheckBox;
-    private JCheckBox onlyRestCheckBox;
-    private JCheckBox bothRestNoteCheckBox;
+    private JCheckBox onlyNoteCheckBox; private JCheckBox onlyRestCheckBox; private JCheckBox bothRestNoteCheckBox;
     private JSpinner spinner1; private JSpinner spinner2; private JSpinner spinner3;
     private JSpinner spinner4; private JSpinner spinner5; private JSpinner spinner6; private JSpinner spinner7;
-    private JComboBox comboBox1;
-    private JComboBox comboBox2;
+    private JComboBox comboBox1; private JComboBox comboBox2;
     private JToolBar toolbar1;
     public Parameter configuration = new Parameter();
     private JButton saveButton;
-    private JSpinner spinnerLunghezzaBrano;
-    private JSpinner spinnerNumeroStrumenti;
-    private JSpinner spinner8;
-    private JSpinner spinner9;
+    private JSpinner spinnerLunghezzaBrano; private JSpinner spinnerNumeroStrumenti; private JSpinner spinner8; private JSpinner spinner9;
+    private JPanel panelLunghezzaBrano; private JPanel panelNumeroStrumenti; private JPanel panelNote; private JPanel panelAltezza;
+    private JPanel panelNotePause; private JPanel panelSalvataggio; private JPanel panelDurata;
     private JButton buttonOpen;
     private Random r = new Random();
 
@@ -48,13 +41,25 @@ public class CustomGrid {
     }
 
     public CustomGrid() throws IOException {
+
+    /*  mainPanel.setBackground(new java.awt.Color(51, 51, 51));
+        panelAltezza.setBackground(new java.awt.Color(51, 51, 51));
+        panelDurata.setBackground(new java.awt.Color(51, 51, 51));
+        panelLunghezzaBrano.setBackground(new java.awt.Color(51, 51, 51));
+        panelNote.setBackground(new java.awt.Color(51, 51, 51));
+        panelNotePause.setBackground(new java.awt.Color(51, 51, 51));
+        panelSalvataggio.setBackground(new java.awt.Color(51, 51, 51));
+        panelNumeroStrumenti.setBackground(new java.awt.Color(51, 51, 51)); */
+
+        generaIEEE1599Button.setIcon(new ImageIcon("src"+File.separator+"com"+File.separator+"random"+File.separator+"generator"+File.separator+"play.png"));
+
         // parametro strumenti = numero eventi
         toolbar1.setFloatable(false);
         toolbar1.setMargin(new Insets(10, 10, 5, 0));
-        textField4.setBackground(new Color(214, 217, 223));
+        textField4.setBackground(new Color(40, 44, 52));
         //toolbar1.addSeparator(new Dimension(10, 10));
         JButton save = new JButton();
-        save.setIcon(new ImageIcon("src"+File.separator+"com"+File.separator+"random"+File.separator+"generator"+File.separator+"Save-icon.png"));
+        save.setIcon(new ImageIcon("src"+File.separator+"com"+File.separator+"random"+File.separator+"generator"+File.separator+"disk.png"));
         save.setToolTipText("Salva configurazione");
         toolbar1.add(save);
         toolbar1.addSeparator(new Dimension(15, 10));
@@ -75,9 +80,10 @@ public class CustomGrid {
         spinner5.setValue(r.nextInt(20));
         spinner6.setValue(r.nextInt(20));
         spinner7.setValue(r.nextInt(20));
-        textField4.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
+        textField4.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.WHITE));
         textField4.setEditable(false);
         //textField4.setOpaque(false);
+
         for (int i = 1; i < 9; i++) {
             for (int j = 1; j < 9; j++) {
                 String s = i + "/" + j;
@@ -86,7 +92,6 @@ public class CustomGrid {
                 //comboBox3.addItem(i); comboBox4.addItem(i);
             }
         }
-
 
         cartellaDiDestinazioneButton.addActionListener(new ActionListener() {
             @Override
@@ -161,7 +166,6 @@ public class CustomGrid {
                         String p15 = "onlyRestCheckBox:" + onlyRestCheckBox.isSelected() + "\n";
                         String p16 = "bothRestNoteCheckBox:" + bothRestNoteCheckBox.isSelected();
 
-
                         String[] ps = {p1 + "\n", p2 + "\n", p3 + "\n", p4 + "\n", p5 + "\n", p6 + "\n", p7 + "\n", p8, p9, p10, p11, p12, p13, p14, p15, p16};
 
                         for (String p : ps) {
@@ -179,46 +183,61 @@ public class CustomGrid {
             }
         });
 
-        generaIEEE1599Button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (checkValidityOfInput()) {
 
-                    configuration.setLenght((int) spinnerLunghezzaBrano.getValue());
-                    configuration.setNumber_struments((int) spinnerNumeroStrumenti.getValue());
+        onlyNoteCheckBox.addActionListener(e -> {
+            onlyRestCheckBox.setSelected(false);
+            bothRestNoteCheckBox.setSelected(false);
+        });
 
-                    TreeMap<String, Integer> notes_freq = new TreeMap<>();
-                    notes_freq.put("C", (int) spinner1.getValue());
-                    notes_freq.put("D", (int) spinner2.getValue());
-                    notes_freq.put("E", (int) spinner3.getValue());
-                    notes_freq.put("F", (int) spinner4.getValue());
-                    notes_freq.put("G", (int) spinner5.getValue());
-                    notes_freq.put("A", (int) spinner6.getValue());
-                    notes_freq.put("B", (int) spinner7.getValue());
-                    configuration.setNotes(notes_freq);
+        onlyRestCheckBox.addActionListener(e -> {
+            onlyNoteCheckBox.setSelected(false);
+            bothRestNoteCheckBox.setSelected(false);
+        });
 
-                    configuration.setMin_duration(String.valueOf(comboBox1.getSelectedItem()));
-                    configuration.setMax_duration(String.valueOf(comboBox2.getSelectedItem()));
-                    configuration.setMin_height((int) spinner8.getValue());
-                    configuration.setMax_height((int) spinner9.getValue());
+        bothRestNoteCheckBox.addActionListener(e -> {
+            onlyRestCheckBox.setSelected(false);
+            onlyNoteCheckBox.setSelected(false);
+        });
 
-                    configuration.setPath(textField4.getText());
 
-                    configuration.setOnlyRest(onlyRestCheckBox.isSelected());
-                    configuration.setOnlyNote(onlyNoteCheckBox.isSelected());
-                    configuration.setBothNoteRest(bothRestNoteCheckBox.isSelected());
+        generaIEEE1599Button.addActionListener(e -> {
+            if (checkValidityOfInput()) {
 
-                    String path = configuration.getPath(); // e.g: "C:\\Users\\matti\\Desktop\\"
-                    IEEE1599Generator g1 = new IEEE1599Generator(path, "", configuration);
-                    g1.generate_file();
+                configuration.setLenght((int) spinnerLunghezzaBrano.getValue());
+                configuration.setNumber_struments((int) spinnerNumeroStrumenti.getValue());
 
-                    JOptionPane.showMessageDialog(mainPanel, "File IEEE1599 generato con successo!");
-                } else {
-                    JOptionPane.showMessageDialog(mainPanel, "Configurare correttamente i parametri!");
-                }
+                TreeMap<String, Integer> notes_freq = new TreeMap<>();
+                notes_freq.put("C", (int) spinner1.getValue());
+                notes_freq.put("D", (int) spinner2.getValue());
+                notes_freq.put("E", (int) spinner3.getValue());
+                notes_freq.put("F", (int) spinner4.getValue());
+                notes_freq.put("G", (int) spinner5.getValue());
+                notes_freq.put("A", (int) spinner6.getValue());
+                notes_freq.put("B", (int) spinner7.getValue());
+                configuration.setNotes(notes_freq);
+
+                configuration.setMin_duration(String.valueOf(comboBox1.getSelectedItem()));
+                configuration.setMax_duration(String.valueOf(comboBox2.getSelectedItem()));
+                configuration.setMin_height((int) spinner8.getValue());
+                configuration.setMax_height((int) spinner9.getValue());
+
+                configuration.setPath(textField4.getText());
+
+                configuration.setOnlyRest(onlyRestCheckBox.isSelected());
+                configuration.setOnlyNote(onlyNoteCheckBox.isSelected());
+                configuration.setBothNoteRest(bothRestNoteCheckBox.isSelected());
+
+                String path = configuration.getPath(); // e.g: "C:\\Users\\matti\\Desktop\\"
+                IEEE1599Generator g1 = new IEEE1599Generator(path, "", configuration);
+                g1.generate_file();
+
+                JOptionPane.showMessageDialog(mainPanel, "File IEEE1599 generato con successo!");
+            } else {
+                JOptionPane.showMessageDialog(mainPanel, "Configurare correttamente i parametri!");
             }
         });
     }
+
 
     private boolean checkValidityOfInput(){
         try {
@@ -231,7 +250,6 @@ public class CustomGrid {
             return false;
         }
     }
-
 
     private void setParametersFromFileConfiguration(String pathname){
         try {
@@ -273,5 +291,6 @@ public class CustomGrid {
             JOptionPane.showMessageDialog(mainPanel, "File di configurazione non corretto!");
         }
     }
+
 
 }

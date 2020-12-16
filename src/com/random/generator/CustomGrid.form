@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.random.generator.CustomGrid">
-  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="9" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="29" y="26" width="1443" height="869"/>
@@ -8,7 +8,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="34ea5" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+      <grid id="34ea5" binding="panelSalvataggio" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints>
           <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -18,6 +18,7 @@
           <component id="6ddd9" class="javax.swing.JLabel">
             <constraints/>
             <properties>
+              <background color="-14144460"/>
               <font name="Montserrat" size="16"/>
               <text value="Cartella di destinazione:"/>
             </properties>
@@ -42,7 +43,9 @@
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-14144460"/>
                   <font name="Montserrat" size="14"/>
+                  <foreground color="-727297"/>
                   <text value="Genera IEEE1599"/>
                 </properties>
               </component>
@@ -51,7 +54,9 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-14144460"/>
                   <font name="Montserrat" size="14"/>
+                  <foreground color="-727297"/>
                   <text value="Seleziona cartella di destinazione"/>
                 </properties>
               </component>
@@ -59,7 +64,7 @@
           </grid>
         </children>
       </grid>
-      <grid id="23088" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
+      <grid id="23088" binding="panelAltezza" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
           <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -120,7 +125,7 @@
           </grid>
         </children>
       </grid>
-      <grid id="98c7a" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
+      <grid id="98c7a" binding="panelNote" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -283,7 +288,7 @@
           </grid>
         </children>
       </grid>
-      <grid id="a6f20" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
+      <grid id="a6f20" binding="panelDurata" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -310,7 +315,9 @@
               <component id="654b1" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
                 <constraints/>
                 <properties>
+                  <background color="-14605012"/>
                   <font name="Montserrat" size="16"/>
+                  <foreground color="-12763843"/>
                   <preferredSize width="90" height="30"/>
                 </properties>
               </component>
@@ -331,7 +338,9 @@
               <component id="4d206" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
                 <constraints/>
                 <properties>
+                  <background color="-14605012"/>
                   <font name="Montserrat" size="16"/>
+                  <foreground color="-12763843"/>
                   <preferredSize width="90" height="30"/>
                 </properties>
               </component>
@@ -339,7 +348,7 @@
           </grid>
         </children>
       </grid>
-      <grid id="15ae8" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
+      <grid id="15ae8" binding="panelNotePause" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -389,6 +398,7 @@
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="15" style="1"/>
+                  <selected value="true"/>
                   <text value="Entrambe"/>
                 </properties>
               </component>
@@ -396,7 +406,7 @@
           </grid>
         </children>
       </grid>
-      <grid id="97c2a" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
+      <grid id="97c2a" binding="panelLunghezzaBrano" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -433,7 +443,7 @@
           </grid>
         </children>
       </grid>
-      <grid id="d428c" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
+      <grid id="d428c" binding="panelNumeroStrumenti" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>

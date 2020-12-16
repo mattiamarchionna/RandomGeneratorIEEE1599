@@ -43,15 +43,18 @@ public class IEEE1599Generator {
 
             builder.setErrorHandler(new ErrorHandler() {
                 @Override
-                public void warning(SAXParseException exception) throws SAXException {
+                public void warning(SAXParseException exception){
+                    System.out.println(exception);
                 }
 
                 @Override
-                public void error(SAXParseException exception) throws SAXException {
+                public void error(SAXParseException exception){
+                    System.out.println(exception);
                 }
 
                 @Override
-                public void fatalError(SAXParseException exception) throws SAXException {
+                public void fatalError(SAXParseException exception){
+                    System.out.println(exception);
                 }
             });
 
@@ -136,7 +139,6 @@ public class IEEE1599Generator {
         if (isGenerateElement()) {
             Element notes = g_element.generate_random_notes(doc);
             track_general.appendChild(notes);
-
         }
     }
 

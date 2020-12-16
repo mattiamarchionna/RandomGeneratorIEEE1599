@@ -1,8 +1,5 @@
 package com.random.generator;
 
-
-import sun.reflect.generics.tree.Tree;
-
 import java.util.*;
 
 // classe che riceverà i vari parametri per la generazione del file
@@ -13,7 +10,6 @@ public class Parameter {
     private String min_duration;
     private String max_duration;
     private String path;
-
     private boolean onlyNote;
     private boolean onlyRest;
     private boolean bothNoteRest;
@@ -95,7 +91,6 @@ public class Parameter {
         this.accidentals = accidental;
     }
 
-
     public void setLenght(int l){
         this.lenght = l;
     }
@@ -145,7 +140,6 @@ public class Parameter {
         int min_num = Integer.parseInt(min_duration_split[0]);
         int min_den = Integer.parseInt(min_duration_split[1]);
         double min = (Math.round((((float)min_num)/min_den) * 10) / 10.0);
-
 
         String[] max_duration_split = max_duration.split("/");
         int max_num = Integer.parseInt(max_duration_split[0]);
