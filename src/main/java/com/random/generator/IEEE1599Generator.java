@@ -5,13 +5,18 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.FileImageOutputStream;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.URISyntaxException;
+import java.util.Objects;
 import java.util.Random;
 
 public class IEEE1599Generator {
@@ -68,6 +73,7 @@ public class IEEE1599Generator {
             save_xml_file(doc, "save");
         } catch (ParserConfigurationException | SAXException | IOException e) {
             System.out.println("Errore nell'elaborazione del file");
+            e.printStackTrace();
             System.exit(1);
         }
     }
@@ -852,11 +858,15 @@ public class IEEE1599Generator {
             Transformer t = tf.newTransformer();
             t.setOutputProperty(OutputKeys.INDENT, "yes");
             t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "3");
-            t.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "C:\\Users\\matti\\Desktop\\RandomGeneratorIEEE1599\\ieee1599.dtd");
+
+            // System.out.println(ClassLoader.getSystemResource("ieee1599.dtd").toURI().toString());
+
+            t.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, ClassLoader.getSystemResource("ieee1599.dtd").toURI().toString());
             t.transform(input, output);
-        } catch (TransformerException e) {
+        } catch (TransformerException | URISyntaxException e) {
             System.out.println("Errore durante il salvataggio...");
         }
     }
+
 
 }
