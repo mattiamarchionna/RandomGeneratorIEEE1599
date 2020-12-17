@@ -1,17 +1,25 @@
 package com.random.generator;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        System.setProperty("sun.java2d.uiScale", "1.0");
+
 
         JFrame jframe = new JFrame("Generatore random IEEE1599");
 
+        BufferedImage ieee1599Img = ImageIO.read(ClassLoader.getSystemResource("ieee1599.png"));
+        ImageIcon ieee1599Icon = new ImageIcon(ieee1599Img);
+        jframe.setIconImage(ieee1599Icon.getImage());
 
         /*try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -23,6 +31,8 @@ public class Main {
         } catch (Exception e) {
             System.out.println("This look isn't available");
         }*/
+
+
 
         UIManager.put( "control", new Color(40, 44, 52)); // 61 61 61
         UIManager.put( "info", new Color(65,65,65) );
@@ -56,9 +66,8 @@ public class Main {
 
         jframe.setContentPane(grid.mainPanel);
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jframe.pack();
         //jframe.setResizable(false);
-        jframe.setSize(1000, 850);
+        jframe.setSize(1000, 750);
         jframe.setVisible(true);
 
         //Parameter p = grid.configuration;

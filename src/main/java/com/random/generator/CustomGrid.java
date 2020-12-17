@@ -24,6 +24,7 @@ public class CustomGrid {
     private JSpinner spinnerLunghezzaBrano; private JSpinner spinnerNumeroStrumenti; private JSpinner spinner8; private JSpinner spinner9;
     private JPanel panelLunghezzaBrano; private JPanel panelNumeroStrumenti; private JPanel panelNote; private JPanel panelAltezza;
     private JPanel panelNotePause; private JPanel panelSalvataggio; private JPanel panelDurata;
+    private JLabel totalPercentage;
     private JButton buttonOpen;
     private Random r = new Random();
 
@@ -92,6 +93,9 @@ public class CustomGrid {
         spinner5.setValue(r.nextInt(20));
         spinner6.setValue(r.nextInt(20));
         spinner7.setValue(r.nextInt(20));
+
+        totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+
         textField4.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.WHITE));
         textField4.setEditable(false);
         //textField4.setOpaque(false);
@@ -216,6 +220,55 @@ public class CustomGrid {
         });
 
 
+        spinner1.addChangeListener(e -> {
+            if(getSumOfPitchSpinners() > 100){
+                spinner7.setValue((int) spinner7.getValue() - 1);
+            }
+            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+        });
+
+        spinner2.addChangeListener(e -> {
+            if(getSumOfPitchSpinners() > 100){
+                spinner1.setValue((int) spinner1.getValue() - 1);
+            }
+            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+        });
+
+        spinner3.addChangeListener(e -> {
+            if(getSumOfPitchSpinners() > 100){
+                spinner2.setValue((int) spinner2.getValue() - 1);
+            }
+            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+        });
+
+        spinner4.addChangeListener(e -> {
+            if(getSumOfPitchSpinners() > 100){
+                spinner3.setValue((int) spinner3.getValue() - 1);
+            }
+            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+        });
+
+        spinner5.addChangeListener(e -> {
+            if(getSumOfPitchSpinners() > 100){
+                spinner4.setValue((int) spinner4.getValue() - 1);
+            }
+            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+        });
+
+        spinner6.addChangeListener(e -> {
+            if(getSumOfPitchSpinners() > 100){
+                spinner5.setValue((int) spinner5.getValue() - 1);
+            }
+            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+        });
+
+        spinner7.addChangeListener(e -> {
+            if(getSumOfPitchSpinners() > 100){
+                spinner6.setValue((int) spinner6.getValue() - 1);
+            }
+            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+        });
+
         generaIEEE1599Button.addActionListener(e -> {
             if (checkValidityOfInput()) {
 
@@ -257,7 +310,7 @@ public class CustomGrid {
 
     private boolean checkValidityOfInput(){
         try {
-            return ((int) spinnerLunghezzaBrano.getValue() > 0) && ((int) spinnerNumeroStrumenti.getValue() > 0) &&
+            return getSumOfPitchSpinners() == 100 && ((int) spinnerLunghezzaBrano.getValue() > 0) && ((int) spinnerNumeroStrumenti.getValue() > 0) &&
                     ((int) spinner8.getValue() > 0) && ((int) spinner9.getValue() > (int) spinner8.getValue()) &&
                     (onlyNoteCheckBox.isSelected() || onlyRestCheckBox.isSelected() || bothRestNoteCheckBox.isSelected()) &&
                     (comboBox1.getSelectedIndex() <= comboBox2.getSelectedIndex()) && (!textField4.getText().equals(""));
@@ -310,5 +363,8 @@ public class CustomGrid {
         }
     }
 
-
+    private int getSumOfPitchSpinners(){
+        return (int)(spinner1.getValue()) + (int)(spinner2.getValue()) + (int)(spinner3.getValue()) + (int)(spinner4.getValue()) +
+        (int)(spinner5.getValue()) + (int)(spinner6.getValue()) + (int)(spinner7.getValue());
+    }
 }
