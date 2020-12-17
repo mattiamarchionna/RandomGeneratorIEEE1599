@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="RandomGeneratorIEEE1599:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/RandomGeneratorIEEE1599_jar2</output-path>
+    <root id="archive" name="RandomGeneratorIEEE1599.jar">
+      <element id="module-output" name="RandomGeneratorIEEE1599" />
+    </root>
+  </artifact>
+</component>
