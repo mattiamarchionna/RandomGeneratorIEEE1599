@@ -12,19 +12,35 @@ import java.util.TreeMap;
 
 public class CustomGrid {
     public JPanel mainPanel;
-    private JButton generaIEEE1599Button; private JButton cartellaDiDestinazioneButton;
-    private JTextField textField4;
+    public JButton generaIEEE1599Button; public JButton cartellaDiDestinazioneButton;
+    public JTextField textField4;
     private JCheckBox onlyNoteCheckBox; private JCheckBox onlyRestCheckBox; private JCheckBox bothRestNoteCheckBox;
-    private JSpinner spinner1; private JSpinner spinner2; private JSpinner spinner3;
-    private JSpinner spinner4; private JSpinner spinner5; private JSpinner spinner6; private JSpinner spinner7;
-    private JComboBox comboBox1; private JComboBox comboBox2;
+    public JSpinner spinner1; public JSpinner spinner2; public JSpinner spinner3;
+    public JSpinner spinner4; public JSpinner spinner5; public JSpinner spinner6; public JSpinner spinner7;
+    public JComboBox comboBox1; public JComboBox comboBox2;
     private JToolBar toolbar1;
     public Parameter configuration = new Parameter();
     private JButton saveButton;
-    private JSpinner spinnerLunghezzaBrano; private JSpinner spinnerNumeroStrumenti; private JSpinner spinner8; private JSpinner spinner9;
-    private JPanel panelLunghezzaBrano; private JPanel panelNumeroStrumenti; private JPanel panelNote; private JPanel panelAltezza;
-    private JPanel panelNotePause; private JPanel panelSalvataggio; private JPanel panelDurata;
+    public JSpinner spinnerLunghezzaBrano; public JSpinner spinnerNumeroStrumenti; public JSpinner spinner8; public JSpinner spinner9;
+    public JPanel panelLunghezzaBrano; public JPanel panelNumeroStrumenti; public JPanel panelNote; public JPanel panelAltezza;
+    public JPanel panelNotePause; private JPanel panelSalvataggio; public JPanel panelDurata;
     private JLabel totalPercentage;
+    public JPanel parentLunghezzaBrano;
+    public JPanel parentNumeroStrumenti;
+    public JPanel parentC;
+    public JPanel parentD;
+    public JPanel parentE;
+    public JPanel parentF;
+    public JPanel parentG;
+    public JPanel parentA;
+    public JPanel parentB;
+    public JPanel parentDurataMinima;
+    public JPanel parentDurataMassima;
+    public JPanel parentAltezzaMinima;
+    public JPanel parentAltezzaMassima;
+    public JPanel parentSoloNote;
+    public JPanel parentSoloPause;
+    public JPanel parentEntrambe;
     private JButton buttonOpen;
     private Random r = new Random();
 
@@ -100,8 +116,8 @@ public class CustomGrid {
         textField4.setEditable(false);
         //textField4.setOpaque(false);
 
-        for (int i = 1; i < 9; i++) {
-            for (int j = 1; j < 9; j++) {
+        for (int i = 1; i < 65; i++) {
+            for (int j = 1; j < 65; j++) {
                 String s = i + "/" + j;
                 comboBox1.addItem(s);
                 comboBox2.addItem(s);

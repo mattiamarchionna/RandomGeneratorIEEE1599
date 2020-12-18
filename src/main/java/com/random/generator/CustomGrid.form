@@ -77,7 +77,7 @@
           <vspacer id="36625">
             <constraints/>
           </vspacer>
-          <grid id="31bc4" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="31bc4" binding="parentAltezzaMinima" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties/>
             <border type="none"/>
@@ -101,7 +101,7 @@
               </component>
             </children>
           </grid>
-          <grid id="69364" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="69364" binding="parentAltezzaMassima" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties/>
             <border type="none"/>
@@ -138,7 +138,7 @@
           <vspacer id="9fc6e">
             <constraints/>
           </vspacer>
-          <grid id="9729d" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="9729d" binding="parentC" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties/>
             <border type="none"/>
@@ -161,7 +161,7 @@
               </component>
             </children>
           </grid>
-          <grid id="d0ae8" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="d0ae8" binding="parentD" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties/>
             <border type="none"/>
@@ -182,7 +182,7 @@
               </component>
             </children>
           </grid>
-          <grid id="934cb" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="934cb" binding="parentE" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties/>
             <border type="none"/>
@@ -203,7 +203,7 @@
               </component>
             </children>
           </grid>
-          <grid id="4e416" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="4e416" binding="parentF" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties/>
             <border type="none"/>
@@ -224,7 +224,7 @@
               </component>
             </children>
           </grid>
-          <grid id="1fdd4" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="1fdd4" binding="parentG" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties/>
             <border type="none"/>
@@ -245,7 +245,7 @@
               </component>
             </children>
           </grid>
-          <grid id="e094a" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="e094a" binding="parentA" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties/>
             <border type="none"/>
@@ -266,7 +266,7 @@
               </component>
             </children>
           </grid>
-          <grid id="aebfb" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="aebfb" binding="parentB" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties/>
             <border type="none"/>
@@ -312,7 +312,7 @@
           <vspacer id="89371">
             <constraints/>
           </vspacer>
-          <grid id="f6130" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="f6130" binding="parentDurataMinima" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties/>
             <border type="none"/>
@@ -335,7 +335,7 @@
               </component>
             </children>
           </grid>
-          <grid id="f600b" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="f600b" binding="parentDurataMassima" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties/>
             <border type="none"/>
@@ -373,9 +373,11 @@
           <vspacer id="d1bad">
             <constraints/>
           </vspacer>
-          <grid id="e83d9" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="e83d9" binding="parentSoloNote" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
-            <properties/>
+            <properties>
+              <preferredSize width="119" height="45"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="53bd" class="javax.swing.JCheckBox" binding="onlyNoteCheckBox">
@@ -387,9 +389,11 @@
               </component>
             </children>
           </grid>
-          <grid id="aae7" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="aae7" binding="parentSoloPause" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
-            <properties/>
+            <properties>
+              <preferredSize width="119" height="45"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="48c6e" class="javax.swing.JCheckBox" binding="onlyRestCheckBox">
@@ -401,9 +405,11 @@
               </component>
             </children>
           </grid>
-          <grid id="b98ed" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="b98ed" binding="parentEntrambe" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
-            <properties/>
+            <properties>
+              <preferredSize width="112" height="45"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="6cdeb" class="javax.swing.JCheckBox" binding="bothRestNoteCheckBox">
@@ -430,7 +436,7 @@
           <vspacer id="79789">
             <constraints/>
           </vspacer>
-          <grid id="685f8" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
+          <grid id="685f8" binding="parentLunghezzaBrano" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
             <constraints/>
             <properties/>
             <border type="none"/>
@@ -467,7 +473,7 @@
           <vspacer id="9455e">
             <constraints/>
           </vspacer>
-          <grid id="bb740" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
+          <grid id="bb740" binding="parentNumeroStrumenti" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
             <constraints/>
             <properties/>
             <border type="none"/>
