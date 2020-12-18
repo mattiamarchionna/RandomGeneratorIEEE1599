@@ -15,7 +15,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="6ddd9" class="javax.swing.JLabel">
+          <component id="6ddd9" class="javax.swing.JLabel" binding="labelDestinazione">
             <constraints/>
             <properties>
               <background color="-14144460"/>
@@ -32,7 +32,7 @@
               <font name="Montserrat" size="16"/>
             </properties>
           </component>
-          <grid id="74b71" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="74b71" binding="panelButton" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="20" bottom="0" right="0"/>
             <constraints/>
             <properties/>
@@ -327,7 +327,8 @@
               <component id="654b1" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
                 <constraints/>
                 <properties>
-                  <background color="-15131872"/>
+                  <background color="-14605013"/>
+                  <editable value="true"/>
                   <font name="Montserrat" size="16"/>
                   <foreground color="-16777216"/>
                   <preferredSize width="90" height="30"/>
@@ -350,7 +351,8 @@
               <component id="4d206" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
                 <constraints/>
                 <properties>
-                  <background color="-14605012"/>
+                  <background color="-14605013"/>
+                  <editable value="true"/>
                   <font name="Montserrat" size="16"/>
                   <foreground color="-12763843"/>
                   <preferredSize width="90" height="30"/>
@@ -441,7 +443,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="f8db6" class="javax.swing.JLabel">
+              <component id="f8db6" class="javax.swing.JLabel" binding="label1">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="15" style="1"/>

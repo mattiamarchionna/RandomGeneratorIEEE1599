@@ -2,6 +2,8 @@ package com.random.generator;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,6 +13,10 @@ import java.io.IOException;
 
 
 public class Main {
+
+    static CustomGrid grid;
+    static JButton switchB;
+
     public static void main(String[] args) throws IOException {
         System.setProperty("sun.java2d.uiScale", "1.0");
 
@@ -47,18 +53,59 @@ public class Main {
             e.printStackTrace();
         }
 
-        CustomGrid grid = new CustomGrid();
+        grid = new CustomGrid();
+
+        switchB = new JButton();
+        switchB.setBorder(BorderFactory.createEmptyBorder(5,10,5,50));
+        switchB.setPreferredSize(new Dimension(35, 22));
+        final int[] flagMode = {1}; // 1 for dark blue mode, 0 for dark yellow mode
+        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("switch_on.png"));
+        ImageIcon switchIcon = new ImageIcon(switchImg);
+        switchB.setIcon(switchIcon);
+        switchB.setToolTipText("Cambia tema");
+        grid.toolbar1.add(switchB);
+
+        switchB.setBorder(BorderFactory.createEmptyBorder());
 
 
         darkYellowTheme(grid);
 
-        //darkBlueTheme(grid);
+        JPanel p = new JPanel();
+        p.setLayout(new BorderLayout());
 
-        jframe.setContentPane(grid.mainPanel);
+        //darkBlueTheme(grid);
+        jframe.add(grid.mainPanel);
+        //jframe.add(p);
+        //jframe.setContentPane(grid.mainPanel);
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         //jframe.setResizable(false);
         jframe.setSize(1000, 750);
         jframe.setVisible(true);
+
+
+        switchB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if(flagMode[0] == 1) {
+                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("switch_off.png"));
+                        ImageIcon switchIcon = new ImageIcon(switchImg);
+                        switchB.setIcon(switchIcon);
+                        flagMode[0] = 0;
+                        darkBlueTheme(grid);
+                    }
+                    else{
+                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("switch_on.png"));
+                        ImageIcon switchIcon = new ImageIcon(switchImg);
+                        switchB.setIcon(switchIcon);
+                        flagMode[0] = 1;
+                        darkYellowTheme(grid);
+                    }
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+        });
 
         //Parameter p = grid.configuration;
 
@@ -82,24 +129,27 @@ public class Main {
     }
 
     static private void darkBlueTheme(CustomGrid g){
-        UIManager.put( "control", new Color(40, 44, 52)); // 61 61 61
-        UIManager.put( "info", new Color(65,65,65) );
-        UIManager.put( "nimbusBase", new Color( 33, 37, 43) );
+        Color background = new Color(40, 44, 52);
+        g.mainPanel.setBackground(background);
 
+        //UIManager.put( "control", new Color(40, 44, 52)); // 61 61 61
+        //UIManager.put( "info", new Color(65,65,65) );
+        //UIManager.put( "nimbusBase", new Color( 33, 37, 43) );
         //UIManager.put( "nimbusAlertYellow", new Color( 248, 187, 0) );
         //UIManager.put( "nimbusDisabledText", new Color( 128, 128, 128) );
         //UIManager.put( "nimbusFocus", new Color(115,164,209) );
         //UIManager.put( "nimbusGreen", new Color(176,179,50) );
         //UIManager.put( "nimbusInfoBlue", new Color( 66, 139, 221) );
-        UIManager.put( "nimbusLightBackground", new Color( 33, 37, 43) ); // ok
+        //UIManager.put( "nimbusLightBackground", new Color( 33, 37, 43) ); // ok
         //UIManager.put( "nimbusOrange", new Color(191,98,4) );
         //UIManager.put( "nimbusRed", new Color(169,46,34) );
         //UIManager.put( "nimbusSelectedText", new Color( 255, 255, 255) ); // ok
+        //UIManager.put( "nimbusSelectionBackground", new Color( 66, 139, 221) ); // ok
 
-        UIManager.put( "nimbusSelectionBackground", new Color( 66, 139, 221) ); // ok
-        UIManager.put( "text", new Color( 230, 230, 230) );
+        //Color c = new Color(120, 155, 254);
+        Color c = new Color(80, 86, 98);
 
-        Color c = new Color(33, 37, 43);
+        g.labelDestinazione.setForeground(Color.WHITE);
 
         g.panelNote.setBackground(c);
         g.panelNumeroStrumenti.setBackground(c);
@@ -123,38 +173,91 @@ public class Main {
         g.parentNumeroStrumenti.setBackground(c);
         g.parentSoloNote.setBackground(c);
         g.parentSoloPause.setBackground(c);
+        g.panelSalvataggio.setBackground(background);
+        g.panelButton.setBackground(background);
+
         g.textField4.setBackground(new Color(40, 44, 52));
+        g.textField4.setForeground(Color.white);
         g.textField4.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.WHITE));
 
-        g.comboBox1.setBackground(new Color(25, 27, 32));
+        /*g.comboBox1.setBackground(new Color(25, 27, 32));
         g.comboBox1.setForeground(Color.BLACK);
         g.comboBox2.setBackground(new Color(25, 27, 32));
-        g.comboBox2.setForeground(Color.BLACK);
+        g.comboBox2.setForeground(Color.BLACK);*/
 
         g.cartellaDiDestinazioneButton.setBackground(new Color(40, 44, 52));
         g.generaIEEE1599Button.setBackground(new Color(40, 44, 52));
         g.cartellaDiDestinazioneButton.setForeground(Color.WHITE);
         g.generaIEEE1599Button.setForeground(Color.WHITE);
+
+        //UIManager.put("text", Color.WHITE);
+
+        g.spinner1.getEditor().getComponent(0).setForeground(background);
+        g.spinner2.getEditor().getComponent(0).setForeground(background);
+        g.spinner3.getEditor().getComponent(0).setForeground(background);
+        g.spinner4.getEditor().getComponent(0).setForeground(background);
+        g.spinner5.getEditor().getComponent(0).setForeground(background);
+        g.spinner6.getEditor().getComponent(0).setForeground(background);
+        g.spinner7.getEditor().getComponent(0).setForeground(background);
+        g.spinner8.getEditor().getComponent(0).setForeground(background);
+        g.spinner9.getEditor().getComponent(0).setForeground(background);
+
+
+        g.spinnerLunghezzaBrano.getEditor().getComponent(0).setForeground(background);
+        g.spinnerNumeroStrumenti.getEditor().getComponent(0).setForeground(background);
+
+        g.comboBox1.getEditor().getEditorComponent().setForeground(background);
+        g.comboBox2.getEditor().getEditorComponent().setForeground(background);
+
+
+        /*PopupMenuListener popList = new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+                UIManager.put("text", background);
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+                UIManager.put("text", Color.WHITE);
+            }
+
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {
+                UIManager.put("text", background);
+
+            }
+        };*/
+
+        //g.comboBox1.addPopupMenuListener(popList);
+
+        //g.comboBox2.addPopupMenuListener(popList);
+
+
     }
 
+
     static private void darkYellowTheme(CustomGrid g){
+        g.mainPanel.setBackground(Color.WHITE);
         Color c = new Color(248, 148, 7);
-        UIManager.put( "control", Color.WHITE); // 61 61 61
-        UIManager.put( "info", Color.WHITE );
-        UIManager.put( "nimbusBase", new Color(128, 128, 128));
+        //UIManager.put( "control", Color.WHITE); // 61 61 61
+        //UIManager.put( "info", Color.WHITE );
+        //UIManager.put( "nimbusBase", new Color(128, 128, 128));
 
         //UIManager.put( "nimbusAlertYellow", new Color( 248, 187, 0) );
         //UIManager.put( "nimbusDisabledText", new Color( 128, 128, 128) );
         //UIManager.put( "nimbusFocus", new Color(115,164,209) );
         //UIManager.put( "nimbusGreen", new Color(176,179,50) );
         //UIManager.put( "nimbusInfoBlue", new Color( 66, 139, 221) );
-        UIManager.put( "nimbusLightBackground", Color.WHITE ); // ok
+        //UIManager.put( "nimbusLightBackground", Color.WHITE ); // ok
         //UIManager.put( "nimbusOrange", new Color(191,98,4) );
         //UIManager.put( "nimbusRed", new Color(169,46,34) );
         //UIManager.put( "nimbusSelectedText", new Color( 255, 255, 255) ); // ok
 
-        UIManager.put( "nimbusSelectionBackground", new Color( 66, 139, 221) ); // ok
-        UIManager.put( "text", Color.BLACK );
+        //UIManager.put( "nimbusSelectionBackground", new Color( 66, 139, 221) ); // ok
+        UIManager.put( "text", Color.BLACK);
+
+        g.labelDestinazione.setForeground(Color.BLACK);
+
 
         g.panelNote.setBackground(c);
         g.panelNumeroStrumenti.setBackground(c);
@@ -178,13 +281,11 @@ public class Main {
         g.parentNumeroStrumenti.setBackground(c);
         g.parentSoloNote.setBackground(c);
         g.parentSoloPause.setBackground(c);
+        g.panelSalvataggio.setBackground(Color.white);
+        g.panelButton.setBackground(Color.white);
         g.textField4.setBackground(Color.white);
+        g.textField4.setForeground(Color.black);
         g.textField4.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
-
-        g.comboBox1.setBackground(Color.LIGHT_GRAY);
-        g.comboBox1.setForeground(Color.white);
-        g.comboBox2.setBackground(Color.LIGHT_GRAY);
-        g.comboBox2.setForeground(Color.white);
 
         g.cartellaDiDestinazioneButton.setBackground(Color.LIGHT_GRAY);
         g.generaIEEE1599Button.setBackground(Color.LIGHT_GRAY);

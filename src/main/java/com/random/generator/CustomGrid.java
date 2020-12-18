@@ -2,6 +2,9 @@ package com.random.generator;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,12 +21,12 @@ public class CustomGrid {
     public JSpinner spinner1; public JSpinner spinner2; public JSpinner spinner3;
     public JSpinner spinner4; public JSpinner spinner5; public JSpinner spinner6; public JSpinner spinner7;
     public JComboBox comboBox1; public JComboBox comboBox2;
-    private JToolBar toolbar1;
+    public JToolBar toolbar1;
     public Parameter configuration = new Parameter();
     private JButton saveButton;
     public JSpinner spinnerLunghezzaBrano; public JSpinner spinnerNumeroStrumenti; public JSpinner spinner8; public JSpinner spinner9;
     public JPanel panelLunghezzaBrano; public JPanel panelNumeroStrumenti; public JPanel panelNote; public JPanel panelAltezza;
-    public JPanel panelNotePause; private JPanel panelSalvataggio; public JPanel panelDurata;
+    public JPanel panelNotePause; public JPanel panelSalvataggio; public JPanel panelDurata;
     private JLabel totalPercentage;
     public JPanel parentLunghezzaBrano;
     public JPanel parentNumeroStrumenti;
@@ -41,6 +44,9 @@ public class CustomGrid {
     public JPanel parentSoloNote;
     public JPanel parentSoloPause;
     public JPanel parentEntrambe;
+    public JPanel panelButton;
+    public JLabel label1;
+    public JLabel labelDestinazione;
     private JButton buttonOpen;
     private Random r = new Random();
 
@@ -97,6 +103,8 @@ public class CustomGrid {
         ImageIcon openIcon = new ImageIcon(openImg);
         open.setIcon(openIcon);
         toolbar1.add(open);
+        toolbar1.addSeparator(new Dimension(15, 10));
+
 
         open.setBorder(BorderFactory.createEmptyBorder());
         save.setBorder(BorderFactory.createEmptyBorder());
@@ -125,13 +133,16 @@ public class CustomGrid {
             }
         }
 
-        comboBox1.setBackground(Color.black);
-        comboBox2.setBackground(Color.black);
+        //comboBox1.getEditor().getEditorComponent().setForeground(Color.black);
+        //comboBox2.getEditor().getEditorComponent().setForeground(Color.black);
+
 
         cartellaDiDestinazioneButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fs = new JFileChooser(new File(System.getProperty("user.home")));
+                UIManager.put("text", Color.BLACK);
+
                 fs.setFileFilter(new FolderFilter());
                 fs.setFileSelectionMode(JFileChooser.APPROVE_OPTION);
                 fs.setDialogTitle("Seleziona cartella destinazione");
@@ -152,6 +163,8 @@ public class CustomGrid {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fs = new JFileChooser(new File(System.getProperty("user.home")));
                 //fs.setFileFilter(new FolderFilter());
+                UIManager.put("text", Color.BLACK);
+
                 fs.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
                 fs.setDialogTitle("Seleziona file di configurazione");
                 fs.showOpenDialog(mainPanel);
@@ -171,6 +184,8 @@ public class CustomGrid {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame parentFrame = new JFrame();
+
+                UIManager.put("text", Color.BLACK);
 
                 JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.home")));
                 fileChooser.setDialogTitle("Specifica dove salvare il file di configurazione");
