@@ -55,9 +55,9 @@ public class Main {
 
         grid = new CustomGrid();
 
-        switchB = new JToggleButton("Dark Blue");
+        switchB = new JToggleButton("Dark Blue Theme");
         switchB.setBorder(BorderFactory.createEmptyBorder(5,10,5,50));
-        switchB.setPreferredSize(new Dimension(120, 40));
+        switchB.setPreferredSize(new Dimension(180, 40));
         final int[] flagMode = {1}; // 1 for dark blue mode, 0 for dark yellow mode
         BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("switch_on.png"));
         ImageIcon switchIcon = new ImageIcon(switchImg);
@@ -129,7 +129,7 @@ public class Main {
     }
 
     static private void darkBlueTheme(CustomGrid g){
-        switchB.setText("Dark Blue");
+        switchB.setText("Dark Blue Theme");
 
         Color background = new Color(40, 44, 52);
         g.mainPanel.setBackground(background);
@@ -239,7 +239,7 @@ public class Main {
 
 
     static private void darkYellowTheme(CustomGrid g){
-        switchB.setText("Dark Yellow");
+        switchB.setText("Dark Yellow Theme");
         g.mainPanel.setBackground(Color.WHITE);
         Color c = new Color(248, 148, 7);
         //UIManager.put( "control", Color.WHITE); // 61 61 61
