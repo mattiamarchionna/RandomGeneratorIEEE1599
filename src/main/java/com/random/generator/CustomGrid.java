@@ -8,8 +8,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Random;
@@ -176,6 +175,48 @@ public class CustomGrid {
             }
         });
 
+
+        open.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                open.setContentAreaFilled(false);
+                try {
+                    BufferedImage openImg = ImageIO.read(ClassLoader.getSystemResource("dark_open.png"));
+                    ImageIcon openIcon = new ImageIcon(openImg);
+                    open.setIcon(openIcon);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                try {
+                    BufferedImage openImg = ImageIO.read(ClassLoader.getSystemResource("open.png"));
+                    ImageIcon openIcon = new ImageIcon(openImg);
+                    open.setIcon(openIcon);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+        });
+
+
         open.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -197,6 +238,43 @@ public class CustomGrid {
             }
         });
 
+       save.addMouseListener(new MouseListener() {
+           @Override
+           public void mouseClicked(MouseEvent e) {
+
+           }
+
+           @Override
+           public void mousePressed(MouseEvent e) {
+
+           }
+
+           @Override
+           public void mouseReleased(MouseEvent e) {
+
+           }
+
+           @Override
+           public void mouseEntered(MouseEvent e) {
+               try {
+                   BufferedImage saveImg = ImageIO.read(ClassLoader.getSystemResource("dark_disk.png"));
+                   ImageIcon saveIcon = new ImageIcon(saveImg);
+                   save.setIcon(saveIcon);
+               } catch (IOException ioException) {
+                   ioException.printStackTrace();
+               }
+           }
+
+           @Override
+           public void mouseExited(MouseEvent e) {
+               try {
+                   BufferedImage saveImg = ImageIO.read(ClassLoader.getSystemResource("disk.png"));
+                   ImageIcon saveIcon = new ImageIcon(saveImg);
+                   save.setIcon(saveIcon);
+               } catch (IOException ioException) {
+                   ioException.printStackTrace();
+               }           }
+       });
 
         save.addActionListener(new ActionListener() {
             @Override
@@ -357,14 +435,13 @@ public class CustomGrid {
     }
 
 
-    private boolean checkValidityOfInput(){
+    private boolean checkValidityOfInput() {
         try {
             return getSumOfPitchSpinners() == 100 && ((int) spinnerLunghezzaBrano.getValue() > 0) && ((int) spinnerNumeroStrumenti.getValue() > 0) &&
                     ((int) spinner8.getValue() > 0) && ((int) spinner9.getValue() > (int) spinner8.getValue()) &&
                     (onlyNoteCheckBox.isSelected() || onlyRestCheckBox.isSelected() || bothRestNoteCheckBox.isSelected()) &&
                     (comboBox1.getSelectedIndex() <= comboBox2.getSelectedIndex()) && (!textField4.getText().equals(""));
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             return false;
         }
     }
