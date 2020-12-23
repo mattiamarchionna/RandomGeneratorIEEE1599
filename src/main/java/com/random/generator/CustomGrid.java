@@ -147,7 +147,7 @@ public class CustomGrid {
         slider7.setValue(r.nextInt(20)); changeLabelValueSlider1(parentB, slider7);
 
 
-        int width = 60;
+        int width = 80;
         int height = 20;
         int widthParent = 120;
         int heightParent = 60;
@@ -477,7 +477,7 @@ public class CustomGrid {
 
     private void changeLabelValueSlider1(JPanel p, JSlider s){
         Color c = ((TitledBorder) p.getBorder()).getTitleColor();
-        p.setBorder(BorderFactory.createTitledBorder(null, s.getValue() + "%", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
+        p.setBorder(BorderFactory.createTitledBorder(BorderFactory.createRaisedBevelBorder(), s.getValue() + "%", TitledBorder.CENTER, TitledBorder.CENTER));
         ((TitledBorder) p.getBorder()).setTitleColor(c);
         //System.out.println(b.getTitle());
     }

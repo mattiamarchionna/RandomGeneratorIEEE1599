@@ -138,12 +138,12 @@
           <vspacer id="9fc6e">
             <constraints/>
           </vspacer>
-          <grid id="9729d" binding="parentC" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
+          <grid id="9729d" binding="parentC" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties>
               <preferredSize width="149" height="64"/>
             </properties>
-            <border type="none" title="%"/>
+            <border type="bevel-raised" title="%" title-justification="2"/>
             <children>
               <component id="154fb" class="javax.swing.JLabel" binding="label3">
                 <constraints/>
@@ -166,7 +166,7 @@
               </component>
             </children>
           </grid>
-          <grid id="d0ae8" binding="parentD" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
+          <grid id="d0ae8" binding="parentD" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties>
               <preferredSize width="149" height="64"/>
@@ -191,7 +191,7 @@
               </component>
             </children>
           </grid>
-          <grid id="934cb" binding="parentE" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
+          <grid id="934cb" binding="parentE" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties>
               <preferredSize width="139" height="64"/>
@@ -216,7 +216,7 @@
               </component>
             </children>
           </grid>
-          <grid id="4e416" binding="parentF" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
+          <grid id="4e416" binding="parentF" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties>
               <preferredSize width="139" height="64"/>
@@ -241,7 +241,7 @@
               </component>
             </children>
           </grid>
-          <grid id="1fdd4" binding="parentG" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
+          <grid id="1fdd4" binding="parentG" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties>
               <preferredSize width="139" height="64"/>
@@ -266,7 +266,7 @@
               </component>
             </children>
           </grid>
-          <grid id="e094a" binding="parentA" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
+          <grid id="e094a" binding="parentA" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties>
               <preferredSize width="139" height="64"/>
@@ -291,7 +291,7 @@
               </component>
             </children>
           </grid>
-          <grid id="aebfb" binding="parentB" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
+          <grid id="aebfb" binding="parentB" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties>
               <preferredSize width="139" height="64"/>
