@@ -19,8 +19,8 @@ public class CustomGrid {
     public JButton generaIEEE1599Button; public JButton cartellaDiDestinazioneButton;
     public JTextField textField4;
     private JCheckBox onlyNoteCheckBox; private JCheckBox onlyRestCheckBox; private JCheckBox bothRestNoteCheckBox;
-    public JSpinner spinner1; public JSpinner spinner2; public JSpinner spinner3;
-    public JSpinner spinner4; public JSpinner spinner5; public JSpinner spinner6; public JSpinner spinner7;
+    //public JSpinner spinner1; public JSpinner spinner2; public JSpinner spinner3;
+    //public JSpinner spinner4; public JSpinner spinner5; public JSpinner spinner6; public JSpinner spinner7;
     public JComboBox comboBox1; public JComboBox comboBox2;
     public JToolBar toolbar1;
     public Parameter configuration = new Parameter();
@@ -62,13 +62,24 @@ public class CustomGrid {
     public JLabel label11;
     public JLabel label12;
     public JLabel label13;
+    public JSlider slider1;
+    public JSlider slider2;
+    public JSlider slider3;
+    public JSlider slider4;
+    public JSlider slider5;
+    public JSlider slider6;
+    public JSlider slider7;
+    private JLabel labelSlider1;
     public JButton buttonOpen;
     private Random r = new Random();
 
 
     private void setClientProperty(){
-        mainPanel.putClientProperty("spinner1", spinner1); mainPanel.putClientProperty("spinner2", spinner2); mainPanel.putClientProperty("spinner3", spinner3);
-        mainPanel.putClientProperty("spinner4", spinner4); mainPanel.putClientProperty("spinner5", spinner5); mainPanel.putClientProperty("spinner6", spinner6); mainPanel.putClientProperty("spinner7", spinner7);
+        //mainPanel.putClientProperty("spinner1", spinner1); mainPanel.putClientProperty("spinner2", spinner2); mainPanel.putClientProperty("spinner3", spinner3);
+
+        mainPanel.putClientProperty("slider1", slider1); mainPanel.putClientProperty("slider2", slider2); mainPanel.putClientProperty("slider3", slider3);
+
+        mainPanel.putClientProperty("slider4", slider4); mainPanel.putClientProperty("slider5", slider5); mainPanel.putClientProperty("slider6", slider6); mainPanel.putClientProperty("slider7", slider7);
         mainPanel.putClientProperty("spinner8", spinner8); mainPanel.putClientProperty("spinner9", spinner9);
 
         mainPanel.putClientProperty("comboBox1", comboBox1); mainPanel.putClientProperty("comboBox2", comboBox2);
@@ -125,15 +136,40 @@ public class CustomGrid {
         save.setBorder(BorderFactory.createEmptyBorder());
         setClientProperty();
 
-        spinner1.setValue(r.nextInt(20));
-        spinner2.setValue(r.nextInt(20));
-        spinner3.setValue(r.nextInt(20));
-        spinner4.setValue(r.nextInt(20));
-        spinner5.setValue(r.nextInt(20));
-        spinner6.setValue(r.nextInt(20));
-        spinner7.setValue(r.nextInt(20));
+        //slider1.setPaintTicks(false); slider1.setPaintLabels(false);;
+        //spinner1.setValue(r.nextInt(20));
+        slider1.setValue(r.nextInt(20)); changeLabelValueSlider1(parentC, slider1);
+        slider2.setValue(r.nextInt(20)); changeLabelValueSlider1(parentD, slider2);
+        slider3.setValue(r.nextInt(20)); changeLabelValueSlider1(parentE, slider3);
+        slider4.setValue(r.nextInt(20)); changeLabelValueSlider1(parentF, slider4);
+        slider5.setValue(r.nextInt(20)); changeLabelValueSlider1(parentG, slider5);
+        slider6.setValue(r.nextInt(20)); changeLabelValueSlider1(parentA, slider6);
+        slider7.setValue(r.nextInt(20)); changeLabelValueSlider1(parentB, slider7);
 
-       // authorPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
+
+        int width = 50;
+        int height = 20;
+        int widthParent = 110;
+        int heightParent = 60;
+
+        parentC.setPreferredSize(new Dimension(widthParent, heightParent));
+        parentD.setPreferredSize(new Dimension(widthParent, heightParent));
+        parentE.setPreferredSize(new Dimension(widthParent, heightParent));
+        parentF.setPreferredSize(new Dimension(widthParent, heightParent));
+        parentG.setPreferredSize(new Dimension(widthParent, heightParent));
+        parentA.setPreferredSize(new Dimension(widthParent, heightParent));
+        parentB.setPreferredSize(new Dimension(widthParent, heightParent));
+
+        slider1.setPreferredSize(new Dimension(width, height));
+        slider2.setPreferredSize(new Dimension(width, height));
+        slider3.setPreferredSize(new Dimension(width, height));
+        slider4.setPreferredSize(new Dimension(width, height));
+        slider5.setPreferredSize(new Dimension(width, height));
+        slider6.setPreferredSize(new Dimension(width, height));
+        slider7.setPreferredSize(new Dimension(width, height));
+
+
+        // authorPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
 
         totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
 
@@ -296,13 +332,14 @@ public class CustomGrid {
                     try {
                         myWriter = new FileWriter(fileToSave.getAbsolutePath());
 
-                        String p1 = "spinner1:" + spinner1.getValue();
-                        String p2 = "spinner2:" + spinner2.getValue();
-                        String p3 = "spinner3:" + spinner3.getValue();
-                        String p4 = "spinner4:" + spinner4.getValue();
-                        String p5 = "spinner5:" + spinner5.getValue();
-                        String p6 = "spinner6:" + spinner6.getValue();
-                        String p7 = "spinner7:" + spinner7.getValue();
+                        //String p1 = "spinner1:" + spinner1.getValue();
+                        String p1 = "slider1: " + slider1.getValue();
+                        String p2 = "slider2:" + slider2.getValue();
+                        String p3 = "slider3:" + slider3.getValue();
+                        String p4 = "slider4:" + slider4.getValue();
+                        String p5 = "slider5:" + slider5.getValue();
+                        String p6 = "slider6:" + slider6.getValue();
+                        String p7 = "slider7:" + slider7.getValue();
                         String p8 = "spinnerLunghezzaBrano:" + spinnerLunghezzaBrano.getValue() + "\n";
                         String p9 = "spinnerNumeroStrumenti:" + spinnerNumeroStrumenti.getValue() + "\n";
                         String p10 = "comboBox1:" + comboBox1.getSelectedItem() + "\n";
@@ -347,51 +384,67 @@ public class CustomGrid {
         });
 
 
-        spinner1.addChangeListener(e -> {
+        /*spinner1.addChangeListener(e -> {
             if(getSumOfPitchSpinners() > 100){
                 spinner7.setValue((int) spinner7.getValue() - 1);
             }
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
-        });
+        });*/
 
-        spinner2.addChangeListener(e -> {
+
+        slider1.addChangeListener(e -> {
+            //labelSlider1.setText(String.valueOf(slider1.getValue()) + "%");
+            changeLabelValueSlider1(parentC, slider1);
             if(getSumOfPitchSpinners() > 100){
-                spinner1.setValue((int) spinner1.getValue() - 1);
+                slider7.setValue((int) slider7.getValue() - 1);
             }
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
-        spinner3.addChangeListener(e -> {
+        slider2.addChangeListener(e -> {
+            changeLabelValueSlider1(parentD, slider2);
             if(getSumOfPitchSpinners() > 100){
-                spinner2.setValue((int) spinner2.getValue() - 1);
+                slider1.setValue((int) slider1.getValue() - 1);  // ******** NEW ********
             }
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
-        spinner4.addChangeListener(e -> {
+        slider3.addChangeListener(e -> {
+            changeLabelValueSlider1(parentE, slider3);
             if(getSumOfPitchSpinners() > 100){
-                spinner3.setValue((int) spinner3.getValue() - 1);
+                slider2.setValue((int) slider2.getValue() - 1);
             }
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
-        spinner5.addChangeListener(e -> {
+        slider4.addChangeListener(e -> {
+            changeLabelValueSlider1(parentF, slider4);
             if(getSumOfPitchSpinners() > 100){
-                spinner4.setValue((int) spinner4.getValue() - 1);
+                slider3.setValue((int) slider3.getValue() - 1);
             }
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
-        spinner6.addChangeListener(e -> {
+        slider5.addChangeListener(e -> {
+            changeLabelValueSlider1(parentG, slider5);
             if(getSumOfPitchSpinners() > 100){
-                spinner5.setValue((int) spinner5.getValue() - 1);
+                slider4.setValue((int) slider4.getValue() - 1);
             }
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
-        spinner7.addChangeListener(e -> {
+        slider6.addChangeListener(e -> {
+            changeLabelValueSlider1(parentA, slider6);
             if(getSumOfPitchSpinners() > 100){
-                spinner6.setValue((int) spinner6.getValue() - 1);
+                slider5.setValue((int) slider5.getValue() - 1);
+            }
+            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+        });
+
+        slider7.addChangeListener(e -> {
+            changeLabelValueSlider1(parentB, slider7);
+            if(getSumOfPitchSpinners() > 100){
+                slider6.setValue((int) slider6.getValue() - 1);
             }
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
@@ -403,13 +456,15 @@ public class CustomGrid {
                 configuration.setNumber_struments((int) spinnerNumeroStrumenti.getValue());
 
                 TreeMap<String, Integer> notes_freq = new TreeMap<>();
-                notes_freq.put("C", (int) spinner1.getValue());
-                notes_freq.put("D", (int) spinner2.getValue());
-                notes_freq.put("E", (int) spinner3.getValue());
-                notes_freq.put("F", (int) spinner4.getValue());
-                notes_freq.put("G", (int) spinner5.getValue());
-                notes_freq.put("A", (int) spinner6.getValue());
-                notes_freq.put("B", (int) spinner7.getValue());
+                //notes_freq.put("C", (int) spinner1.getValue());
+                notes_freq.put("C", (int) slider1.getValue());
+
+                notes_freq.put("D", (int) slider2.getValue());
+                notes_freq.put("E", (int) slider3.getValue());
+                notes_freq.put("F", (int) slider4.getValue());
+                notes_freq.put("G", (int) slider5.getValue());
+                notes_freq.put("A", (int) slider6.getValue());
+                notes_freq.put("B", (int) slider7.getValue());
                 configuration.setNotes(notes_freq);
 
                 configuration.setMin_duration(String.valueOf(comboBox1.getSelectedItem()));
@@ -434,6 +489,12 @@ public class CustomGrid {
         });
     }
 
+    private void changeLabelValueSlider1(JPanel p, JSlider s){
+        //TitledBorder b = (TitledBorder) (parentC.getBorder()); b.setTitle(slider1.getValue() + "%");
+        //parentC.setBorder(b);
+        p.setBorder(BorderFactory.createTitledBorder(null, s.getValue() + "%", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
+        //System.out.println(b.getTitle());
+    }
 
     private boolean checkValidityOfInput() {
         try {
@@ -490,8 +551,8 @@ public class CustomGrid {
     }
 
     private int getSumOfPitchSpinners(){
-        return (int)(spinner1.getValue()) + (int)(spinner2.getValue()) + (int)(spinner3.getValue()) + (int)(spinner4.getValue()) +
-        (int)(spinner5.getValue()) + (int)(spinner6.getValue()) + (int)(spinner7.getValue());
+        return (slider1.getValue()) + (int)(slider2.getValue()) + (int)(slider3.getValue()) + (int)(slider4.getValue()) +
+        (int)(slider5.getValue()) + (int)(slider6.getValue()) + (int)(slider7.getValue());
     }
 
     public void setColorOfLabel(Color c){

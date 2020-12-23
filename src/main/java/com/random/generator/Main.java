@@ -125,8 +125,8 @@ public class Main {
         //jframe.add(p);
         //jframe.setContentPane(grid.mainPanel);
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jframe.setResizable(false);
-        jframe.setSize(1100, 720);
+        //jframe.setResizable(false);
+        jframe.setSize(1000, 720);
         jframe.setVisible(true);
 
 
@@ -168,7 +168,7 @@ public class Main {
     static private void darkBlueTheme(CustomGrid g){
         switchB.setToolTipText("Tema chiaro");
 
-        Color background = new Color(33, 37, 43);
+        Color background = new Color(40, 44, 52);
         g.mainPanel.setBackground(background);
 
         //UIManager.put( "control", new Color(40, 44, 52)); // 61 61 61
@@ -186,7 +186,7 @@ public class Main {
         //UIManager.put( "nimbusSelectionBackground", new Color( 66, 139, 221) ); // ok
 
         //Color c = new Color(120, 155, 254);
-        Color c = new Color(40, 44, 52);
+        Color c = new Color(33, 37, 43);
 
         g.labelDestinazione.setForeground(Color.WHITE);
 
@@ -237,13 +237,13 @@ public class Main {
 
         //UIManager.put("text", Color.WHITE);
 
-        g.spinner1.getEditor().getComponent(0).setForeground(background);
-        g.spinner2.getEditor().getComponent(0).setForeground(background);
-        g.spinner3.getEditor().getComponent(0).setForeground(background);
-        g.spinner4.getEditor().getComponent(0).setForeground(background);
-        g.spinner5.getEditor().getComponent(0).setForeground(background);
-        g.spinner6.getEditor().getComponent(0).setForeground(background);
-        g.spinner7.getEditor().getComponent(0).setForeground(background);
+        /*g.slider1.getEditor().getComponent(0).setForeground(background);
+        g.slider2.getEditor().getComponent(0).setForeground(background);
+        g.slider3.getEditor().getComponent(0).setForeground(background);
+        g.slider4.getEditor().getComponent(0).setForeground(background);
+        g.slider5.getEditor().getComponent(0).setForeground(background);
+        g.slider6.getEditor().getComponent(0).setForeground(background);
+        g.slider7.getEditor().getComponent(0).setForeground(background);*/
         g.spinner8.getEditor().getComponent(0).setForeground(background);
         g.spinner9.getEditor().getComponent(0).setForeground(background);
 
