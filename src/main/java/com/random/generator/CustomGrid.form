@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.random.generator.CustomGrid">
-  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="9" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="29" y="26" width="1443" height="869"/>
@@ -82,7 +82,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="b5fa0" class="javax.swing.JLabel">
+              <component id="b5fa0" class="javax.swing.JLabel" binding="label12">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="15" style="1"/>
@@ -106,7 +106,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="f1fd5" class="javax.swing.JLabel">
+              <component id="f1fd5" class="javax.swing.JLabel" binding="label13">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="15" style="1"/>
@@ -143,7 +143,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="154fb" class="javax.swing.JLabel">
+              <component id="154fb" class="javax.swing.JLabel" binding="label3">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="18" style="1"/>
@@ -166,7 +166,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="88a81" class="javax.swing.JLabel">
+              <component id="88a81" class="javax.swing.JLabel" binding="label4">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="18" style="1"/>
@@ -187,7 +187,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="1e5bc" class="javax.swing.JLabel">
+              <component id="1e5bc" class="javax.swing.JLabel" binding="label5">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="18" style="1"/>
@@ -208,7 +208,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="69200" class="javax.swing.JLabel">
+              <component id="69200" class="javax.swing.JLabel" binding="label6">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="18" style="1"/>
@@ -229,7 +229,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="fda48" class="javax.swing.JLabel">
+              <component id="fda48" class="javax.swing.JLabel" binding="label7">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="18" style="1"/>
@@ -250,7 +250,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="a323d" class="javax.swing.JLabel">
+              <component id="a323d" class="javax.swing.JLabel" binding="label8">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="18" style="1"/>
@@ -271,7 +271,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="1b13c" class="javax.swing.JLabel">
+              <component id="1b13c" class="javax.swing.JLabel" binding="label9">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="18" style="1"/>
@@ -317,7 +317,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="df08e" class="javax.swing.JLabel">
+              <component id="df08e" class="javax.swing.JLabel" binding="label10">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="15" style="1"/>
@@ -341,7 +341,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="75abd" class="javax.swing.JLabel">
+              <component id="75abd" class="javax.swing.JLabel" binding="label11">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="15" style="1"/>
@@ -394,6 +394,7 @@
           <grid id="aae7" binding="parentSoloPause" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties>
+              <minimumSize width="119" height="30"/>
               <preferredSize width="119" height="45"/>
             </properties>
             <border type="none"/>
@@ -480,7 +481,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="a7789" class="javax.swing.JLabel">
+              <component id="a7789" class="javax.swing.JLabel" binding="label2">
                 <constraints/>
                 <properties>
                   <font name="Montserrat" size="15" style="1"/>
@@ -511,6 +512,30 @@
         <border type="none"/>
         <children/>
       </toolbar>
+      <grid id="a62c9" binding="authorPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="400" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-14605013"/>
+        </properties>
+        <border type="none">
+          <title-color color="-5524801"/>
+        </border>
+        <children>
+          <component id="11c1b" class="javax.swing.JLabel" binding="labelAuthor">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Mattia Marchionna - a.a. 2020-2021 - Programmazione per la musica"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>

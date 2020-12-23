@@ -55,9 +55,9 @@ public class Main {
 
         grid = new CustomGrid();
 
-        switchB = new JToggleButton("Dark Blue Theme");
+        switchB = new JToggleButton("Tema chiaro");
         switchB.setBorder(BorderFactory.createEmptyBorder(5,10,5,50));
-        switchB.setPreferredSize(new Dimension(180, 40));
+        switchB.setPreferredSize(new Dimension(140, 40));
         final int[] flagMode = {1}; // 1 for dark blue mode, 0 for dark yellow mode
         BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("switch_on.png"));
         ImageIcon switchIcon = new ImageIcon(switchImg);
@@ -78,8 +78,8 @@ public class Main {
         //jframe.add(p);
         //jframe.setContentPane(grid.mainPanel);
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //jframe.setResizable(false);
-        jframe.setSize(1000, 750);
+        jframe.setResizable(false);
+        jframe.setSize(1100, 720);
         jframe.setVisible(true);
 
 
@@ -129,9 +129,9 @@ public class Main {
     }
 
     static private void darkBlueTheme(CustomGrid g){
-        switchB.setText("Dark Blue Theme");
+        switchB.setText("Tema scuro");
 
-        Color background = new Color(40, 44, 52);
+        Color background = new Color(33, 37, 43);
         g.mainPanel.setBackground(background);
 
         //UIManager.put( "control", new Color(40, 44, 52)); // 61 61 61
@@ -149,11 +149,15 @@ public class Main {
         //UIManager.put( "nimbusSelectionBackground", new Color( 66, 139, 221) ); // ok
 
         //Color c = new Color(120, 155, 254);
-        Color c = new Color(80, 86, 98);
+        Color c = new Color(40, 44, 52);
 
         g.labelDestinazione.setForeground(Color.WHITE);
 
+        g.setColorOfLabel(Color.WHITE);
+
         g.panelNote.setBackground(c);
+        g.authorPanel.setBackground(background);
+        g.labelAuthor.setForeground(Color.WHITE);
         g.panelNumeroStrumenti.setBackground(c);
         g.panelNotePause.setBackground(c);
         g.panelLunghezzaBrano.setBackground(c);
@@ -178,7 +182,7 @@ public class Main {
         g.panelSalvataggio.setBackground(background);
         g.panelButton.setBackground(background);
 
-        g.textField4.setBackground(new Color(40, 44, 52));
+        g.textField4.setBackground(background);
         g.textField4.setForeground(Color.white);
         g.textField4.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.WHITE));
 
@@ -239,9 +243,9 @@ public class Main {
 
 
     static private void darkYellowTheme(CustomGrid g){
-        switchB.setText("Dark Yellow Theme");
+        switchB.setText("Tema chiaro");
         g.mainPanel.setBackground(Color.WHITE);
-        Color c = new Color(248, 148, 7);
+        Color c = new Color(219, 130, 7); // 248, 148, 7
         //UIManager.put( "control", Color.WHITE); // 61 61 61
         //UIManager.put( "info", Color.WHITE );
         //UIManager.put( "nimbusBase", new Color(128, 128, 128));
@@ -261,8 +265,10 @@ public class Main {
 
         g.labelDestinazione.setForeground(Color.BLACK);
 
-
+        g.setColorOfLabel(Color.BLACK);
         g.panelNote.setBackground(c);
+        g.authorPanel.setBackground(Color.WHITE);
+        g.labelAuthor.setForeground(Color.BLACK);
         g.panelNumeroStrumenti.setBackground(c);
         g.panelNotePause.setBackground(c);
         g.panelLunghezzaBrano.setBackground(c);

@@ -2,7 +2,9 @@ package com.random.generator;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import java.awt.*;
@@ -47,7 +49,21 @@ public class CustomGrid {
     public JPanel panelButton;
     public JLabel label1;
     public JLabel labelDestinazione;
-    private JButton buttonOpen;
+    public JPanel authorPanel;
+    public JLabel labelAuthor;
+    public JLabel label2;
+    public JLabel label3;
+    public JLabel label4;
+    public JLabel label5;
+    public JLabel label6;
+    public JLabel label7;
+    public JLabel label8;
+    public JLabel label9;
+    public JLabel label10;
+    public JLabel label11;
+    public JLabel label12;
+    public JLabel label13;
+    public JButton buttonOpen;
     private Random r = new Random();
 
 
@@ -117,6 +133,8 @@ public class CustomGrid {
         spinner5.setValue(r.nextInt(20));
         spinner6.setValue(r.nextInt(20));
         spinner7.setValue(r.nextInt(20));
+
+       // authorPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
 
         totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
 
@@ -397,5 +415,43 @@ public class CustomGrid {
     private int getSumOfPitchSpinners(){
         return (int)(spinner1.getValue()) + (int)(spinner2.getValue()) + (int)(spinner3.getValue()) + (int)(spinner4.getValue()) +
         (int)(spinner5.getValue()) + (int)(spinner6.getValue()) + (int)(spinner7.getValue());
+    }
+
+    public void setColorOfLabel(Color c){
+        label1.setForeground(c);
+        label2.setForeground(c);
+        label3.setForeground(c);
+        label4.setForeground(c);
+        label5.setForeground(c);
+        label6.setForeground(c);
+        label7.setForeground(c);
+        label8.setForeground(c);
+        label9.setForeground(c);
+        label10.setForeground(c);
+        label11.setForeground(c);
+        label12.setForeground(c);
+        label13.setForeground(c);
+        onlyNoteCheckBox.setForeground(c);
+        onlyRestCheckBox.setForeground(c);
+        bothRestNoteCheckBox.setForeground(c);
+        totalPercentage.setForeground(c);
+
+        TitledBorder b = (TitledBorder) (panelDurata.getBorder());
+        b.setTitleColor(c);
+
+        TitledBorder b1 = (TitledBorder) (panelNumeroStrumenti.getBorder());
+        b1.setTitleColor(c);
+
+        TitledBorder b2 = (TitledBorder) (panelNote.getBorder());
+        b2.setTitleColor(c);
+
+        TitledBorder b3 = (TitledBorder) (panelAltezza.getBorder());
+        b3.setTitleColor(c);
+
+        TitledBorder b4 = (TitledBorder) (panelLunghezzaBrano.getBorder());
+        b4.setTitleColor(c);
+
+        TitledBorder b5 = (TitledBorder) (panelNotePause.getBorder());
+        b5.setTitleColor(c);
     }
 }
