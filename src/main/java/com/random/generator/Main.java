@@ -8,6 +8,8 @@ import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -15,7 +17,7 @@ import java.io.IOException;
 public class Main {
 
     static CustomGrid grid;
-    static JToggleButton switchB;
+    static JButton switchB;
 
     public static void main(String[] args) throws IOException {
         System.setProperty("sun.java2d.uiScale", "1.0");
@@ -55,14 +57,59 @@ public class Main {
 
         grid = new CustomGrid();
 
-        switchB = new JToggleButton("Tema chiaro");
+        switchB = new JButton();
         switchB.setBorder(BorderFactory.createEmptyBorder(5,10,5,50));
-        switchB.setPreferredSize(new Dimension(140, 40));
+       // switchB.setPreferredSize(new Dimension(140, 40));
         final int[] flagMode = {1}; // 1 for dark blue mode, 0 for dark yellow mode
-        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("switch_on.png"));
+        switchB.setContentAreaFilled(false);
+        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("exchange.png"));
         ImageIcon switchIcon = new ImageIcon(switchImg);
         switchB.setIcon(switchIcon);
         switchB.setToolTipText("Cambia tema");
+
+
+
+        switchB.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                switchB.setContentAreaFilled(false);
+                try {
+                    BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_exchange.png"));
+                    ImageIcon switchIcon = new ImageIcon(switchImg);
+                    switchB.setIcon(switchIcon);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                switchB.setContentAreaFilled(false);
+                try {
+                    BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("exchange.png"));
+                    ImageIcon switchIcon = new ImageIcon(switchImg);
+                    switchB.setIcon(switchIcon);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+        });
+
         grid.toolbar1.add(switchB);
 
         switchB.setBorder(BorderFactory.createEmptyBorder());
@@ -86,23 +133,13 @@ public class Main {
         switchB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    if(flagMode[0] == 1) {
-                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("switch_off.png"));
-                        ImageIcon switchIcon = new ImageIcon(switchImg);
-                        switchB.setIcon(switchIcon);
-                        flagMode[0] = 0;
-                        darkBlueTheme(grid);
-                    }
-                    else{
-                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("switch_on.png"));
-                        ImageIcon switchIcon = new ImageIcon(switchImg);
-                        switchB.setIcon(switchIcon);
-                        flagMode[0] = 1;
-                        darkYellowTheme(grid);
-                    }
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
+                if(flagMode[0] == 1) {
+                    flagMode[0] = 0;
+                    darkBlueTheme(grid);
+                }
+                else{
+                    flagMode[0] = 1;
+                    darkYellowTheme(grid);
                 }
             }
         });
@@ -129,7 +166,7 @@ public class Main {
     }
 
     static private void darkBlueTheme(CustomGrid g){
-        switchB.setText("Tema scuro");
+        switchB.setToolTipText("Tema chiaro");
 
         Color background = new Color(33, 37, 43);
         g.mainPanel.setBackground(background);
@@ -154,6 +191,8 @@ public class Main {
         g.labelDestinazione.setForeground(Color.WHITE);
 
         g.setColorOfLabel(Color.WHITE);
+
+        switchB.setForeground(Color.white);
 
         g.panelNote.setBackground(c);
         g.authorPanel.setBackground(background);
@@ -243,7 +282,7 @@ public class Main {
 
 
     static private void darkYellowTheme(CustomGrid g){
-        switchB.setText("Tema chiaro");
+        switchB.setToolTipText("Tema scuro");
         g.mainPanel.setBackground(Color.WHITE);
         Color c = new Color(219, 130, 7); // 248, 148, 7
         //UIManager.put( "control", Color.WHITE); // 61 61 61
@@ -262,6 +301,9 @@ public class Main {
 
         //UIManager.put( "nimbusSelectionBackground", new Color( 66, 139, 221) ); // ok
         UIManager.put( "text", Color.BLACK);
+
+        switchB.setForeground(Color.BLACK);
+
 
         g.labelDestinazione.setForeground(Color.BLACK);
 
