@@ -148,8 +148,8 @@
               <component id="154fb" class="javax.swing.JLabel" binding="label3">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="18" style="1"/>
-                  <text value="C"/>
+                  <font name="Montserrat" size="15" style="1"/>
+                  <text value="C:"/>
                 </properties>
               </component>
               <component id="69b51" class="javax.swing.JSlider" binding="slider1" default-binding="true">
@@ -157,6 +157,7 @@
                 <properties>
                   <font name="Montserrat" size="3" style="1"/>
                   <foreground color="-16777216"/>
+                  <minimum value="0"/>
                   <paintLabels value="true"/>
                   <paintTicks value="true"/>
                   <paintTrack value="true"/>
@@ -175,13 +176,14 @@
               <component id="88a81" class="javax.swing.JLabel" binding="label4">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="18" style="1"/>
-                  <text value="D"/>
+                  <font name="Montserrat" size="15" style="1"/>
+                  <text value="D:"/>
                 </properties>
               </component>
               <component id="220d2" class="javax.swing.JSlider" binding="slider2" default-binding="true">
                 <constraints/>
                 <properties>
+                  <minimum value="0"/>
                   <paintLabels value="true"/>
                   <paintTicks value="true"/>
                   <preferredSize width="100" height="31"/>
@@ -199,13 +201,14 @@
               <component id="1e5bc" class="javax.swing.JLabel" binding="label5">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="18" style="1"/>
-                  <text value="E"/>
+                  <font name="Montserrat" size="15" style="1"/>
+                  <text value="E:"/>
                 </properties>
               </component>
               <component id="a4043" class="javax.swing.JSlider" binding="slider3" default-binding="true">
                 <constraints/>
                 <properties>
+                  <minimum value="0"/>
                   <paintLabels value="true"/>
                   <paintTicks value="true"/>
                   <preferredSize width="100" height="31"/>
@@ -223,13 +226,14 @@
               <component id="69200" class="javax.swing.JLabel" binding="label6">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="18" style="1"/>
-                  <text value="F"/>
+                  <font name="Montserrat" size="15" style="1"/>
+                  <text value="F:"/>
                 </properties>
               </component>
               <component id="fe8f6" class="javax.swing.JSlider" binding="slider4" default-binding="true">
                 <constraints/>
                 <properties>
+                  <minimum value="0"/>
                   <paintLabels value="true"/>
                   <paintTicks value="true"/>
                   <preferredSize width="100" height="31"/>
@@ -247,13 +251,14 @@
               <component id="fda48" class="javax.swing.JLabel" binding="label7">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="18" style="1"/>
-                  <text value="G"/>
+                  <font name="Montserrat" size="15" style="1"/>
+                  <text value="G:"/>
                 </properties>
               </component>
               <component id="74a50" class="javax.swing.JSlider" binding="slider5" default-binding="true">
                 <constraints/>
                 <properties>
+                  <minimum value="0"/>
                   <paintLabels value="true"/>
                   <paintTicks value="true"/>
                   <preferredSize width="100" height="31"/>
@@ -271,13 +276,14 @@
               <component id="a323d" class="javax.swing.JLabel" binding="label8">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="18" style="1"/>
-                  <text value="A"/>
+                  <font name="Montserrat" size="15" style="1"/>
+                  <text value="A:"/>
                 </properties>
               </component>
               <component id="f53e2" class="javax.swing.JSlider" binding="slider6" default-binding="true">
                 <constraints/>
                 <properties>
+                  <minimum value="0"/>
                   <paintLabels value="true"/>
                   <paintTicks value="true"/>
                   <preferredSize width="100" height="31"/>
@@ -295,13 +301,14 @@
               <component id="1b13c" class="javax.swing.JLabel" binding="label9">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="18" style="1"/>
-                  <text value="B"/>
+                  <font name="Montserrat" size="15" style="1"/>
+                  <text value="B:"/>
                 </properties>
               </component>
               <component id="a8318" class="javax.swing.JSlider" binding="slider7" default-binding="true">
                 <constraints/>
                 <properties>
+                  <minimum value="0"/>
                   <paintLabels value="true"/>
                   <paintTicks value="true"/>
                   <preferredSize width="100" height="31"/>

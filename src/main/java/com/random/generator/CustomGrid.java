@@ -147,9 +147,9 @@ public class CustomGrid {
         slider7.setValue(r.nextInt(20)); changeLabelValueSlider1(parentB, slider7);
 
 
-        int width = 50;
+        int width = 60;
         int height = 20;
-        int widthParent = 110;
+        int widthParent = 120;
         int heightParent = 60;
 
         parentC.setPreferredSize(new Dimension(widthParent, heightParent));
@@ -395,57 +395,43 @@ public class CustomGrid {
         slider1.addChangeListener(e -> {
             //labelSlider1.setText(String.valueOf(slider1.getValue()) + "%");
             changeLabelValueSlider1(parentC, slider1);
-            if(getSumOfPitchSpinners() > 100){
-                slider7.setValue((int) slider7.getValue() - 1);
-            }
+            jSliderStateChanged(slider2, slider3, slider4, slider5, slider6, slider7);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         slider2.addChangeListener(e -> {
             changeLabelValueSlider1(parentD, slider2);
-            if(getSumOfPitchSpinners() > 100){
-                slider1.setValue((int) slider1.getValue() - 1);  // ******** NEW ********
-            }
+            jSliderStateChanged(slider1, slider3, slider4, slider5, slider6, slider7);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         slider3.addChangeListener(e -> {
             changeLabelValueSlider1(parentE, slider3);
-            if(getSumOfPitchSpinners() > 100){
-                slider2.setValue((int) slider2.getValue() - 1);
-            }
+            jSliderStateChanged(slider2, slider1, slider4, slider5, slider6, slider7);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         slider4.addChangeListener(e -> {
             changeLabelValueSlider1(parentF, slider4);
-            if(getSumOfPitchSpinners() > 100){
-                slider3.setValue((int) slider3.getValue() - 1);
-            }
+            jSliderStateChanged(slider2, slider3, slider1, slider5, slider6, slider7);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         slider5.addChangeListener(e -> {
             changeLabelValueSlider1(parentG, slider5);
-            if(getSumOfPitchSpinners() > 100){
-                slider4.setValue((int) slider4.getValue() - 1);
-            }
+            jSliderStateChanged(slider2, slider3, slider4, slider1, slider6, slider7);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         slider6.addChangeListener(e -> {
             changeLabelValueSlider1(parentA, slider6);
-            if(getSumOfPitchSpinners() > 100){
-                slider5.setValue((int) slider5.getValue() - 1);
-            }
+            jSliderStateChanged(slider2, slider3, slider4, slider5, slider1, slider7);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         slider7.addChangeListener(e -> {
             changeLabelValueSlider1(parentB, slider7);
-            if(getSumOfPitchSpinners() > 100){
-                slider6.setValue((int) slider6.getValue() - 1);
-            }
+            jSliderStateChanged(slider2, slider3, slider4, slider5, slider6, slider1);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
@@ -490,9 +476,9 @@ public class CustomGrid {
     }
 
     private void changeLabelValueSlider1(JPanel p, JSlider s){
-        //TitledBorder b = (TitledBorder) (parentC.getBorder()); b.setTitle(slider1.getValue() + "%");
-        //parentC.setBorder(b);
+        Color c = ((TitledBorder) p.getBorder()).getTitleColor();
         p.setBorder(BorderFactory.createTitledBorder(null, s.getValue() + "%", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
+        ((TitledBorder) p.getBorder()).setTitleColor(c);
         //System.out.println(b.getTitle());
     }
 
@@ -591,5 +577,44 @@ public class CustomGrid {
 
         TitledBorder b5 = (TitledBorder) (panelNotePause.getBorder());
         b5.setTitleColor(c);
+
+        TitledBorder b6 = (TitledBorder) (parentA.getBorder());
+        b6.setTitleColor(c);
+
+        TitledBorder b7 = (TitledBorder) (parentB.getBorder());
+        b7.setTitleColor(c);
+
+        TitledBorder b8 = (TitledBorder) (parentC.getBorder());
+        b8.setTitleColor(c);
+
+        TitledBorder b9 = (TitledBorder) (parentD.getBorder());
+        b9.setTitleColor(c);
+
+        TitledBorder b10 = (TitledBorder) (parentE.getBorder());
+        b10.setTitleColor(c);
+
+        TitledBorder b11 = (TitledBorder) (parentF.getBorder());
+        b11.setTitleColor(c);
+
+        TitledBorder b12 = (TitledBorder) (parentG.getBorder());
+        b12.setTitleColor(c);
+
+        TitledBorder b13 = (TitledBorder) (parentA.getBorder());
+        b13.setTitleColor(c);
+
+        TitledBorder b14 = (TitledBorder) (parentB.getBorder());
+        b14.setTitleColor(c);
+    }
+
+
+    private void jSliderStateChanged(JSlider s1, JSlider s2, JSlider s3, JSlider s4, JSlider s5, JSlider s6) {
+        while (getSumOfPitchSpinners() > 100) {
+            s1.setValue(s1.getValue() - 1);
+            s2.setValue(s2.getValue() - 1);
+            s3.setValue(s3.getValue() - 1);
+            s4.setValue(s4.getValue() - 1);
+            s5.setValue(s5.getValue() - 1);
+            s6.setValue(s6.getValue() - 1);
+        }
     }
 }
