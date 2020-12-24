@@ -25,17 +25,6 @@ public class Main {
         ImageIcon ieee1599Icon = new ImageIcon(ieee1599Img);
         jframe.setIconImage(ieee1599Icon.getImage());
 
-        /*try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Metal".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("This look isn't available");
-        }*/
-
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -112,7 +101,7 @@ public class Main {
         jframe.add(grid.mainPanel);
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jframe.setResizable(false);
-        jframe.setSize(1100, 730);
+        jframe.setSize(1100, 720);
         jframe.setVisible(true);
 
 
@@ -134,13 +123,12 @@ public class Main {
     static private void darkBlueTheme(CustomGrid g){
         switchB.setToolTipText("Tema chiaro");
 
-        Color background = new Color(40, 44, 52);
+        Color background = new Color(33, 37, 43);
+        Color c = new Color(40, 44, 52);
         g.mainPanel.setBackground(background);
-        Color c = new Color(33, 37, 43);
         g.labelDestinazione.setForeground(Color.WHITE);
         g.setColorOfLabel(Color.WHITE);
         switchB.setForeground(Color.white);
-
         g.panelNote.setBackground(c);
         g.authorPanel.setBackground(background);
         g.labelAuthor.setForeground(Color.WHITE);
@@ -177,22 +165,22 @@ public class Main {
         g.cartellaDiDestinazioneButton.setForeground(Color.WHITE);
         g.generaIEEE1599Button.setForeground(Color.WHITE);
 
-        g.spinner8.getEditor().getComponent(0).setForeground(background);
+        /*g.spinner8.getEditor().getComponent(0).setForeground(background);
         g.spinner9.getEditor().getComponent(0).setForeground(background);
 
         g.spinnerLunghezzaBrano.getEditor().getComponent(0).setForeground(background);
         g.spinnerNumeroStrumenti.getEditor().getComponent(0).setForeground(background);
 
         g.comboBox1.getEditor().getEditorComponent().setForeground(background);
-        g.comboBox2.getEditor().getEditorComponent().setForeground(background);
+        g.comboBox2.getEditor().getEditorComponent().setForeground(background);*/
     }
 
 
     static private void darkYellowTheme(CustomGrid g){
         switchB.setToolTipText("Tema scuro");
         g.mainPanel.setBackground(Color.WHITE);
-        Color c = new Color(248, 148, 7); // 248, 148, 7
-        UIManager.put( "text", Color.BLACK);
+        Color c = new Color(206, 124, 4); // 248, 148, 7
+        //UIManager.put( "text", Color.BLACK);
         switchB.setForeground(Color.BLACK);
         g.labelDestinazione.setForeground(Color.BLACK);
         g.setColorOfLabel(Color.BLACK);

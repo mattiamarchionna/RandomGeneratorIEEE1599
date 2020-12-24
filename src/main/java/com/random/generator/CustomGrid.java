@@ -102,7 +102,6 @@ public class CustomGrid {
         panelSalvataggio.setBackground(new java.awt.Color(51, 51, 51));
         panelNumeroStrumenti.setBackground(new java.awt.Color(51, 51, 51)); */
 
-
         BufferedImage playImg = ImageIO.read(ClassLoader.getSystemResource("play.png"));
         ImageIcon playIcon = new ImageIcon(playImg);
         generaIEEE1599Button.setIcon(playIcon);
