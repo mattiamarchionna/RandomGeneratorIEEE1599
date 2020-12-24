@@ -101,7 +101,7 @@ public class Main {
         jframe.add(grid.mainPanel);
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jframe.setResizable(false);
-        jframe.setSize(1100, 720);
+        jframe.setSize(1100, 730);
         jframe.setVisible(true);
 
 

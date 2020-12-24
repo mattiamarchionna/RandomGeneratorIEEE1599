@@ -519,18 +519,25 @@ public class CustomGrid {
     private void setValueFromConfig(String id, String value) {
         try {
             //value = value.replace("\n", "");
+            value = value.trim();
             String type = mainPanel.getClientProperty(id).getClass().getName();
             Object component = mainPanel.getClientProperty(id);
             if (type.equals("javax.swing.JSpinner")) {
                 ((JSpinner) component).setValue(Integer.valueOf(value));
             } else if (type.equals("javax.swing.JComboBox")) {
                 ((JComboBox) component).setSelectedItem(value);
-            } else if (type.equals("javax.swing.JCheckBox")) {
+            }
+            else if(type.equals("javax.swing.JSlider")){
+                System.out.println(type);
+                ((JSlider) component).setValue(Integer.parseInt(value));
+            }
+            else if (type.equals("javax.swing.JCheckBox")) {
                 if (value.equals("true")) ((JCheckBox) component).setSelected(true);
                 else ((JCheckBox) component).setSelected(false);
             }
             //System.out.println(type);
         } catch(Exception e){
+            //System.out.println(e);
             JOptionPane.showMessageDialog(mainPanel, "File di configurazione non corretto!");
         }
     }

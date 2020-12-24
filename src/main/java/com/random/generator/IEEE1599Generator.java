@@ -49,17 +49,17 @@ public class IEEE1599Generator {
             builder.setErrorHandler(new ErrorHandler() {
                 @Override
                 public void warning(SAXParseException exception){
-                    System.out.println(exception);
+                    //System.out.println(exception);
                 }
 
                 @Override
                 public void error(SAXParseException exception){
-                    System.out.println(exception);
+                    //System.out.println(exception);
                 }
 
                 @Override
                 public void fatalError(SAXParseException exception){
-                    System.out.println(exception);
+                    //System.out.println(exception);
                 }
             });
 
@@ -72,9 +72,10 @@ public class IEEE1599Generator {
 
             save_xml_file(doc, "save");
         } catch (ParserConfigurationException | SAXException | IOException e) {
-            System.out.println("Errore nell'elaborazione del file");
-            e.printStackTrace();
-            System.exit(1);
+            if(e.getClass() == IOException.class){
+                System.out.println("Errore nell'elaborazione del file");
+                e.printStackTrace();
+            }
         }
     }
 
