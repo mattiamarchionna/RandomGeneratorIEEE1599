@@ -481,12 +481,19 @@ public class CustomGrid {
         //System.out.println(b.getTitle());
     }
 
+
+    private float fromFractionToDecimal(String s){
+        s = s.trim();
+        String[] digits = s.split("/");
+        return Integer.parseInt(digits[0]) / Integer.parseInt(digits[1]);
+    }
+
     private boolean checkValidityOfInput() {
         try {
             return getSumOfPitchSpinners() == 100 && ((int) spinnerLunghezzaBrano.getValue() > 0) && ((int) spinnerNumeroStrumenti.getValue() > 0) &&
                     ((int) spinner8.getValue() > 0) && ((int) spinner9.getValue() > (int) spinner8.getValue()) &&
                     (onlyNoteCheckBox.isSelected() || onlyRestCheckBox.isSelected() || bothRestNoteCheckBox.isSelected()) &&
-                    (comboBox1.getSelectedIndex() <= comboBox2.getSelectedIndex()) && (!textField4.getText().equals(""));
+                    (fromFractionToDecimal((String) comboBox1.getSelectedItem()) <= fromFractionToDecimal((String) comboBox2.getSelectedItem())) && (!textField4.getText().equals(""));
         } catch (Exception ex) {
             return false;
         }

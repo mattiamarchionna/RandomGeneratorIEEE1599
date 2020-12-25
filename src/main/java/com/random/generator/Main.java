@@ -42,7 +42,7 @@ public class Main {
         switchB.setBorder(BorderFactory.createEmptyBorder(5,10,5,50));
         final int[] flagMode = {1}; // 1 for dark blue mode, 0 for dark yellow mode
         switchB.setContentAreaFilled(false);
-        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("exchange.png"));
+        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_on.png"));
         ImageIcon switchIcon = new ImageIcon(switchImg);
         switchB.setIcon(switchIcon);
         switchB.setToolTipText("Cambia tema");
@@ -67,9 +67,17 @@ public class Main {
             public void mouseEntered(MouseEvent e) {
                 switchB.setContentAreaFilled(false);
                 try {
-                    BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_exchange.png"));
-                    ImageIcon switchIcon = new ImageIcon(switchImg);
-                    switchB.setIcon(switchIcon);
+                    if(flagMode[0] == 1) {
+                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_off.png"));
+                        ImageIcon switchIcon = new ImageIcon(switchImg);
+                        switchB.setIcon(switchIcon);
+                    }
+                    else {
+                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_on_white.png"));
+                        ImageIcon switchIcon = new ImageIcon(switchImg);
+                        switchB.setIcon(switchIcon);
+                    }
+
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
@@ -79,9 +87,16 @@ public class Main {
             public void mouseExited(MouseEvent e) {
                 switchB.setContentAreaFilled(false);
                 try {
-                    BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("exchange.png"));
-                    ImageIcon switchIcon = new ImageIcon(switchImg);
-                    switchB.setIcon(switchIcon);
+                    if(flagMode[0] == 1) {
+                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_on.png"));
+                        ImageIcon switchIcon = new ImageIcon(switchImg);
+                        switchB.setIcon(switchIcon);
+                    }
+                    else{
+                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_off_white.png"));
+                        ImageIcon switchIcon = new ImageIcon(switchImg);
+                        switchB.setIcon(switchIcon);
+                    }
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
@@ -122,6 +137,14 @@ public class Main {
 
     static private void darkBlueTheme(CustomGrid g){
         switchB.setToolTipText("Tema chiaro");
+
+        try {
+           BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_off_white.png"));
+           ImageIcon switchIcon = new ImageIcon(switchImg);
+           switchB.setIcon(switchIcon);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
 
         Color background = new Color(33, 37, 43);
         Color c = new Color(40, 44, 52);
@@ -178,6 +201,15 @@ public class Main {
 
     static private void darkYellowTheme(CustomGrid g){
         switchB.setToolTipText("Tema scuro");
+
+        try {
+            BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_on.png"));
+            ImageIcon switchIcon = new ImageIcon(switchImg);
+            switchB.setIcon(switchIcon);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+
         g.mainPanel.setBackground(Color.WHITE);
         Color c = new Color(206, 124, 4); // 248, 148, 7
         //UIManager.put( "text", Color.BLACK);
