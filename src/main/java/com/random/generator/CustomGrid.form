@@ -471,7 +471,9 @@
           </vspacer>
           <grid id="685f8" binding="parentLunghezzaBrano" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
             <constraints/>
-            <properties/>
+            <properties>
+              <preferredSize width="256" height="42"/>
+            </properties>
             <border type="bevel-raised"/>
             <children>
               <component id="f8db6" class="javax.swing.JLabel" binding="label1">
@@ -508,7 +510,9 @@
           </vspacer>
           <grid id="bb740" binding="parentNumeroStrumenti" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
             <constraints/>
-            <properties/>
+            <properties>
+              <preferredSize width="256" height="42"/>
+            </properties>
             <border type="bevel-raised"/>
             <children>
               <component id="a7789" class="javax.swing.JLabel" binding="label2">
