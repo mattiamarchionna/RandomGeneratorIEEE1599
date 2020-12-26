@@ -63,7 +63,6 @@ public class Parameter {
         this.max_height = max_height;
     }
 
-
     private String convertDecimalToFraction(double x){
         if (x < 0){
             return "-" + convertDecimalToFraction(-x);
@@ -82,10 +81,13 @@ public class Parameter {
         return ((int)h1)+"/"+((int)k1);
     }
 
+    public int getNumber_struments(){
+        return number_struments;
+    }
 
-    public int getNumber_struments(){ return number_struments; }
-
-    public void setNumber_struments(int n){ number_struments = n; }
+    public void setNumber_struments(int n){
+        number_struments = n;
+    }
 
     public void setAccidentals(ArrayList<String> accidental) {
         this.accidentals = accidental;
@@ -117,7 +119,6 @@ public class Parameter {
         return g.myRand(arr.toArray(new String[arr.size()]), freq.toArray(new Integer[freq.size()]), n);
     }
 
-
     public String getMin_duration() {
         return min_duration;
     }
@@ -135,7 +136,6 @@ public class Parameter {
     }
 
     public String[] generate_duration(){
-        // min_duration e.g 1/2
         String[] min_duration_split = min_duration.split("/");
         int min_num = Integer.parseInt(min_duration_split[0]);
         int min_den = Integer.parseInt(min_duration_split[1]);
