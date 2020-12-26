@@ -80,7 +80,7 @@
           <grid id="31bc4" binding="parentAltezzaMinima" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties/>
-            <border type="none"/>
+            <border type="bevel-raised"/>
             <children>
               <component id="b5fa0" class="javax.swing.JLabel" binding="label12">
                 <constraints/>
@@ -104,7 +104,7 @@
           <grid id="69364" binding="parentAltezzaMassima" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties/>
-            <border type="none"/>
+            <border type="bevel-raised"/>
             <children>
               <component id="f1fd5" class="javax.swing.JLabel" binding="label13">
                 <constraints/>
@@ -344,7 +344,7 @@
           <grid id="f6130" binding="parentDurataMinima" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties/>
-            <border type="none"/>
+            <border type="bevel-raised"/>
             <children>
               <component id="df08e" class="javax.swing.JLabel" binding="label10">
                 <constraints/>
@@ -368,7 +368,7 @@
           <grid id="f600b" binding="parentDurataMassima" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties/>
-            <border type="none"/>
+            <border type="bevel-raised"/>
             <children>
               <component id="75abd" class="javax.swing.JLabel" binding="label11">
                 <constraints/>
@@ -404,12 +404,12 @@
           <vspacer id="d1bad">
             <constraints/>
           </vspacer>
-          <grid id="e83d9" binding="parentSoloNote" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="e83d9" binding="parentSoloNote" layout-manager="FlowLayout" hgap="5" vgap="6" flow-align="1">
             <constraints/>
             <properties>
-              <preferredSize width="119" height="45"/>
+              <preferredSize width="119" height="40"/>
             </properties>
-            <border type="none"/>
+            <border type="bevel-raised"/>
             <children>
               <component id="53bd" class="javax.swing.JCheckBox" binding="onlyNoteCheckBox">
                 <constraints/>
@@ -420,13 +420,13 @@
               </component>
             </children>
           </grid>
-          <grid id="aae7" binding="parentSoloPause" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="aae7" binding="parentSoloPause" layout-manager="FlowLayout" hgap="5" vgap="6" flow-align="1">
             <constraints/>
             <properties>
-              <minimumSize width="119" height="30"/>
-              <preferredSize width="119" height="45"/>
+              <minimumSize width="111" height="46"/>
+              <preferredSize width="123" height="40"/>
             </properties>
-            <border type="none"/>
+            <border type="bevel-raised"/>
             <children>
               <component id="48c6e" class="javax.swing.JCheckBox" binding="onlyRestCheckBox">
                 <constraints/>
@@ -437,12 +437,13 @@
               </component>
             </children>
           </grid>
-          <grid id="b98ed" binding="parentEntrambe" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="b98ed" binding="parentEntrambe" layout-manager="FlowLayout" hgap="5" vgap="6" flow-align="1">
             <constraints/>
             <properties>
-              <preferredSize width="112" height="45"/>
+              <minimumSize width="123" height="46"/>
+              <preferredSize width="123" height="40"/>
             </properties>
-            <border type="none"/>
+            <border type="bevel-raised"/>
             <children>
               <component id="6cdeb" class="javax.swing.JCheckBox" binding="bothRestNoteCheckBox">
                 <constraints/>
@@ -471,7 +472,7 @@
           <grid id="685f8" binding="parentLunghezzaBrano" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
             <constraints/>
             <properties/>
-            <border type="none"/>
+            <border type="bevel-raised"/>
             <children>
               <component id="f8db6" class="javax.swing.JLabel" binding="label1">
                 <constraints/>
@@ -508,7 +509,7 @@
           <grid id="bb740" binding="parentNumeroStrumenti" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
             <constraints/>
             <properties/>
-            <border type="none"/>
+            <border type="bevel-raised"/>
             <children>
               <component id="a7789" class="javax.swing.JLabel" binding="label2">
                 <constraints/>
