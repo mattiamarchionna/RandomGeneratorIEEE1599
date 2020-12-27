@@ -48,6 +48,8 @@ public class CustomGrid {
     private JLabel errorNotePause;
     private JLabel errorAltezza;
     private JLabel errorDestinazione;
+    private JPanel afterToolbarPanel;
+    private JPanel afterNotePausePanel;
 
     private JButton switchB;
     private Random r = new Random();
@@ -520,7 +522,7 @@ public class CustomGrid {
 
     private void changeLabelValueSlider1(JPanel p, JSlider s){
         Color c = ((TitledBorder) p.getBorder()).getTitleColor();
-        p.setBorder(BorderFactory.createTitledBorder(BorderFactory.createRaisedBevelBorder(), s.getValue() + "%", TitledBorder.CENTER, TitledBorder.CENTER));
+        p.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), s.getValue() + "%", TitledBorder.CENTER, TitledBorder.CENTER));
         ((TitledBorder) p.getBorder()).setTitleColor(c);
     }
 
@@ -721,13 +723,15 @@ public class CustomGrid {
         Color background = new Color(33, 37, 43);
         Color c = new Color(40, 44, 52);
         mainPanel.setBackground(background);
+        afterToolbarPanel.setBackground(background);
+        afterNotePausePanel.setBackground(background);
+
         labelDestinazione.setForeground(Color.WHITE);
+
         setColorOfLabel(Color.WHITE);
         switchB.setForeground(Color.white);
         authorPanel.setBackground(background);
         labelAuthor.setForeground(Color.WHITE);
-
-
 
         changeBackgroundOfComponent(c);
 
@@ -740,6 +744,8 @@ public class CustomGrid {
         generaIEEE1599Button.setBackground(c);
         cartellaDiDestinazioneButton.setForeground(Color.WHITE);
         generaIEEE1599Button.setForeground(Color.WHITE);
+
+        //authorPanel.setBackground(c);
 
          if(totalPercentage.getIcon() != null){
              totalPercentage.setForeground(new Color(191, 0, 40));
@@ -762,14 +768,21 @@ public class CustomGrid {
             ioException.printStackTrace();
         }
 
+        Color c = new Color(248, 148, 7); // 206, 124, 4
+
         mainPanel.setBackground(Color.WHITE);
-        Color c = new Color(206, 124, 4); // 248, 148, 7
+
+        afterToolbarPanel.setBackground(Color.WHITE);
+        afterNotePausePanel.setBackground(Color.WHITE);
+
 
         changeBackgroundOfComponent(c);
 
         switchB.setForeground(Color.BLACK);
         labelDestinazione.setForeground(Color.BLACK);
+
         setColorOfLabel(Color.BLACK);
+
         authorPanel.setBackground(Color.WHITE);
         labelAuthor.setForeground(Color.BLACK);
 
@@ -788,9 +801,31 @@ public class CustomGrid {
             totalPercentage.setForeground(new Color(191, 0, 40));
         }
 
+
+        /*panelSalvataggio.setBackground(c);
+        panelButton.setBackground(c);
+        textField4.setBackground(c);*/
+
+        //authorPanel.setBackground(c);
+
+        changeBorderType();
+
+
         /*if(errorDestinazione.getIcon() != null){
             textField4.setForeground(new Color(191, 0, 40));
         }*/
+    }
+
+    private void changeBorderType(){
+        parentAltezzaMinima.setBorder(BorderFactory.createEtchedBorder());
+        parentAltezzaMassima.setBorder(BorderFactory.createEtchedBorder());
+        parentSoloNote.setBorder(BorderFactory.createEtchedBorder());
+        parentEntrambe.setBorder(BorderFactory.createEtchedBorder());
+        parentSoloPause.setBorder(BorderFactory.createEtchedBorder());
+        parentNumeroStrumenti.setBorder(BorderFactory.createEtchedBorder());
+        parentLunghezzaBrano.setBorder(BorderFactory.createEtchedBorder());
+        parentDurataMinima.setBorder(BorderFactory.createEtchedBorder());
+        parentDurataMassima.setBorder(BorderFactory.createEtchedBorder());
     }
 
     private void changeBackgroundOfComponent(Color c){

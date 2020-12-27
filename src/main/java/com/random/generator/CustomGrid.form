@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.random.generator.CustomGrid">
-  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="9" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="11" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="29" y="26" width="1443" height="869"/>
@@ -10,7 +10,7 @@
     <children>
       <grid id="34ea5" binding="panelSalvataggio" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
@@ -73,7 +73,7 @@
       </grid>
       <grid id="23088" binding="panelAltezza" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="bevel-lowered" title="Parametro altezza" title-position="2">
@@ -142,7 +142,7 @@
       </grid>
       <grid id="98c7a" binding="panelNote" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="bevel-lowered" title="Parametro note (in %)" title-position="2">
@@ -345,7 +345,7 @@
       </grid>
       <grid id="a6f20" binding="panelDurata" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="bevel-lowered" title="Parametro durata" title-position="2">
@@ -414,7 +414,7 @@
       </grid>
       <grid id="15ae8" binding="panelNotePause" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="bevel-lowered" title="Parametro note/pause" title-position="2">
@@ -487,7 +487,7 @@
       </grid>
       <grid id="97c2a" binding="panelLunghezzaBrano" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="bevel-lowered" title="Parametro lunghezza brano" title-position="2">
@@ -533,7 +533,7 @@
       </grid>
       <grid id="d428c" binding="panelNumeroStrumenti" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="bevel-lowered" title="Parametro numero strumenti" title-position="2">
@@ -589,10 +589,10 @@
         <children/>
       </toolbar>
       <grid id="a62c9" binding="authorPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="10" left="5" bottom="5" right="5"/>
+        <margin top="7" left="5" bottom="10" right="5"/>
         <constraints>
-          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="400" height="-1"/>
+          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="1166" height="-1"/>
           </grid>
         </constraints>
         <properties>
@@ -611,6 +611,24 @@
             </properties>
           </component>
         </children>
+      </grid>
+      <grid id="b1a94" binding="afterToolbarPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="5" right="0"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <grid id="ae7f9" binding="afterNotePausePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="8" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
       </grid>
     </children>
   </grid>
