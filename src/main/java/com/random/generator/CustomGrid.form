@@ -497,7 +497,7 @@
           <vspacer id="79789">
             <constraints/>
           </vspacer>
-          <grid id="685f8" binding="parentLunghezzaBrano" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
+          <grid id="685f8" binding="parentLunghezzaBrano" layout-manager="FlowLayout" hgap="5" vgap="2" flow-align="1">
             <constraints/>
             <properties>
               <preferredSize width="256" height="44"/>
@@ -543,7 +543,7 @@
           <vspacer id="9455e">
             <constraints/>
           </vspacer>
-          <grid id="bb740" binding="parentNumeroStrumenti" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
+          <grid id="bb740" binding="parentNumeroStrumenti" layout-manager="FlowLayout" hgap="5" vgap="2" flow-align="1">
             <constraints/>
             <properties>
               <preferredSize width="256" height="44"/>

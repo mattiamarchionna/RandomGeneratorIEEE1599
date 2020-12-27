@@ -2,14 +2,13 @@ package com.random.generator;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.Random;
-import java.util.TreeMap;
+import java.util.*;
+import java.util.List;
 
 public class CustomGrid {
     public JPanel mainPanel;
@@ -210,12 +209,21 @@ public class CustomGrid {
         textField4.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.WHITE));
         textField4.setEditable(false);
 
+
+        HashMap<String, Double> durationValue = new HashMap<>();
+
         for (int i = 1; i < 65; i++) {
             for (int j = 1; j < 65; j++) {
                 String s = i + "/" + j;
-                comboBox1.addItem(s);
-                comboBox2.addItem(s);
+                durationValue.put(s, ((double) i)/ ((double) j));
             }
+        }
+
+        durationValue = sortByValue(durationValue);
+
+        for (String name: durationValue.keySet()){
+            comboBox1.addItem(name);
+            comboBox2.addItem(name);
         }
 
 
@@ -517,14 +525,42 @@ public class CustomGrid {
     }
 
 
-    private float fromFractionToDecimal(String s){
+    private double fromFractionToDecimal(String s){
         s = s.trim();
         String[] digits = s.split("/");
-        return Integer.parseInt(digits[0]) / Integer.parseInt(digits[1]);
+        return Double.parseDouble(digits[0]) / Double.parseDouble(digits[1]);
     }
 
     private boolean checkValidityOfInput() {
+        boolean correct_format_duration = true;
+        BufferedImage errorImg = null;
         try {
+            errorImg = ImageIO.read(ClassLoader.getSystemResource("error.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ImageIcon errorIcon = new ImageIcon(errorImg);
+
+        try {
+            String minDuration = (String) comboBox1.getSelectedItem();
+            String maxDuration = (String) comboBox2.getSelectedItem();
+
+            String[] array1 = minDuration.split("/");
+            String[] array2 = maxDuration.split("/");
+
+            try{
+                int minDurationNumInt = Integer.parseInt(array1[0]);
+                int minDurationDenInt = Integer.parseInt(array1[1]);
+                int maxDurationNumInt = Integer.parseInt(array2[0]);
+                int maxDurationDenInt = Integer.parseInt(array2[1]);
+            }
+            catch(NumberFormatException e){
+                errorDurata.setIcon(errorIcon);
+                errorDurata.setToolTipText("Il formato della durata specificato non è corretto");
+                correct_format_duration = false;
+            }
+
+            
             boolean checkToSumOfPitchSlider = getSumOfPitchSpinners() == 100;
             boolean checkToLunghezzaBrano = ((int) spinnerLunghezzaBrano.getValue() > 0);
             boolean checkToNumeroStrumenti = ((int) spinnerNumeroStrumenti.getValue() > 0);
@@ -534,9 +570,6 @@ public class CustomGrid {
             boolean checkToMinMaxDurata = (fromFractionToDecimal((String) comboBox1.getSelectedItem()) < fromFractionToDecimal((String) comboBox2.getSelectedItem()));
             boolean checkToDestinazioneSpecificata = !textField4.getText().equals("");
 
-
-            BufferedImage errorImg = ImageIO.read(ClassLoader.getSystemResource("error.png"));
-            ImageIcon errorIcon = new ImageIcon(errorImg);
 
             if(!checkToLunghezzaBrano){
                 errorLunghezzaBrano.setToolTipText("\"Lunghezza del brano\" deve essere maggiore di 0");
@@ -581,9 +614,7 @@ public class CustomGrid {
                 totalPercentage.setForeground(new Color(191, 0, 40));
             }
 
-
-
-            return checkToSumOfPitchSlider && checkToLunghezzaBrano && checkToNumeroStrumenti &&
+            return correct_format_duration && checkToSumOfPitchSlider && checkToLunghezzaBrano && checkToNumeroStrumenti &&
                    checkToMinAltezza && checkToMinMaxAltezza && checkToCheckBoxes &&
                    checkToMinMaxDurata && checkToDestinazioneSpecificata;
 
@@ -786,4 +817,23 @@ public class CustomGrid {
         parentSoloNote.setBackground(c);
         parentSoloPause.setBackground(c);
     }
+
+
+    private HashMap<String, Double> sortByValue(HashMap<String, Double> hm)
+    {
+        // Create a list from elements of HashMap
+        List<Map.Entry<String, Double> > list =
+                new LinkedList<Map.Entry<String, Double>>(hm.entrySet());
+
+        // Sort the list
+        Collections.sort(list, (o1, o2) -> (o1.getValue()).compareTo(o2.getValue()));
+
+        // put data from sorted list to hashmap
+        HashMap<String, Double> temp = new LinkedHashMap<String, Double>();
+        for (Map.Entry<String, Double> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+        return temp;
+    }
+
 }
