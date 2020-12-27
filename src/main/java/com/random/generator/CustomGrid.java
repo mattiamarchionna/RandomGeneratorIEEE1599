@@ -2,6 +2,7 @@ package com.random.generator;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.*;
@@ -42,6 +43,12 @@ public class CustomGrid {
 
     private JSlider slider1; private JSlider slider2; private JSlider slider3; private JSlider slider4;
     private JSlider slider5; private JSlider slider6; private JSlider slider7;
+    private JLabel errorLunghezzaBrano;
+    private JLabel errorNumeroStrumenti;
+    private JLabel errorDurata;
+    private JLabel errorNotePause;
+    private JLabel errorAltezza;
+    private JLabel errorDestinazione;
 
     private JButton switchB;
     private Random r = new Random();
@@ -99,6 +106,7 @@ public class CustomGrid {
         switchB.setIcon(switchIcon);
         switchB.setToolTipText("Cambia tema");
 
+
         switchB.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {}
@@ -128,6 +136,7 @@ public class CustomGrid {
                     ioException.printStackTrace();
                 }
             }
+
 
             @Override
             public void mouseExited(MouseEvent e) {
@@ -213,6 +222,9 @@ public class CustomGrid {
         cartellaDiDestinazioneButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                errorDestinazione.setText(""); errorDestinazione.setIcon(null); textField4.setText("");
+                if(flagMode[0] == 1) textField4.setForeground(Color.BLACK);
+                else textField4.setForeground(Color.WHITE);
                 JFileChooser fs = new JFileChooser(new File(System.getProperty("user.home")));
                 UIManager.put("text", Color.BLACK);
                 fs.setFileFilter(new FolderFilter());
@@ -374,45 +386,91 @@ public class CustomGrid {
 
         slider1.addChangeListener(e -> {
             changeLabelValueSlider1(parentC, slider1);
-            jSliderStateChanged(slider2, slider3, slider4, slider5, slider6, slider7);
+            jSliderStateChanged(flagMode[0], slider2, slider3, slider4, slider5, slider6, slider7);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         slider2.addChangeListener(e -> {
             changeLabelValueSlider1(parentD, slider2);
-            jSliderStateChanged(slider1, slider3, slider4, slider5, slider6, slider7);
+            jSliderStateChanged(flagMode[0], slider1, slider3, slider4, slider5, slider6, slider7);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         slider3.addChangeListener(e -> {
             changeLabelValueSlider1(parentE, slider3);
-            jSliderStateChanged(slider2, slider1, slider4, slider5, slider6, slider7);
+            jSliderStateChanged(flagMode[0], slider2, slider1, slider4, slider5, slider6, slider7);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         slider4.addChangeListener(e -> {
             changeLabelValueSlider1(parentF, slider4);
-            jSliderStateChanged(slider2, slider3, slider1, slider5, slider6, slider7);
+            jSliderStateChanged(flagMode[0], slider2, slider3, slider1, slider5, slider6, slider7);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         slider5.addChangeListener(e -> {
             changeLabelValueSlider1(parentG, slider5);
-            jSliderStateChanged(slider2, slider3, slider4, slider1, slider6, slider7);
+            jSliderStateChanged(flagMode[0], slider2, slider3, slider4, slider1, slider6, slider7);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         slider6.addChangeListener(e -> {
             changeLabelValueSlider1(parentA, slider6);
-            jSliderStateChanged(slider2, slider3, slider4, slider5, slider1, slider7);
+            jSliderStateChanged(flagMode[0], slider2, slider3, slider4, slider5, slider1, slider7);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         slider7.addChangeListener(e -> {
             changeLabelValueSlider1(parentB, slider7);
-            jSliderStateChanged(slider2, slider3, slider4, slider5, slider6, slider1);
+            jSliderStateChanged(flagMode[0], slider2, slider3, slider4, slider5, slider6, slider1);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
+
+        spinnerLunghezzaBrano.addChangeListener(e -> {
+            //errorLunghezzaBrano.setText("");
+            errorLunghezzaBrano.setIcon(null);
+        });
+
+        spinnerNumeroStrumenti.addChangeListener(e ->{
+            //errorNumeroStrumenti.setText("");
+            errorNumeroStrumenti.setIcon(null);
+        });
+
+        spinner8.addChangeListener(e -> {
+            //errorAltezza.setText("");
+            errorAltezza.setIcon(null);
+        });
+
+        spinner9.addChangeListener(e -> {
+            //errorAltezza.setText("");
+            errorAltezza.setIcon(null);
+        });
+
+        comboBox1.addActionListener(e -> {
+            //errorDurata.setText("");
+            errorDurata.setIcon(null);
+        });
+
+        comboBox2.addActionListener(e -> {
+            //errorDurata.setText("");
+            errorDurata.setIcon(null);
+        });
+
+        onlyRestCheckBox.addActionListener(e -> {
+            //errorNotePause.setText("");
+            errorNotePause.setIcon(null);
+        });
+
+        onlyNoteCheckBox.addActionListener(e -> {
+            //errorNotePause.setText("");
+            errorNotePause.setIcon(null);
+        });
+
+        bothRestNoteCheckBox.addActionListener(e -> {
+            //errorNotePause.setText("");
+            errorNotePause.setIcon(null);
+        });
+
 
         generaIEEE1599Button.addActionListener(e -> {
             if (checkValidityOfInput()) {
@@ -467,11 +525,69 @@ public class CustomGrid {
 
     private boolean checkValidityOfInput() {
         try {
-            return getSumOfPitchSpinners() == 100 && ((int) spinnerLunghezzaBrano.getValue() > 0) && ((int) spinnerNumeroStrumenti.getValue() > 0) &&
-                    ((int) spinner8.getValue() > 0) && ((int) spinner9.getValue() > (int) spinner8.getValue()) &&
-                    (onlyNoteCheckBox.isSelected() || onlyRestCheckBox.isSelected() || bothRestNoteCheckBox.isSelected()) &&
-                    (fromFractionToDecimal((String) comboBox1.getSelectedItem()) <= fromFractionToDecimal((String) comboBox2.getSelectedItem())) && (!textField4.getText().equals(""));
-        } catch (Exception ex) {
+            boolean checkToSumOfPitchSlider = getSumOfPitchSpinners() == 100;
+            boolean checkToLunghezzaBrano = ((int) spinnerLunghezzaBrano.getValue() > 0);
+            boolean checkToNumeroStrumenti = ((int) spinnerNumeroStrumenti.getValue() > 0);
+            boolean checkToMinAltezza = ((int) spinner8.getValue() > 0);
+            boolean checkToMinMaxAltezza = ((int) spinner9.getValue() > (int) spinner8.getValue());
+            boolean checkToCheckBoxes = (onlyNoteCheckBox.isSelected() || onlyRestCheckBox.isSelected() || bothRestNoteCheckBox.isSelected());
+            boolean checkToMinMaxDurata = (fromFractionToDecimal((String) comboBox1.getSelectedItem()) < fromFractionToDecimal((String) comboBox2.getSelectedItem()));
+            boolean checkToDestinazioneSpecificata = !textField4.getText().equals("");
+
+
+            BufferedImage errorImg = ImageIO.read(ClassLoader.getSystemResource("error.png"));
+            ImageIcon errorIcon = new ImageIcon(errorImg);
+
+            if(!checkToLunghezzaBrano){
+                errorLunghezzaBrano.setToolTipText("\"Lunghezza del brano\" deve essere maggiore di 0");
+                errorLunghezzaBrano.setIcon(errorIcon);
+                //errorLunghezzaBrano.setText(" \"Lunghezza del brano\" deve essere maggiore di 0");
+            }
+
+            if(!checkToNumeroStrumenti){
+                errorNumeroStrumenti.setIcon(errorIcon);
+                errorNumeroStrumenti.setToolTipText("\"Numero strumenti\" deve essere maggiore di 0");
+                //errorNumeroStrumenti.setText("\"Numero strumenti\" deve essere maggiore di 0");
+            }
+
+            if(!checkToMinAltezza || !checkToMinMaxAltezza){
+                errorAltezza.setIcon(errorIcon);
+                errorAltezza.setToolTipText("\"Altezza minima\" deve essere maggiore di 0 e minore di \"Altezza massima\"");
+                //errorAltezza.setText(" \"Altezza minima\" deve essere maggiore di 0 e minore di \"Altezza massima\"");
+            }
+
+            if(!checkToMinMaxDurata){
+                errorDurata.setIcon(errorIcon);
+                errorDurata.setToolTipText("\"Durata minima\" deve essere minore di \"Durata massima\"");
+                //errorDurata.setText(" \"Durata minima\" deve essere minore di \"Durata massima\"");
+            }
+
+            if(!checkToCheckBoxes){
+                errorNotePause.setIcon(errorIcon);
+                errorNotePause.setToolTipText("Selezionare un'opzione");
+                //errorNotePause.setText(" Selezionare un'opzione");
+            }
+
+            if(!checkToDestinazioneSpecificata){
+                //textField4.setText(" Specificare la destinazione");
+                //textField4.setForeground(new Color(191, 0, 40));
+                errorDestinazione.setIcon(errorIcon);
+                errorDestinazione.setToolTipText("Specificare la destinazione");
+            }
+
+            if(!checkToSumOfPitchSlider){
+                totalPercentage.setIcon(errorIcon);
+                totalPercentage.setToolTipText("Il totale deve essere pari al 100%");
+                totalPercentage.setForeground(new Color(191, 0, 40));
+            }
+
+
+
+            return checkToSumOfPitchSlider && checkToLunghezzaBrano && checkToNumeroStrumenti &&
+                   checkToMinAltezza && checkToMinMaxAltezza && checkToCheckBoxes &&
+                   checkToMinMaxDurata && checkToDestinazioneSpecificata;
+
+        } catch(Exception e){
             return false;
         }
     }
@@ -525,57 +641,30 @@ public class CustomGrid {
     }
 
     public void setColorOfLabel(Color c){
-        label1.setForeground(c);
-        label2.setForeground(c);
-        label3.setForeground(c);
-        label4.setForeground(c);
-        label5.setForeground(c);
-        label6.setForeground(c);
-        label7.setForeground(c);
-        label8.setForeground(c);
-        label9.setForeground(c);
-        label10.setForeground(c);
-        label11.setForeground(c);
-        label12.setForeground(c);
-        label13.setForeground(c);
-        onlyNoteCheckBox.setForeground(c);
-        onlyRestCheckBox.setForeground(c);
-        bothRestNoteCheckBox.setForeground(c);
+        label1.setForeground(c); label2.setForeground(c); label3.setForeground(c);
+        label4.setForeground(c); label5.setForeground(c); label6.setForeground(c);
+        label7.setForeground(c); label8.setForeground(c); label9.setForeground(c);
+        label10.setForeground(c); label11.setForeground(c); label12.setForeground(c); label13.setForeground(c);
+        onlyNoteCheckBox.setForeground(c); onlyRestCheckBox.setForeground(c); bothRestNoteCheckBox.setForeground(c);
         totalPercentage.setForeground(c);
 
-        TitledBorder b = (TitledBorder) (panelDurata.getBorder()); b.setTitleColor(c);
-
-        TitledBorder b1 = (TitledBorder) (panelNumeroStrumenti.getBorder()); b1.setTitleColor(c);
-
-        TitledBorder b2 = (TitledBorder) (panelNote.getBorder()); b2.setTitleColor(c);
-
-        TitledBorder b3 = (TitledBorder) (panelAltezza.getBorder()); b3.setTitleColor(c);
-
-        TitledBorder b4 = (TitledBorder) (panelLunghezzaBrano.getBorder()); b4.setTitleColor(c);
-
-        TitledBorder b5 = (TitledBorder) (panelNotePause.getBorder()); b5.setTitleColor(c);
-
-        TitledBorder b6 = (TitledBorder) (parentA.getBorder()); b6.setTitleColor(c);
-
-        TitledBorder b7 = (TitledBorder) (parentB.getBorder()); b7.setTitleColor(c);
-
-        TitledBorder b8 = (TitledBorder) (parentC.getBorder()); b8.setTitleColor(c);
-
-        TitledBorder b9 = (TitledBorder) (parentD.getBorder()); b9.setTitleColor(c);
-
-        TitledBorder b10 = (TitledBorder) (parentE.getBorder()); b10.setTitleColor(c);
-
-        TitledBorder b11 = (TitledBorder) (parentF.getBorder()); b11.setTitleColor(c);
-
-        TitledBorder b12 = (TitledBorder) (parentG.getBorder()); b12.setTitleColor(c);
-
-        TitledBorder b13 = (TitledBorder) (parentA.getBorder()); b13.setTitleColor(c);
-
-        TitledBorder b14 = (TitledBorder) (parentB.getBorder()); b14.setTitleColor(c);
+        changeColorOfTitleBorder(panelDurata, c); changeColorOfTitleBorder(panelNumeroStrumenti, c); changeColorOfTitleBorder(panelNote, c);
+        changeColorOfTitleBorder(panelAltezza, c); changeColorOfTitleBorder(panelLunghezzaBrano, c); changeColorOfTitleBorder(panelNotePause, c);
+        changeColorOfTitleBorder(parentA, c); changeColorOfTitleBorder(parentB, c); changeColorOfTitleBorder(parentC, c);
+        changeColorOfTitleBorder(parentD, c); changeColorOfTitleBorder(parentE, c); changeColorOfTitleBorder(parentF, c);
+        changeColorOfTitleBorder(parentG, c);
     }
 
+    private void changeColorOfTitleBorder(JPanel p, Color c){
+        TitledBorder b = (TitledBorder) (p.getBorder());
+        b.setTitleColor(c);
+    }
 
-    private void jSliderStateChanged(JSlider s1, JSlider s2, JSlider s3, JSlider s4, JSlider s5, JSlider s6) {
+    private void jSliderStateChanged(int mode, JSlider s1, JSlider s2, JSlider s3, JSlider s4, JSlider s5, JSlider s6) {
+        if(mode == 1) totalPercentage.setForeground(Color.BLACK);
+        else totalPercentage.setForeground(Color.WHITE);
+        totalPercentage.setIcon(null);
+        totalPercentage.setToolTipText("Percentuale totale specificata");
         while (getSumOfPitchSpinners() > 100) {
             s1.setValue(s1.getValue() - 1);
             s2.setValue(s2.getValue() - 1);
@@ -607,6 +696,8 @@ public class CustomGrid {
         authorPanel.setBackground(background);
         labelAuthor.setForeground(Color.WHITE);
 
+
+
         changeBackgroundOfComponent(c);
 
         panelSalvataggio.setBackground(background);
@@ -618,6 +709,14 @@ public class CustomGrid {
         generaIEEE1599Button.setBackground(c);
         cartellaDiDestinazioneButton.setForeground(Color.WHITE);
         generaIEEE1599Button.setForeground(Color.WHITE);
+
+         if(totalPercentage.getIcon() != null){
+             totalPercentage.setForeground(new Color(191, 0, 40));
+         }
+
+         /*if(errorDestinazione.getIcon() != null){
+             textField4.setForeground(new Color(191, 0, 40));
+         }*/
     }
 
 
@@ -653,6 +752,14 @@ public class CustomGrid {
         generaIEEE1599Button.setBackground(Color.LIGHT_GRAY);
         cartellaDiDestinazioneButton.setForeground(Color.BLACK);
         generaIEEE1599Button.setForeground(Color.BLACK);
+
+        if(totalPercentage.getIcon() != null){
+            totalPercentage.setForeground(new Color(191, 0, 40));
+        }
+
+        /*if(errorDestinazione.getIcon() != null){
+            textField4.setForeground(new Color(191, 0, 40));
+        }*/
     }
 
     private void changeBackgroundOfComponent(Color c){

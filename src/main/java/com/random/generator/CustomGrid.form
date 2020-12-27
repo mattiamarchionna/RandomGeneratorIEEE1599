@@ -23,6 +23,13 @@
               <text value="Destinazione:"/>
             </properties>
           </component>
+          <component id="44109" class="javax.swing.JLabel" binding="errorDestinazione">
+            <constraints/>
+            <properties>
+              <foreground color="-4259800"/>
+              <text value=""/>
+            </properties>
+          </component>
           <component id="d4534" class="javax.swing.JTextField" binding="textField4">
             <constraints/>
             <properties>
@@ -124,6 +131,13 @@
               </component>
             </children>
           </grid>
+          <component id="ff7e6" class="javax.swing.JLabel" binding="errorAltezza">
+            <constraints/>
+            <properties>
+              <foreground color="-4259800"/>
+              <text value=""/>
+            </properties>
+          </component>
         </children>
       </grid>
       <grid id="98c7a" binding="panelNote" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
@@ -389,6 +403,13 @@
               </component>
             </children>
           </grid>
+          <component id="861e5" class="javax.swing.JLabel" binding="errorDurata">
+            <constraints/>
+            <properties>
+              <foreground color="-4259800"/>
+              <text value=""/>
+            </properties>
+          </component>
         </children>
       </grid>
       <grid id="15ae8" binding="panelNotePause" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
@@ -455,6 +476,13 @@
               </component>
             </children>
           </grid>
+          <component id="d53b6" class="javax.swing.JLabel" binding="errorNotePause">
+            <constraints/>
+            <properties>
+              <foreground color="-4259800"/>
+              <text value=""/>
+            </properties>
+          </component>
         </children>
       </grid>
       <grid id="97c2a" binding="panelLunghezzaBrano" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
@@ -472,7 +500,7 @@
           <grid id="685f8" binding="parentLunghezzaBrano" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
             <constraints/>
             <properties>
-              <preferredSize width="256" height="42"/>
+              <preferredSize width="256" height="44"/>
             </properties>
             <border type="bevel-raised"/>
             <children>
@@ -494,6 +522,13 @@
               </component>
             </children>
           </grid>
+          <component id="4e4d2" class="javax.swing.JLabel" binding="errorLunghezzaBrano">
+            <constraints/>
+            <properties>
+              <foreground color="-4259800"/>
+              <text value=""/>
+            </properties>
+          </component>
         </children>
       </grid>
       <grid id="d428c" binding="panelNumeroStrumenti" layout-manager="FlowLayout" hgap="10" vgap="5" flow-align="0">
@@ -511,7 +546,7 @@
           <grid id="bb740" binding="parentNumeroStrumenti" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
             <constraints/>
             <properties>
-              <preferredSize width="256" height="42"/>
+              <preferredSize width="256" height="44"/>
             </properties>
             <border type="bevel-raised"/>
             <children>
@@ -531,6 +566,13 @@
               </component>
             </children>
           </grid>
+          <component id="cac99" class="javax.swing.JLabel" binding="errorNumeroStrumenti">
+            <constraints/>
+            <properties>
+              <foreground color="-4259800"/>
+              <text value=""/>
+            </properties>
+          </component>
         </children>
       </grid>
       <toolbar id="57d69" binding="toolbar1">
