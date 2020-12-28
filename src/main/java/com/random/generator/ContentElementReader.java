@@ -15,6 +15,7 @@ public class ContentElementReader {
 
     private void readContentIntoFile(String fileName) throws IOException, URISyntaxException {
         URL resource = getClass().getClassLoader().getResource(fileName);
+        assert resource != null;
         File file = new File(resource.toURI());
         FileInputStream fstream = new FileInputStream(file);
 
@@ -25,7 +26,6 @@ public class ContentElementReader {
             strLine = strLine.replaceAll(" ", "_");
             contents.add(strLine.trim());
         }
-
         br.close();
     }
 
