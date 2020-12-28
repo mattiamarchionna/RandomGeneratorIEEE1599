@@ -14,7 +14,26 @@ public class Main {
     public static void main(String[] args) throws IOException {
         System.setProperty("sun.java2d.uiScale", "1.0");
 
-        JFrame jframe = new JFrame("Generatore random IEEE1599");
+
+        // SPLASH SCREEN //
+
+        SplashScreen splash = new SplashScreen();
+
+        JFrame splashFrame = new JFrame();
+        splashFrame.setUndecorated(true);
+        splashFrame.add(splash.Splash);
+        splashFrame.setVisible(true);
+        splashFrame.setSize(600, 400);
+
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        splashFrame.setLocation(dim.width/2-splashFrame.getSize().width/2, dim.height/2-splashFrame.getSize().height/2);
+        splashFrame.setResizable(false);
+
+
+
+
+
+        JFrame jframe = new JFrame("Generatore random file IEEE1599");
 
         BufferedImage ieee1599Img = ImageIO.read(ClassLoader.getSystemResource("ieee1599.png"));
         ImageIcon ieee1599Icon = new ImageIcon(ieee1599Img);
@@ -42,6 +61,18 @@ public class Main {
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jframe.setResizable(false);
         jframe.setSize(1100, 765);
+
+        jframe.setLocation(dim.width/2-jframe.getSize().width/2, dim.height/2-jframe.getSize().height/2);
+
+
+
+        try {
+            Thread.sleep(3000);
+            splashFrame.setVisible(false);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         jframe.setVisible(true);
     }
 }
