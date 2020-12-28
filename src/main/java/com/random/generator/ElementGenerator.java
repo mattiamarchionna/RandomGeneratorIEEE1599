@@ -4,6 +4,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,19 +20,36 @@ public class ElementGenerator {
     private int number_elements;
     private int id_gen;
 
-    ArrayList<String> events = new ArrayList<>();
-    ArrayList<String> parts = new ArrayList<>();
-    ArrayList<String> staffs = new ArrayList<>();
-    ArrayList<String> feature_objects = new ArrayList<>();
-    ArrayList<String> voices = new ArrayList<>();
-    ArrayList<String> segments = new ArrayList<>();
-    ArrayList<String> domains = new ArrayList<>();
-    ArrayList<String> codomains = new ArrayList<>();
-    ArrayList<String> feature_object_relationship = new ArrayList<>();
-    ArrayList<String> voice_items = new ArrayList<>();
+
+    public ArrayList<String> events = new ArrayList<>();
+    public ArrayList<String> parts = new ArrayList<>();
+    public ArrayList<String> staffs = new ArrayList<>();
+    public ArrayList<String> feature_objects = new ArrayList<>();
+    public ArrayList<String> voices = new ArrayList<>();
+    public ArrayList<String> segments = new ArrayList<>();
+    public ArrayList<String> domains = new ArrayList<>();
+    public ArrayList<String> codomains = new ArrayList<>();
+    public ArrayList<String> feature_object_relationship = new ArrayList<>();
+    public ArrayList<String> voice_items = new ArrayList<>();
+
+    private ArrayList<String> authors;
+    private ArrayList<String> struments;
 
 
     public ElementGenerator(Parameter configuration, int number_elements) {
+
+        ContentElementReader fileAuthors, fileStruments;
+        try {
+            fileAuthors = new ContentElementReader("autori.txt");
+            fileStruments = new ContentElementReader("strumenti.txt");
+            struments = fileStruments.getContentsOfElement();
+            authors = fileAuthors.getContentsOfElement();
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+            authors.add("author_" + r.nextInt(100));
+            struments.add("event_" + r.nextInt(100));
+        }
+
         this.configuration = configuration;
         this.number_elements = number_elements;
         this.id_gen = 0;
@@ -65,8 +84,10 @@ public class ElementGenerator {
 
 
     public Element generate_random_author(Document doc){
+
+
         Element author = doc.createElement("author");
-        author.setTextContent("author_" + r.nextInt(100));
+        author.setTextContent(authors.get(r.nextInt(authors.size())));
         return author;
     }
 
@@ -1232,7 +1253,7 @@ public class ElementGenerator {
     public Element generate_random_event(Document doc){
 
         Element event = doc.createElement("event");
-        event.setAttribute("id", "event" + id_generator());
+        event.setAttribute("id", "event_" + struments.get(r.nextInt(struments.size())) + "_" + id_generator());
         event.setAttribute("timing", String.valueOf(r.nextInt(256)));
         event.setAttribute("hpos", String.valueOf(r.nextInt(256)));
         return event;
@@ -1431,7 +1452,7 @@ public class ElementGenerator {
         String id = id_generator();
         Element chord_grid = doc.createElement("chord_grid");
         if(isGenerateElement()) chord_grid.setAttribute("id", "chord_grid_" + id);
-        if(isGenerateElement()) chord_grid.setAttribute("author", "author_" + r.nextInt(20));
+        if(isGenerateElement()) chord_grid.setAttribute("author", authors.get(r.nextInt(authors.size())));
         if(isGenerateElement()) chord_grid.setAttribute("description", "description_" + r.nextInt(20));
         int number_chord_name = r.nextInt(number_elements)+1;
         for(int i = 0; i < number_chord_name; i++){
@@ -1578,7 +1599,7 @@ public class ElementGenerator {
 
         Element analysis = doc.createElement("analysis");
         if(isGenerateElement()) analysis.setAttribute("id", "analysis_" + id_generator());
-        if(isGenerateElement()) analysis.setAttribute("author", "author_" + r.nextInt(100));
+        if(isGenerateElement()) analysis.setAttribute("author", authors.get(r.nextInt(authors.size())));
         if(isGenerateElement()) analysis.setAttribute("description", "description_" + r.nextInt(100));
         return analysis;
     }

@@ -656,7 +656,7 @@ public class CustomGrid {
                 ((JComboBox) component).setSelectedItem(value);
             }
             else if(type.equals("javax.swing.JSlider")){
-                System.out.println(type);
+                //System.out.println(type);
                 ((JSlider) component).setValue(Integer.parseInt(value));
             }
             else if (type.equals("javax.swing.JCheckBox")) {

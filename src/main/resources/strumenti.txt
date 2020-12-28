@@ -1,0 +1,455 @@
+Accordeon
+Aerofoni
+Agogô
+Arciliuto
+Armonica
+Armonica a bicchieri
+Armonica a bocca
+Armonica a doppia tastiera
+Armonica cromatica
+Armonica tenore cromatica
+Armonica diatonica
+Armonica diatonica bassa
+Armonica Chordet
+Armonica basso
+Armonica basso Hohner
+Armonica basso Huang
+Arpa
+Arpa celtica
+Arpa tripla gallese
+Arpa liuto
+Arpa paraguaiana
+Arpicordo
+Atabal (percussione dei Paesi Baschi)
+Aulochrome
+Aulos
+Baglamas
+Bagpipe
+Balafon
+Balalaica
+Bandoneon
+Bandourka (chitarra russa)
+Bandoneon
+Bandura (chitarra ukraina)
+Bandurria
+Banjo
+Basso
+Basso acustico
+Basso elettrico
+Basso Tuba
+Batteria
+Batteria elettronica
+Berda
+Berimbao
+Bidofono
+Biniou
+Bodhrán
+Bombarda
+Bongo
+Bouzouki
+Brač
+Bugle
+Cabasa
+Cajon
+Campane
+Campane tubolari
+Campionatore
+Celesta
+Cembalo
+Cembalo ad arco
+Cennamella
+Cervellato
+Cetra
+Chapman stick
+Charango
+Chimta
+Chitarra
+Chitarra con doppio manico
+Chitarra con tre manici
+Chitarra con quattro manici
+Chitarra jazz
+Chitarra folk
+Chitarra battente
+Chitarra classica
+Chitarra elettrica
+Chitarra a 12 corde
+Chitarra Warr
+Chitarrone
+Cigar box guitar
+Cimbasso
+Clarinetto
+Clarinetto piccolo
+Clarinetto sopranino
+Clarinetto soprano
+Clarinetto alto
+Clarinetto contralto
+Clarinetto di bassetto
+Corno di bassetto
+Clarinetto basso
+Clarinetto octocontralto
+Clarinetto contrabbasso
+Clarinetto octocontrabbasso
+Clarinetto contra-contrabbasso
+Clave
+Clavicembalo
+Clavicordo
+Clavinet
+Claviorgano
+Cobza
+Concertina
+Congas
+Contrabbasso
+Contrabbasso ad ancia
+Contrabbasso barocco
+Contrabbasso elettrico
+Contraforte
+Controchitarra
+Controfagotto
+Cornamusa
+Cornamusa soprano
+Cornamusa contralto
+Cornamusa tenore
+Cornamusa basso
+Cornamuto
+Cornamuto torto
+Cornamuto soprano
+Cornamuto contralto
+Cornamuto tenore
+Cornamuto basso
+Cornamuto contrabbasso
+Corneta China
+Cornetta
+Cornetto
+Corno alpino
+Corno di camoscio
+Corno di camoscio soprano
+Corno di camoscio contralto
+Corno di camoscio tenore
+Corno di camoscio basso
+Corno inglese
+Corno francese
+Corno francese contrabbasso
+Corno naturale
+Corno postale
+Corno tenore
+Cuatro
+Cuica
+Cupa cupa
+Qiftelija
+Dabakan
+Danso
+Dan-Tranh
+Darabouka
+Def Arbani
+Didgeridoo
+Dizi
+Dilruba
+Djembé
+Dolcimer
+Dombura
+Domra
+Drum circle
+Drum machine
+Duduk
+Duduk basso
+Dulciana
+Dulcimer
+Dun dun
+Diamonica
+Ektara
+Erhu
+Esraj
+Euphonium
+Expander
+Fagotto
+Fisarmonica
+Fisarmonica diatonica
+Fiddle
+Flagioletto
+Flagioletto francese
+Flagioletto inglese
+Flauto di pan
+Flauto a coulisse
+Flauto dolce
+Flauto dolce sopranino
+Flauto dolce soprano
+Flauto dolce contralto
+Flauto dolce tenore
+Flauto dolce basso
+Flauto dolce contrabbasso
+Flicorno
+Flicorno sopranino
+Flicorno soprano
+Flicorno contralto
+Flicorno tenore
+Flicorno baritono
+Flicorno basso
+Fortepiano
+Flauto
+Flauto traverso
+Flauto soprano
+Flauto contralto
+Flauto basso
+Flauto contrabbasso
+Flauto subcontrabbasso
+Flauto iperbasso
+Flauto Irlandese
+Flexatone
+Gaida
+Gaita galiziana
+Galoubet
+Genis
+Ghatam
+Ghironda
+Ghungroo
+Glassarmonica
+Glockenspiel
+Gong
+Grancassa
+Guembri
+Guitar synth
+Gusli
+Harmonium
+Heckelfono
+Heckelfono ottavino
+Heckelfono clarinetto
+Hichiriki
+Hosho
+Hagstrom
+Hang
+Igil
+Jembe
+Kacapi
+Kantele
+Kayamba
+Kalimba
+Kazoo
+Kelhorn
+Kelhorn soprano
+Kelhorn contralto
+Kelhorn tenore
+Kelhorn basso
+Kelhorn gran basso
+Khol
+Kilofono
+Kora
+Koto
+Keytar
+Laud
+Launeddas
+Legnetti
+Legnetti bitonali
+Lira
+Lira da braccio
+Lira bizantina
+Liuto
+Lyra organizzata
+Mandola
+M'bira
+Mandora
+Mandolino
+Mandoloncello
+Mandolone
+Maracas
+Marimba
+Mellofono
+Mellotron
+Melodica
+Metallofono
+Mijwiz
+Mixer
+Mizmar
+Moodswinger
+Moonlander
+Müsa
+Nacchere
+Niatiti
+Nyckelharpa
+Oboe
+Oboe d'amore
+Oboe da caccia
+Oboe baritono
+Oboe musette
+Oboe barocco
+Oboe basso
+Ocarina
+Ocarina soprano
+Ocarina contralto
+Ocarina basso
+Octavin
+Ottobasso
+Onde Martenot
+Oficleide
+Organetto
+Organetto diatonico
+Organo
+Organo a rullo
+Organo Hammond
+Organo a canne
+Organo ad ancia
+Orutu
+Ottoni
+Ottavino
+Oud
+Palitos
+Pandeiro
+Pandura
+Pakhawaj
+Pemperino
+Pianet
+Pianoforte
+Pianoforte digitale
+Piano elettrico
+Piatti
+Piffero
+Pianola
+Pipa
+Pikasso Guitar
+Pungi
+Quena
+Raganella
+Rag Dung
+Ramsinga
+Rauschpfeife
+Rauschpfeife sopranino
+Rauschpfeife soprano
+reacTable
+Rebab
+Regale
+Ribeca
+Ronroco
+Rubab
+Rullante
+Salmoè
+Salterio
+Santoor
+Sarangi
+Sarod
+Sassofono
+Sassofono sopranissimo
+Sassofono sopranino
+Sassofono mezzo soprano
+Sassofono soprano
+Sassofono C melody
+Sassofono contralto
+Sassofono tenore
+Sassofono baritono
+Sassofono basso
+Sassofono contrabbasso
+Sassofono subcontrabbasso
+Sarrusofono
+Sarrusofono sopranino
+Sarrusofono soprano
+Sarrusofono contralto
+Sarrusofono tenore
+Sarrusofono baritono
+Sarrusofono basso
+Sarrusofono contrabbasso
+Saz
+Scacciapensieri
+Serpentone
+Shehnai
+Shruti Box
+Sintetizzatore
+Sintir
+Siringa
+Sistro
+Sitar
+Shamisen
+Shawm
+Shawm sopranino
+Shawm soprano
+Shawm contralto
+Shawm tenore
+Shawm basso
+Shawm gran basso
+Shekere
+Shofar
+Sousafono
+Spinetta
+Steel Drum
+Strumstick
+subcontrofagotto (Strumento ancora in fase di sviluppo)
+Synclavier
+Synthaxe
+Tabla
+Taiko
+Tamburino
+Tamburo
+Tamburo a cornice
+Tamburo militare
+Tamburo parlante
+Tamburello
+Tamburello basco
+Tarogato
+Tastiera
+Teponaztli
+Theremin
+Timbales
+Timpano
+Timple
+Tin whistle
+Tiorba
+Toaca
+Tom-Tom
+Tom cinese
+Traverso
+Tres
+Trocca
+Triangolo
+Tromba
+Tromba da tirarsi
+Tromba barocca
+Tromba bassa
+Trombino
+Tromba naturale
+Trombone
+Trombone piccolo
+Trombone soprano
+Trombone contralto
+Trombone tenore
+Trombone basso
+Trombone contrabbasso
+Tromboon
+Tuba
+Tuba
+Tuba contrabbassa
+Tuba subcontrabbassa
+Tuba wagneriana
+Txalaparta
+Txistu
+Oud
+Ukulele
+Uilleann pipes
+Valiha
+Veena
+Vibrafono
+Vibrandoneon
+Viella
+Vihuela
+Viola
+Viola d'amore
+Viola d'amore a chiavi
+Viola da gamba
+Viola di bordone
+Viola tenore
+Viola contralto
+Violino
+Violino barocco
+Violino elettrico
+Violoncello
+Violoncello barocco
+Violoncello elettrico
+Violoncello piccolo
+Violoncello tenore
+Violone
+Vina
+Virginale
+Vuvuzela
+Washboard
+Wood-block
+Xilofono
+Zampogna
+Zufolo
+Zucutefù
+Zurna
