@@ -75,6 +75,7 @@ public class CustomGrid {
         ImageIcon playIcon = new ImageIcon(playImg);
         generaIEEE1599Button.setIcon(playIcon);
 
+        labelAuthor.setText("Corso \"Programmazione per la musica\" - a.a. 2020-2021 - Docente: Barate' Adriano");
         toolbar1.setFloatable(false);
         toolbar1.setMargin(new Insets(10, 10, 5, 0));
         textField4.setBackground(new Color(40, 44, 52));
@@ -745,7 +746,8 @@ public class CustomGrid {
         cartellaDiDestinazioneButton.setForeground(Color.WHITE);
         generaIEEE1599Button.setForeground(Color.WHITE);
 
-        //authorPanel.setBackground(c);
+         authorPanel.setBackground(c);
+         //labelAuthor.setText("");
 
          if(totalPercentage.getIcon() != null){
              totalPercentage.setForeground(new Color(191, 0, 40));
@@ -806,7 +808,8 @@ public class CustomGrid {
         panelButton.setBackground(c);
         textField4.setBackground(c);*/
 
-        //authorPanel.setBackground(c);
+        authorPanel.setBackground(new Color(243, 240, 240));
+        //labelAuthor.setText("");
 
         changeBorderType();
 

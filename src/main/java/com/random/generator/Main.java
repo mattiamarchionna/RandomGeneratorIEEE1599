@@ -61,10 +61,13 @@ public class Main {
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jframe.setResizable(false);
         //jframe.setSize(1100, 765);
-        //jframe.setSize(1100, 785);
+        jframe.setSize(1100, 785);
 
-        jframe.setSize((int)(dim.width/1.75), (int)(dim.height/1.38));
+        System.out.println(dim.width);
+        System.out.println(dim.height);
 
+
+        //jframe.setSize((int)(dim.width/1.75), (int)(dim.height/1.38));
 
         jframe.setLocation(dim.width/2-jframe.getSize().width/2, dim.height/2-jframe.getSize().height/2);
 

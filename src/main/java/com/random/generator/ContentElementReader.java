@@ -14,12 +14,14 @@ public class ContentElementReader {
     }
 
     private void readContentIntoFile(String fileName) throws IOException, URISyntaxException {
-        URL resource = getClass().getClassLoader().getResource(fileName);
-        assert resource != null;
-        File file = new File(resource.toURI());
-        FileInputStream fstream = new FileInputStream(file);
+        //URL resource = getClass().getClassLoader().getResource(fileName);
+        //assert resource != null;
+        //File file = new File(resource.toURI());
+        //FileInputStream fstream = new FileInputStream(file);
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+        InputStream is = getClass().getClassLoader().getResourceAsStream(fileName);
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String strLine;
 
         while ((strLine = br.readLine()) != null){
