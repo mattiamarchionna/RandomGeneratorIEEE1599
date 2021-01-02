@@ -36,7 +36,7 @@
               <background color="-2696737"/>
               <columns value="20"/>
               <editable value="false"/>
-              <font name="Montserrat" size="16"/>
+              <font name="Montserrat" size="16" style="0"/>
             </properties>
           </component>
           <grid id="74b71" binding="panelButton" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -258,7 +258,7 @@
           <grid id="1fdd4" binding="parentG" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties>
-              <preferredSize width="139" height="64"/>
+              <preferredSize width="140" height="64"/>
             </properties>
             <border type="none" title="%"/>
             <children>
@@ -363,7 +363,7 @@
               <component id="df08e" class="javax.swing.JLabel" binding="label10">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="15" style="1"/>
+                  <font name="Microsoft JhengHei" size="15" style="1"/>
                   <text value="Durata minima:"/>
                 </properties>
               </component>

@@ -59,7 +59,7 @@ public class Main {
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jframe.setResizable(false);
         //jframe.setSize(1100, 765);
-        jframe.setSize(1100, 785);
+        jframe.setSize(1110, 785);
 
         //System.out.println(dim.width);
         //System.out.println(dim.height);

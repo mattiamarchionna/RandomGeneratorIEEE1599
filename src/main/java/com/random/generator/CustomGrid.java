@@ -518,26 +518,50 @@ public class CustomGrid {
             }
         });
 
-        setFontToComponent("Monteserrat");
+        setFontToComponent("Microsoft JhengHey");
 
     }
 
     private void setFontToComponent(String fontName){
-        spinnerLunghezzaBrano.setFont(new Font(fontName, Font.PLAIN, 18));
-        spinnerNumeroStrumenti.setFont(new Font(fontName, Font.PLAIN, 18));
+        int size1 = 19;
+        Font f1 = new Font(fontName, Font.PLAIN, size1);
 
-        bothRestNoteCheckBox.setFont(new Font(fontName, Font.ITALIC, 16));
-        onlyNoteCheckBox.setFont(new Font(fontName, Font.ITALIC, 16));
-        onlyRestCheckBox.setFont(new Font(fontName, Font.ITALIC, 16));
+        spinnerLunghezzaBrano.setFont(f1);
+        spinnerNumeroStrumenti.setFont(f1);
+        spinner8.setFont(f1);
+        spinner9.setFont(f1);
 
-        spinner8.setFont(new Font(fontName, Font.PLAIN, 18));
-        spinner9.setFont(new Font(fontName, Font.PLAIN, 18));
+        Font f2 = new Font(fontName, Font.PLAIN, size1 - 1);
+        comboBox1.setFont(f2);
+        comboBox2.setFont(f2);
 
-        comboBox1.setFont(new Font(fontName, Font.PLAIN, 17));
-        comboBox2.setFont(new Font(fontName, Font.PLAIN, 17));
+        totalPercentage.setFont(new Font(fontName, Font.PLAIN, 18));
 
-        generaIEEE1599Button.setFont(new Font(fontName, Font.ITALIC, 14));
-        cartellaDiDestinazioneButton.setFont(new Font(fontName, Font.ITALIC, 14));
+        Font f3 = new Font("Montserrat", Font.PLAIN, 14);
+        generaIEEE1599Button.setFont(f3);
+        cartellaDiDestinazioneButton.setFont(f3);
+
+
+        Font f4 = new Font(fontName, Font.BOLD, 17);
+        Font f5 = new Font(fontName, Font.BOLD, 16);
+
+        bothRestNoteCheckBox.setFont(f4);
+        onlyNoteCheckBox.setFont(f4);
+        onlyRestCheckBox.setFont(f4);
+        label1.setFont(f4);
+        label2.setFont(f4);
+        label3.setFont(f5);
+        label4.setFont(f5);
+        label5.setFont(f5);
+        label6.setFont(f5);
+        label7.setFont(f5);
+        label8.setFont(f5);
+        label9.setFont(f5);
+        label10.setFont(f4);
+        label11.setFont(f4);
+        label12.setFont(f4);
+        label13.setFont(f4);
+
     }
 
     private void changeLabelValueSlider1(JPanel p, JSlider s){
