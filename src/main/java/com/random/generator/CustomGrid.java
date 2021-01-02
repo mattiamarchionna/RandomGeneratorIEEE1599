@@ -85,12 +85,12 @@ public class CustomGrid {
         ImageIcon saveIcon = new ImageIcon(saveImg);
         save.setIcon(saveIcon);
 
-        save.setToolTipText("Salva configurazione");
+        save.setToolTipText("Salva configurazione parametri");
         toolbar1.add(save);
         toolbar1.addSeparator(new Dimension(15, 10));
 
         JButton open = new JButton();
-        open.setToolTipText("Apri configurazione");
+        open.setToolTipText("Apri configurazione parametri");
 
         BufferedImage openImg = ImageIO.read(ClassLoader.getSystemResource("open.png"));
         ImageIcon openIcon = new ImageIcon(openImg);
@@ -107,7 +107,6 @@ public class CustomGrid {
         ImageIcon switchIcon = new ImageIcon(switchImg);
         switchB.setIcon(switchIcon);
         switchB.setToolTipText("Cambia tema");
-
 
         switchB.addMouseListener(new MouseListener() {
             @Override
@@ -374,7 +373,7 @@ public class CustomGrid {
                 }
 
                 System.out.println("Save as file: " + fileToSave.getAbsolutePath());
-                JOptionPane.showMessageDialog(mainPanel, "Configurazione salvata correttamente!");
+                JOptionPane.showMessageDialog(mainPanel, "Configurazione salvata correttamente!", "Messaggio", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
@@ -513,12 +512,32 @@ public class CustomGrid {
                 String path = configuration.getPath(); // e.g: "C:\\Users\\mattia\\Desktop\\"
                 IEEE1599Generator g1 = new IEEE1599Generator(path, "", configuration);
                 g1.generate_file();
-
-                JOptionPane.showMessageDialog(mainPanel, "File IEEE1599 generato con successo!");
+                JOptionPane.showMessageDialog(mainPanel, "File IEEE1599 generato con successo!", "Messaggio", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(mainPanel, "Configurare correttamente i parametri!");
+                JOptionPane.showMessageDialog(mainPanel, "Configurare correttamente i parametri!", "Messaggio", JOptionPane.INFORMATION_MESSAGE);
             }
         });
+
+        setFontToComponent("Monteserrat");
+
+    }
+
+    private void setFontToComponent(String fontName){
+        spinnerLunghezzaBrano.setFont(new Font(fontName, Font.PLAIN, 18));
+        spinnerNumeroStrumenti.setFont(new Font(fontName, Font.PLAIN, 18));
+
+        bothRestNoteCheckBox.setFont(new Font(fontName, Font.ITALIC, 16));
+        onlyNoteCheckBox.setFont(new Font(fontName, Font.ITALIC, 16));
+        onlyRestCheckBox.setFont(new Font(fontName, Font.ITALIC, 16));
+
+        spinner8.setFont(new Font(fontName, Font.PLAIN, 18));
+        spinner9.setFont(new Font(fontName, Font.PLAIN, 18));
+
+        comboBox1.setFont(new Font(fontName, Font.PLAIN, 17));
+        comboBox2.setFont(new Font(fontName, Font.PLAIN, 17));
+
+        generaIEEE1599Button.setFont(new Font(fontName, Font.ITALIC, 14));
+        cartellaDiDestinazioneButton.setFont(new Font(fontName, Font.ITALIC, 14));
     }
 
     private void changeLabelValueSlider1(JPanel p, JSlider s){
@@ -639,10 +658,11 @@ public class CustomGrid {
                 }
                 reader.close();
             } catch (IOException e) {
-                JOptionPane.showMessageDialog(mainPanel, "File di configurazione non corretto!");
+
+                JOptionPane.showMessageDialog(mainPanel, "File di configurazione non corretto!", "Messaggio", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch(Exception e){
-            JOptionPane.showMessageDialog(mainPanel, "File di configurazione non corretto!");
+            JOptionPane.showMessageDialog(mainPanel, "File di configurazione non corretto!", "Messaggio", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -665,7 +685,7 @@ public class CustomGrid {
                 else ((JCheckBox) component).setSelected(false);
             }
         } catch(Exception e){
-            JOptionPane.showMessageDialog(mainPanel, "File di configurazione non corretto!");
+            JOptionPane.showMessageDialog(mainPanel, "File di configurazione non corretto!", "Messaggio", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

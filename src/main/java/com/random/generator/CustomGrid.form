@@ -461,6 +461,7 @@
           <grid id="b98ed" binding="parentEntrambe" layout-manager="FlowLayout" hgap="5" vgap="6" flow-align="1">
             <constraints/>
             <properties>
+              <font/>
               <minimumSize width="123" height="46"/>
               <preferredSize width="123" height="40"/>
             </properties>
@@ -514,7 +515,7 @@
               <component id="3026a" class="javax.swing.JSpinner" binding="spinnerLunghezzaBrano">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="18"/>
+                  <font name="Montserrat" size="22"/>
                   <maximumSize width="120" height="35"/>
                   <minimumSize width="120" height="35"/>
                   <preferredSize width="70" height="35"/>
@@ -560,7 +561,7 @@
               <component id="67895" class="javax.swing.JSpinner" binding="spinnerNumeroStrumenti">
                 <constraints/>
                 <properties>
-                  <font name="Montserrat" size="18"/>
+                  <font name="Montserrat" size="22" style="0"/>
                   <preferredSize width="70" height="35"/>
                 </properties>
               </component>

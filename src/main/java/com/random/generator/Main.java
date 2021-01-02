@@ -31,8 +31,6 @@ public class Main {
 
 
 
-
-
         JFrame jframe = new JFrame("Generatore random file IEEE1599");
 
         BufferedImage ieee1599Img = ImageIO.read(ClassLoader.getSystemResource("ieee1599.png"));
@@ -63,15 +61,12 @@ public class Main {
         //jframe.setSize(1100, 765);
         jframe.setSize(1100, 785);
 
-        System.out.println(dim.width);
-        System.out.println(dim.height);
-
+        //System.out.println(dim.width);
+        //System.out.println(dim.height);
 
         //jframe.setSize((int)(dim.width/1.75), (int)(dim.height/1.38));
 
         jframe.setLocation(dim.width/2-jframe.getSize().width/2, dim.height/2-jframe.getSize().height/2);
-
-
 
         try {
             Thread.sleep(3000);
