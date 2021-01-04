@@ -20,7 +20,7 @@ Arpa tripla gallese
 Arpa liuto
 Arpa paraguaiana
 Arpicordo
-Atabal (percussione dei Paesi Baschi)
+Atabal
 Aulochrome
 Aulos
 Baglamas
@@ -28,9 +28,9 @@ Bagpipe
 Balafon
 Balalaica
 Bandoneon
-Bandourka (chitarra russa)
+Bandourka
 Bandoneon
-Bandura (chitarra ukraina)
+Bandura
 Bandurria
 Banjo
 Basso
@@ -369,7 +369,7 @@ Sousafono
 Spinetta
 Steel Drum
 Strumstick
-subcontrofagotto (Strumento ancora in fase di sviluppo)
+subcontrofagotto
 Synclavier
 Synthaxe
 Tabla

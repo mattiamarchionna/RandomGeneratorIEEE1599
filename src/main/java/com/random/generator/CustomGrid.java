@@ -212,21 +212,7 @@ public class CustomGrid {
         textField4.setEditable(false);
 
 
-        HashMap<String, Double> durationValue = new HashMap<>();
-
-        for (int i = 1; i < 65; i++) {
-            for (int j = 1; j < 65; j++) {
-                String s = i + "/" + j;
-                durationValue.put(s, ((double) i)/ ((double) j));
-            }
-        }
-
-        durationValue = sortByValue(durationValue);
-
-        for (String name: durationValue.keySet()){
-            comboBox1.addItem(name);
-            comboBox2.addItem(name);
-        }
+        setDurationComponents();
 
 
         cartellaDiDestinazioneButton.addActionListener(new ActionListener() {
@@ -245,6 +231,20 @@ public class CustomGrid {
                 if (fi != null) {
                     textField4.setText(fi.getPath());
                     System.out.println(fi.getPath());
+                }
+            }
+        });
+
+        comboBox1.addItemListener(e -> {
+            comboBox2.removeAllItems();
+            for(int j = 1; j < 5; j++){
+                for(int i = 0; i < 7; i++) {
+                    String s = j + "/" + (int) Math.pow(2, i);
+                    String s1 = (String) comboBox1.getSelectedItem();
+                    //comboBox1.addItem(s);
+                    if (fromFractionToDecimal(s) > fromFractionToDecimal(s1)) {
+                        comboBox2.addItem(s);
+                    }
                 }
             }
         });
@@ -901,7 +901,7 @@ public class CustomGrid {
     }
 
 
-    private HashMap<String, Double> sortByValue(HashMap<String, Double> hm)
+    /*private HashMap<String, Double> sortByValue(HashMap<String, Double> hm)
     {
         // Create a list from elements of HashMap
         List<Map.Entry<String, Double> > list =
@@ -916,6 +916,29 @@ public class CustomGrid {
             temp.put(aa.getKey(), aa.getValue());
         }
         return temp;
-    }
+    }*/
 
+
+    private void setDurationComponents(){
+        /*HashMap<String, Double> durationValue = new HashMap<>();
+        for (int i = 1; i < 65; i++) {
+            for (int j = 1; j < 65; j++) {
+                String s = i + "/" + j;
+                durationValue.put(s, ((double) i)/ ((double) j));
+            }
+        }
+        durationValue = sortByValue(durationValue);
+        for (String name: durationValue.keySet()){
+            comboBox1.addItem(name);
+            comboBox2.addItem(name);
+        } */
+
+        for(int j = 1; j < 5; j++) {
+            for (int i = 0; i < 7; i++) {
+                String s = j + "/" + (int) Math.pow(2, i);
+                comboBox1.addItem(s);
+                comboBox2.addItem(s);
+            }
+        }
+    }
 }

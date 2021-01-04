@@ -14,6 +14,8 @@ public class Parameter {
     private boolean onlyRest;
     private boolean bothNoteRest;
 
+    private ArrayList<String> durations = new ArrayList<>();
+
     public boolean isOnlyNote() {
         return onlyNote;
     }
@@ -52,7 +54,14 @@ public class Parameter {
     private int number_struments;
     private ArrayList<String> accidentals;
 
-    public Parameter(){}
+    public Parameter(){
+        for(int j = 1; j < 5; j++) {
+            for (int i = 0; i < 24; i++) {
+                String s = j + "/" + (int) Math.pow(2, i);
+                durations.add(s);
+            }
+        }
+    }
 
 
     public void setMin_height(int min_height) {
@@ -63,7 +72,7 @@ public class Parameter {
         this.max_height = max_height;
     }
 
-    private String convertDecimalToFraction(double x){
+    /*private String convertDecimalToFraction(double x){
         if (x < 0){
             return "-" + convertDecimalToFraction(-x);
         }
@@ -79,7 +88,7 @@ public class Parameter {
         } while (Math.abs(x-h1/k1) > x*tolerance);
 
         return ((int)h1)+"/"+((int)k1);
-    }
+    }*/
 
     public int getNumber_struments(){
         return number_struments;
@@ -135,7 +144,7 @@ public class Parameter {
         this.max_duration = max_duration;
     }
 
-    public String[] generate_duration(){
+    /*public String[] generate_duration(){
         String[] min_duration_split = min_duration.split("/");
         int min_num = Integer.parseInt(min_duration_split[0]);
         int min_den = Integer.parseInt(min_duration_split[1]);
@@ -148,9 +157,31 @@ public class Parameter {
 
         Random r = new Random();
         return convertDecimalToFraction(min + (Math.round(r.nextFloat() * 10) / 10.0) * (max - min)).split("/");
+    }*/
+
+    public String[] generate_duration(){
+        ArrayList<String> validDuration = new ArrayList<>();
+        for(String s : durations){
+            double d1 = fromFractionToDouble(s);
+            double d2 = fromFractionToDouble(min_duration);
+            double d3 = fromFractionToDouble(max_duration);
+            if(d1 >= d2 && d1 <= d3) {
+                validDuration.add(s);
+            }
+        }
+        Random r = new Random();
+        String d = validDuration.get(r.nextInt(validDuration.size()));
+        return d.split("/");
     }
 
     public String generate_height(){
         return String.valueOf(new Random().nextInt(max_height-min_height) + min_height);
+    }
+
+
+    private double fromFractionToDouble(String s){
+        s = s.trim();
+        String[] digits = s.split("/");
+        return Double.parseDouble(digits[0]) / Double.parseDouble(digits[1]);
     }
 }
