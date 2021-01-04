@@ -238,7 +238,7 @@ public class CustomGrid {
         comboBox1.addItemListener(e -> {
             comboBox2.removeAllItems();
             for(int j = 1; j < 5; j++){
-                for(int i = 0; i < 7; i++) {
+                for(int i = 0; i < 8; i++) {
                     String s = j + "/" + (int) Math.pow(2, i);
                     String s1 = (String) comboBox1.getSelectedItem();
                     //comboBox1.addItem(s);
@@ -935,7 +935,7 @@ public class CustomGrid {
         } */
         String s1 = "1/1";
         for(int j = 1; j < 5; j++) {
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < 8; i++) {
                 String s = j + "/" + (int) Math.pow(2, i);
                 comboBox1.addItem(s);
                 if(fromFractionToDecimal(s) > fromFractionToDecimal(s1))  comboBox2.addItem(s);
