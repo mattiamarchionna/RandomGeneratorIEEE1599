@@ -345,7 +345,7 @@ public class CustomGrid {
                 FileWriter myWriter;
                 try {
                     myWriter = new FileWriter(fileToSave.getAbsolutePath());
-                    String p1 = "slider1: " + slider1.getValue();
+                    String p1 = "slider1:" + slider1.getValue();
                     String p2 = "slider2:" + slider2.getValue();
                     String p3 = "slider3:" + slider3.getValue();
                     String p4 = "slider4:" + slider4.getValue();
@@ -670,6 +670,7 @@ public class CustomGrid {
     }
 
     private void setParametersFromFileConfiguration(String pathname){
+        resetValueOfJSlider();
         try {
             BufferedReader reader;
             try {
@@ -677,12 +678,12 @@ public class CustomGrid {
                 String line = reader.readLine();
                 while (line != null) {
                     String[] id_value = line.split(":");
+                    //System.out.println(id_value[0] + "  " + id_value[1]);
                     setValueFromConfig(id_value[0], id_value[1]);
                     line = reader.readLine();
                 }
                 reader.close();
             } catch (IOException e) {
-
                 JOptionPane.showMessageDialog(mainPanel, "File di configurazione non corretto!", "Messaggio", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch(Exception e){
@@ -932,13 +933,23 @@ public class CustomGrid {
             comboBox1.addItem(name);
             comboBox2.addItem(name);
         } */
-
+        String s1 = "1/1";
         for(int j = 1; j < 5; j++) {
             for (int i = 0; i < 7; i++) {
                 String s = j + "/" + (int) Math.pow(2, i);
                 comboBox1.addItem(s);
-                comboBox2.addItem(s);
+                if(fromFractionToDecimal(s) > fromFractionToDecimal(s1))  comboBox2.addItem(s);
             }
         }
+    }
+
+    private void resetValueOfJSlider(){
+        slider1.setValue(0); //changeLabelValueSlider1(parentC, slider1);
+        slider2.setValue(0); //changeLabelValueSlider1(parentD, slider2);
+        slider3.setValue(0); //changeLabelValueSlider1(parentE, slider3);
+        slider4.setValue(0); //changeLabelValueSlider1(parentF, slider4);
+        slider5.setValue(0); //changeLabelValueSlider1(parentG, slider5);
+        slider6.setValue(0); //changeLabelValueSlider1(parentA, slider6);
+        slider7.setValue(0); //changeLabelValueSlider1(parentB, slider7);
     }
 }
