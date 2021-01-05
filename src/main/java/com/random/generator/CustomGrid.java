@@ -8,18 +8,17 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.*;
-import java.util.List;
 
 public class CustomGrid {
     public JPanel mainPanel;
     private JButton generaIEEE1599Button; private JButton cartellaDiDestinazioneButton;
-    private JTextField textField4;
+    private JTextField textFieldDestination;
     private JCheckBox onlyNoteCheckBox; private JCheckBox onlyRestCheckBox; private JCheckBox bothRestNoteCheckBox;
-    private JComboBox comboBox1; private JComboBox comboBox2;
+    private JComboBox comboBoxDurMin; private JComboBox comboBoxDurMax;
     private JToolBar toolbar1;
     private Parameter configuration = new Parameter();
 
-    private JSpinner spinnerLunghezzaBrano; private JSpinner spinnerNumeroStrumenti; private JSpinner spinner8; private JSpinner spinner9;
+    private JSpinner spinnerLunghezzaBrano; private JSpinner spinnerNumeroStrumenti; private JSpinner spinnerMinH; private JSpinner spinnerMaxH;
 
     private JPanel panelLunghezzaBrano; private JPanel panelNumeroStrumenti; private JPanel panelNote; private JPanel panelAltezza;
     private JPanel panelNotePause; private JPanel panelSalvataggio; private JPanel panelDurata;
@@ -40,8 +39,8 @@ public class CustomGrid {
     private JLabel label5; private JLabel label6; private JLabel label7; private JLabel label8;
     private JLabel label9; private JLabel label10; private JLabel label11; private JLabel label12; private JLabel label13;
 
-    private JSlider slider1; private JSlider slider2; private JSlider slider3; private JSlider slider4;
-    private JSlider slider5; private JSlider slider6; private JSlider slider7;
+    private JSlider sliderC; private JSlider sliderD; private JSlider sliderE; private JSlider sliderF;
+    private JSlider sliderG; private JSlider sliderA; private JSlider sliderB;
     private JLabel errorLunghezzaBrano;
     private JLabel errorNumeroStrumenti;
     private JLabel errorDurata;
@@ -54,14 +53,42 @@ public class CustomGrid {
     private JButton switchB;
     private Random r = new Random();
 
+    private final int[] flagMode = {1}; // 1 for dark blue mode, 0 for dark yellow mode
+
+
+    public CustomGrid() throws IOException {
+        BufferedImage playImg = ImageIO.read(ClassLoader.getSystemResource("play.png"));
+        ImageIcon playIcon = new ImageIcon(playImg);
+        generaIEEE1599Button.setIcon(playIcon);
+
+        setListenersToSliders();
+        initializeToolbar();
+        initializeJTextFieldDestination();
+        setClientProperty();
+        initializeSliders();
+        setSizeOfSlidersAndPanelParent();
+        setDurationComponents();
+        setListenersToDestinationFolder();
+        setListenersToSpinners();
+        setListenersToCheckBoxes();
+        setListenersToComboBoxes();
+        setListenersToGenerateIEEEButton();
+        setFontToComponent("Microsoft JhengHey");
+    }
+
+    private void initializeJTextFieldDestination(){
+        textFieldDestination.setBackground(new Color(40, 44, 52));
+        textFieldDestination.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.WHITE));
+        textFieldDestination.setEditable(false);
+    }
 
     private void setClientProperty(){
-        mainPanel.putClientProperty("slider1", slider1); mainPanel.putClientProperty("slider2", slider2); mainPanel.putClientProperty("slider3", slider3);
+        mainPanel.putClientProperty("sliderC", sliderC); mainPanel.putClientProperty("sliderD", sliderD); mainPanel.putClientProperty("sliderE", sliderE);
 
-        mainPanel.putClientProperty("slider4", slider4); mainPanel.putClientProperty("slider5", slider5); mainPanel.putClientProperty("slider6", slider6); mainPanel.putClientProperty("slider7", slider7);
-        mainPanel.putClientProperty("spinner8", spinner8); mainPanel.putClientProperty("spinner9", spinner9);
+        mainPanel.putClientProperty("sliderF", sliderF); mainPanel.putClientProperty("sliderG", sliderG); mainPanel.putClientProperty("sliderA", sliderA); mainPanel.putClientProperty("sliderB", sliderB);
+        mainPanel.putClientProperty("spinnerMinH", spinnerMinH); mainPanel.putClientProperty("spinnerMaxH", spinnerMaxH);
 
-        mainPanel.putClientProperty("comboBox1", comboBox1); mainPanel.putClientProperty("comboBox2", comboBox2);
+        mainPanel.putClientProperty("comboBoxDurMin", comboBoxDurMin); mainPanel.putClientProperty("comboBoxDurMax", comboBoxDurMax);
         mainPanel.putClientProperty("spinnerLunghezzaBrano", spinnerLunghezzaBrano);
         mainPanel.putClientProperty("spinnerNumeroStrumenti", spinnerNumeroStrumenti);
 
@@ -70,157 +97,13 @@ public class CustomGrid {
         mainPanel.putClientProperty("bothRestNoteCheckBox", bothRestNoteCheckBox);
     }
 
-    public CustomGrid() throws IOException {
-        BufferedImage playImg = ImageIO.read(ClassLoader.getSystemResource("play.png"));
-        ImageIcon playIcon = new ImageIcon(playImg);
-        generaIEEE1599Button.setIcon(playIcon);
-
-        labelAuthor.setText("Corso \"Programmazione per la musica\" - a.a. 2020-2021 - Docente: Barate' Adriano");
-        toolbar1.setFloatable(false);
-        toolbar1.setMargin(new Insets(10, 10, 5, 0));
-        textField4.setBackground(new Color(40, 44, 52));
-        JButton save = new JButton();
-
-        BufferedImage saveImg = ImageIO.read(ClassLoader.getSystemResource("disk.png"));
-        ImageIcon saveIcon = new ImageIcon(saveImg);
-        save.setIcon(saveIcon);
-
-        save.setToolTipText("Salva configurazione parametri");
-        toolbar1.add(save);
-        toolbar1.addSeparator(new Dimension(15, 10));
-
-        JButton open = new JButton();
-        open.setToolTipText("Apri configurazione parametri");
-
-        BufferedImage openImg = ImageIO.read(ClassLoader.getSystemResource("open.png"));
-        ImageIcon openIcon = new ImageIcon(openImg);
-        open.setIcon(openIcon);
-        toolbar1.add(open);
-        toolbar1.addSeparator(new Dimension(15, 10));
-
-
-        switchB = new JButton();
-        switchB.setBorder(BorderFactory.createEmptyBorder(5,10,5,50));
-        final int[] flagMode = {1}; // 1 for dark blue mode, 0 for dark yellow mode
-        switchB.setContentAreaFilled(false);
-        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_on.png"));
-        ImageIcon switchIcon = new ImageIcon(switchImg);
-        switchB.setIcon(switchIcon);
-        switchB.setToolTipText("Cambia tema");
-
-        switchB.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {}
-
-            @Override
-            public void mousePressed(MouseEvent e) {}
-
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                switchB.setContentAreaFilled(false);
-                try {
-                    if(flagMode[0] == 1) {
-                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_off.png"));
-                        ImageIcon switchIcon = new ImageIcon(switchImg);
-                        switchB.setIcon(switchIcon);
-                    }
-                    else {
-                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_on_white.png"));
-                        ImageIcon switchIcon = new ImageIcon(switchImg);
-                        switchB.setIcon(switchIcon);
-                    }
-
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-            }
-
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                switchB.setContentAreaFilled(false);
-                try {
-                    if(flagMode[0] == 1) {
-                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_on.png"));
-                        ImageIcon switchIcon = new ImageIcon(switchImg);
-                        switchB.setIcon(switchIcon);
-                    }
-                    else{
-                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_off_white.png"));
-                        ImageIcon switchIcon = new ImageIcon(switchImg);
-                        switchB.setIcon(switchIcon);
-                    }
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-            }
-        });
-
-        toolbar1.add(switchB);
-
-        switchB.addActionListener(e -> {
-            if(flagMode[0] == 1) {
-                flagMode[0] = 0;
-                darkBlueTheme();
-            }
-            else{
-                flagMode[0] = 1;
-                darkYellowTheme();
-            }
-        });
-
-        switchB.setBorder(BorderFactory.createEmptyBorder());
-        open.setBorder(BorderFactory.createEmptyBorder());
-        save.setBorder(BorderFactory.createEmptyBorder());
-        setClientProperty();
-
-        slider1.setValue(r.nextInt(20)); changeLabelValueSlider1(parentC, slider1);
-        slider2.setValue(r.nextInt(20)); changeLabelValueSlider1(parentD, slider2);
-        slider3.setValue(r.nextInt(20)); changeLabelValueSlider1(parentE, slider3);
-        slider4.setValue(r.nextInt(20)); changeLabelValueSlider1(parentF, slider4);
-        slider5.setValue(r.nextInt(20)); changeLabelValueSlider1(parentG, slider5);
-        slider6.setValue(r.nextInt(20)); changeLabelValueSlider1(parentA, slider6);
-        slider7.setValue(r.nextInt(20)); changeLabelValueSlider1(parentB, slider7);
-
-        int width = 80;
-        int height = 20;
-        int widthParent = 120;
-        int heightParent = 60;
-
-        parentC.setPreferredSize(new Dimension(widthParent, heightParent));
-        parentD.setPreferredSize(new Dimension(widthParent, heightParent));
-        parentE.setPreferredSize(new Dimension(widthParent, heightParent));
-        parentF.setPreferredSize(new Dimension(widthParent, heightParent));
-        parentG.setPreferredSize(new Dimension(widthParent, heightParent));
-        parentA.setPreferredSize(new Dimension(widthParent, heightParent));
-        parentB.setPreferredSize(new Dimension(widthParent, heightParent));
-
-        slider1.setPreferredSize(new Dimension(width, height));
-        slider2.setPreferredSize(new Dimension(width, height));
-        slider3.setPreferredSize(new Dimension(width, height));
-        slider4.setPreferredSize(new Dimension(width, height));
-        slider5.setPreferredSize(new Dimension(width, height));
-        slider6.setPreferredSize(new Dimension(width, height));
-        slider7.setPreferredSize(new Dimension(width, height));
-
-        totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
-
-        textField4.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.WHITE));
-        textField4.setEditable(false);
-
-
-        setDurationComponents();
-
-
+    private void setListenersToDestinationFolder(){
         cartellaDiDestinazioneButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                errorDestinazione.setText(""); errorDestinazione.setIcon(null); textField4.setText("");
-                if(flagMode[0] == 1) textField4.setForeground(Color.BLACK);
-                else textField4.setForeground(Color.WHITE);
+                errorDestinazione.setText(""); errorDestinazione.setIcon(null); textFieldDestination.setText("");
+                if(flagMode[0] == 1) textFieldDestination.setForeground(Color.BLACK);
+                else textFieldDestination.setForeground(Color.WHITE);
                 JFileChooser fs = new JFileChooser(new File(System.getProperty("user.home")));
                 UIManager.put("text", Color.BLACK);
                 fs.setFileFilter(new FolderFilter());
@@ -229,259 +112,14 @@ public class CustomGrid {
                 fs.showSaveDialog(mainPanel);
                 File fi = fs.getSelectedFile();
                 if (fi != null) {
-                    textField4.setText(fi.getPath());
+                    textFieldDestination.setText(fi.getPath());
                     System.out.println(fi.getPath());
                 }
             }
         });
+    }
 
-        comboBox1.addItemListener(e -> {
-            comboBox2.removeAllItems();
-            for(int j = 1; j < 5; j++){
-                for(int i = 0; i < 8; i++) {
-                    String s = j + "/" + (int) Math.pow(2, i);
-                    String s1 = (String) comboBox1.getSelectedItem();
-                    //comboBox1.addItem(s);
-                    if (fromFractionToDecimal(s) > fromFractionToDecimal(s1)) {
-                        comboBox2.addItem(s);
-                    }
-                }
-            }
-        });
-
-
-        open.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) { }
-
-            @Override
-            public void mousePressed(MouseEvent e) { }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                open.setContentAreaFilled(false);
-                try {
-                    BufferedImage openImg = ImageIO.read(ClassLoader.getSystemResource("dark_open.png"));
-                    ImageIcon openIcon = new ImageIcon(openImg);
-                    open.setIcon(openIcon);
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                try {
-                    BufferedImage openImg = ImageIO.read(ClassLoader.getSystemResource("open.png"));
-                    ImageIcon openIcon = new ImageIcon(openImg);
-                    open.setIcon(openIcon);
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-            }
-        });
-
-
-        open.addActionListener(e -> {
-            JFileChooser fs = new JFileChooser(new File(System.getProperty("user.home")));
-            UIManager.put("text", Color.BLACK);
-            fs.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-            fs.setDialogTitle("Seleziona file di configurazione");
-            fs.showOpenDialog(mainPanel);
-            File fi = fs.getSelectedFile();
-            if (fi != null) {
-                setParametersFromFileConfiguration(fi.getPath());
-            }
-        });
-
-       save.addMouseListener(new MouseListener() {
-           @Override
-           public void mouseClicked(MouseEvent e) {}
-
-           @Override
-           public void mousePressed(MouseEvent e) { }
-
-           @Override
-           public void mouseReleased(MouseEvent e) { }
-
-           @Override
-           public void mouseEntered(MouseEvent e) {
-               try {
-                   BufferedImage saveImg = ImageIO.read(ClassLoader.getSystemResource("dark_disk.png"));
-                   ImageIcon saveIcon = new ImageIcon(saveImg);
-                   save.setIcon(saveIcon);
-               } catch (IOException ioException) {
-                   ioException.printStackTrace();
-               }
-           }
-
-           @Override
-           public void mouseExited(MouseEvent e) {
-               try {
-                   BufferedImage saveImg = ImageIO.read(ClassLoader.getSystemResource("disk.png"));
-                   ImageIcon saveIcon = new ImageIcon(saveImg);
-                   save.setIcon(saveIcon);
-               } catch (IOException ioException) {
-                   ioException.printStackTrace();
-               }
-           }
-       });
-
-        save.addActionListener(e -> {
-            JFrame parentFrame = new JFrame();
-            UIManager.put("text", Color.BLACK);
-            JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.home")));
-            fileChooser.setDialogTitle("Specifica dove salvare il file di configurazione");
-
-            int userSelection = fileChooser.showSaveDialog(parentFrame);
-
-            if (userSelection == JFileChooser.APPROVE_OPTION) {
-                File fileToSave = fileChooser.getSelectedFile();
-
-                File params = new File(fileToSave.getAbsolutePath());
-                FileWriter myWriter;
-                try {
-                    myWriter = new FileWriter(fileToSave.getAbsolutePath());
-                    String p1 = "slider1:" + slider1.getValue();
-                    String p2 = "slider2:" + slider2.getValue();
-                    String p3 = "slider3:" + slider3.getValue();
-                    String p4 = "slider4:" + slider4.getValue();
-                    String p5 = "slider5:" + slider5.getValue();
-                    String p6 = "slider6:" + slider6.getValue();
-                    String p7 = "slider7:" + slider7.getValue();
-                    String p8 = "spinnerLunghezzaBrano:" + spinnerLunghezzaBrano.getValue() + "\n";
-                    String p9 = "spinnerNumeroStrumenti:" + spinnerNumeroStrumenti.getValue() + "\n";
-                    String p10 = "comboBox1:" + comboBox1.getSelectedItem() + "\n";
-                    String p11 = "comboBox2:" + comboBox2.getSelectedItem() + "\n";
-                    String p12 = "spinner8:" + spinner8.getValue() + "\n";
-                    String p13 = "spinner9:" + spinner9.getValue() + "\n";
-                    String p14 = "onlyNoteCheckBox:" + onlyNoteCheckBox.isSelected() + "\n";
-                    String p15 = "onlyRestCheckBox:" + onlyRestCheckBox.isSelected() + "\n";
-                    String p16 = "bothRestNoteCheckBox:" + bothRestNoteCheckBox.isSelected();
-
-                    String[] ps = {p1 + "\n", p2 + "\n", p3 + "\n", p4 + "\n", p5 + "\n", p6 + "\n", p7 + "\n", p8, p9, p10, p11, p12, p13, p14, p15, p16};
-
-                    for (String p : ps) {
-                        myWriter.write(p);
-                    }
-                    myWriter.close();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-
-                System.out.println("Save as file: " + fileToSave.getAbsolutePath());
-                JOptionPane.showMessageDialog(mainPanel, "Configurazione salvata correttamente!", "Messaggio", JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
-
-
-        onlyNoteCheckBox.addActionListener(e -> {
-            onlyRestCheckBox.setSelected(false);
-            bothRestNoteCheckBox.setSelected(false);
-        });
-
-        onlyRestCheckBox.addActionListener(e -> {
-            onlyNoteCheckBox.setSelected(false);
-            bothRestNoteCheckBox.setSelected(false);
-        });
-
-        bothRestNoteCheckBox.addActionListener(e -> {
-            onlyRestCheckBox.setSelected(false);
-            onlyNoteCheckBox.setSelected(false);
-        });
-
-
-        slider1.addChangeListener(e -> {
-            changeLabelValueSlider1(parentC, slider1);
-            jSliderStateChanged(flagMode[0], slider2, slider3, slider4, slider5, slider6, slider7);
-            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
-        });
-
-        slider2.addChangeListener(e -> {
-            changeLabelValueSlider1(parentD, slider2);
-            jSliderStateChanged(flagMode[0], slider1, slider3, slider4, slider5, slider6, slider7);
-            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
-        });
-
-        slider3.addChangeListener(e -> {
-            changeLabelValueSlider1(parentE, slider3);
-            jSliderStateChanged(flagMode[0], slider2, slider1, slider4, slider5, slider6, slider7);
-            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
-        });
-
-        slider4.addChangeListener(e -> {
-            changeLabelValueSlider1(parentF, slider4);
-            jSliderStateChanged(flagMode[0], slider2, slider3, slider1, slider5, slider6, slider7);
-            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
-        });
-
-        slider5.addChangeListener(e -> {
-            changeLabelValueSlider1(parentG, slider5);
-            jSliderStateChanged(flagMode[0], slider2, slider3, slider4, slider1, slider6, slider7);
-            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
-        });
-
-        slider6.addChangeListener(e -> {
-            changeLabelValueSlider1(parentA, slider6);
-            jSliderStateChanged(flagMode[0], slider2, slider3, slider4, slider5, slider1, slider7);
-            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
-        });
-
-        slider7.addChangeListener(e -> {
-            changeLabelValueSlider1(parentB, slider7);
-            jSliderStateChanged(flagMode[0], slider2, slider3, slider4, slider5, slider6, slider1);
-            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
-        });
-
-        spinnerLunghezzaBrano.addChangeListener(e -> {
-            //errorLunghezzaBrano.setText("");
-            errorLunghezzaBrano.setIcon(null);
-        });
-
-        spinnerNumeroStrumenti.addChangeListener(e ->{
-            //errorNumeroStrumenti.setText("");
-            errorNumeroStrumenti.setIcon(null);
-        });
-
-        spinner8.addChangeListener(e -> {
-            //errorAltezza.setText("");
-            errorAltezza.setIcon(null);
-        });
-
-        spinner9.addChangeListener(e -> {
-            //errorAltezza.setText("");
-            errorAltezza.setIcon(null);
-        });
-
-        comboBox1.addActionListener(e -> {
-            //errorDurata.setText("");
-            errorDurata.setIcon(null);
-        });
-
-        comboBox2.addActionListener(e -> {
-            //errorDurata.setText("");
-            errorDurata.setIcon(null);
-        });
-
-        onlyRestCheckBox.addActionListener(e -> {
-            //errorNotePause.setText("");
-            errorNotePause.setIcon(null);
-        });
-
-        onlyNoteCheckBox.addActionListener(e -> {
-            //errorNotePause.setText("");
-            errorNotePause.setIcon(null);
-        });
-
-        bothRestNoteCheckBox.addActionListener(e -> {
-            //errorNotePause.setText("");
-            errorNotePause.setIcon(null);
-        });
-
-
+    private void setListenersToGenerateIEEEButton(){
         generaIEEE1599Button.addActionListener(e -> {
             if (checkValidityOfInput()) {
 
@@ -489,21 +127,21 @@ public class CustomGrid {
                 configuration.setNumber_struments((int) spinnerNumeroStrumenti.getValue());
 
                 TreeMap<String, Integer> notes_freq = new TreeMap<>();
-                notes_freq.put("C", slider1.getValue());
-                notes_freq.put("D", slider2.getValue());
-                notes_freq.put("E", slider3.getValue());
-                notes_freq.put("F", slider4.getValue());
-                notes_freq.put("G", slider5.getValue());
-                notes_freq.put("A", slider6.getValue());
-                notes_freq.put("B", slider7.getValue());
+                notes_freq.put("C", sliderC.getValue());
+                notes_freq.put("D", sliderD.getValue());
+                notes_freq.put("E", sliderE.getValue());
+                notes_freq.put("F", sliderF.getValue());
+                notes_freq.put("G", sliderG.getValue());
+                notes_freq.put("A", sliderA.getValue());
+                notes_freq.put("B", sliderB.getValue());
                 configuration.setNotes(notes_freq);
 
-                configuration.setMin_duration(String.valueOf(comboBox1.getSelectedItem()));
-                configuration.setMax_duration(String.valueOf(comboBox2.getSelectedItem()));
-                configuration.setMin_height((int) spinner8.getValue());
-                configuration.setMax_height((int) spinner9.getValue());
+                configuration.setMin_duration(String.valueOf(comboBoxDurMin.getSelectedItem()));
+                configuration.setMax_duration(String.valueOf(comboBoxDurMax.getSelectedItem()));
+                configuration.setMin_height((int) spinnerMinH.getValue());
+                configuration.setMax_height((int) spinnerMaxH.getValue());
 
-                configuration.setPath(textField4.getText());
+                configuration.setPath(textFieldDestination.getText());
 
                 configuration.setOnlyRest(onlyRestCheckBox.isSelected());
                 configuration.setOnlyNote(onlyNoteCheckBox.isSelected());
@@ -518,8 +156,145 @@ public class CustomGrid {
             }
         });
 
-        setFontToComponent("Microsoft JhengHey");
+    }
 
+    private void setListenersToComboBoxes(){
+        comboBoxDurMin.addActionListener(e -> {
+            errorDurata.setIcon(null);
+        });
+
+        comboBoxDurMax.addActionListener(e -> {
+            errorDurata.setIcon(null);
+        });
+
+        comboBoxDurMin.addItemListener(e -> {
+            comboBoxDurMax.removeAllItems();
+            for(int j = 1; j < 5; j++){
+                for(int i = 0; i < 8; i++) {
+                    String s = j + "/" + (int) Math.pow(2, i);
+                    String s1 = (String) comboBoxDurMin.getSelectedItem();
+                    //comboBoxDurMin.addItem(s);
+                    if (fromFractionToDecimal(s) > fromFractionToDecimal(s1)) {
+                        comboBoxDurMax.addItem(s);
+                    }
+                }
+            }
+        });
+    }
+
+    private void setListenersToCheckBoxes(){
+        onlyNoteCheckBox.addActionListener(e -> {
+            onlyRestCheckBox.setSelected(false);
+            bothRestNoteCheckBox.setSelected(false);
+            errorNotePause.setIcon(null);
+        });
+
+        onlyRestCheckBox.addActionListener(e -> {
+            onlyNoteCheckBox.setSelected(false);
+            bothRestNoteCheckBox.setSelected(false);
+            errorNotePause.setIcon(null);
+        });
+
+        bothRestNoteCheckBox.addActionListener(e -> {
+            onlyRestCheckBox.setSelected(false);
+            onlyNoteCheckBox.setSelected(false);
+            errorNotePause.setIcon(null);
+        });
+    }
+
+    private void setListenersToSpinners(){
+        spinnerLunghezzaBrano.addChangeListener(e -> {
+            errorLunghezzaBrano.setIcon(null);
+        });
+
+        spinnerNumeroStrumenti.addChangeListener(e ->{
+            errorNumeroStrumenti.setIcon(null);
+        });
+
+        spinnerMinH.addChangeListener(e -> {
+            errorAltezza.setIcon(null);
+        });
+
+        spinnerMaxH.addChangeListener(e -> {
+            errorAltezza.setIcon(null);
+        });
+    }
+
+    private void setListenersToSliders(){
+        sliderC.addChangeListener(e -> {
+            changeLabelValueSlider(parentC, sliderC);
+            jSliderStateChanged(flagMode[0], sliderD, sliderE, sliderF, sliderG, sliderA, sliderB);
+            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+        });
+
+        sliderD.addChangeListener(e -> {
+            changeLabelValueSlider(parentD, sliderD);
+            jSliderStateChanged(flagMode[0], sliderC, sliderE, sliderF, sliderG, sliderA, sliderB);
+            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+        });
+
+        sliderE.addChangeListener(e -> {
+            changeLabelValueSlider(parentE, sliderE);
+            jSliderStateChanged(flagMode[0], sliderD, sliderC, sliderF, sliderG, sliderA, sliderB);
+            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+        });
+
+        sliderF.addChangeListener(e -> {
+            changeLabelValueSlider(parentF, sliderF);
+            jSliderStateChanged(flagMode[0], sliderD, sliderE, sliderC, sliderG, sliderA, sliderB);
+            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+        });
+
+        sliderG.addChangeListener(e -> {
+            changeLabelValueSlider(parentG, sliderG);
+            jSliderStateChanged(flagMode[0], sliderD, sliderE, sliderF, sliderC, sliderA, sliderB);
+            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+        });
+
+        sliderA.addChangeListener(e -> {
+            changeLabelValueSlider(parentA, sliderA);
+            jSliderStateChanged(flagMode[0], sliderD, sliderE, sliderF, sliderG, sliderC, sliderB);
+            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+        });
+
+        sliderB.addChangeListener(e -> {
+            changeLabelValueSlider(parentB, sliderB);
+            jSliderStateChanged(flagMode[0], sliderD, sliderE, sliderF, sliderG, sliderA, sliderC);
+            totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
+        });
+    }
+
+    private void setSizeOfSlidersAndPanelParent(){
+        int width = 80;
+        int height = 20;
+        int widthParent = 120;
+        int heightParent = 60;
+
+        parentC.setPreferredSize(new Dimension(widthParent, heightParent));
+        parentD.setPreferredSize(new Dimension(widthParent, heightParent));
+        parentE.setPreferredSize(new Dimension(widthParent, heightParent));
+        parentF.setPreferredSize(new Dimension(widthParent, heightParent));
+        parentG.setPreferredSize(new Dimension(widthParent, heightParent));
+        parentA.setPreferredSize(new Dimension(widthParent, heightParent));
+        parentB.setPreferredSize(new Dimension(widthParent, heightParent));
+
+        sliderC.setPreferredSize(new Dimension(width, height));
+        sliderD.setPreferredSize(new Dimension(width, height));
+        sliderE.setPreferredSize(new Dimension(width, height));
+        sliderF.setPreferredSize(new Dimension(width, height));
+        sliderG.setPreferredSize(new Dimension(width, height));
+        sliderA.setPreferredSize(new Dimension(width, height));
+        sliderB.setPreferredSize(new Dimension(width, height));
+    }
+
+    private void initializeSliders(){
+        sliderC.setValue(r.nextInt(20)); changeLabelValueSlider(parentC, sliderC);
+        sliderD.setValue(r.nextInt(20)); changeLabelValueSlider(parentD, sliderD);
+        sliderE.setValue(r.nextInt(20)); changeLabelValueSlider(parentE, sliderE);
+        sliderF.setValue(r.nextInt(20)); changeLabelValueSlider(parentF, sliderF);
+        sliderG.setValue(r.nextInt(20)); changeLabelValueSlider(parentG, sliderG);
+        sliderA.setValue(r.nextInt(20)); changeLabelValueSlider(parentA, sliderA);
+        sliderB.setValue(r.nextInt(20)); changeLabelValueSlider(parentB, sliderB);
     }
 
     private void setFontToComponent(String fontName){
@@ -528,12 +303,12 @@ public class CustomGrid {
 
         spinnerLunghezzaBrano.setFont(f1);
         spinnerNumeroStrumenti.setFont(f1);
-        spinner8.setFont(f1);
-        spinner9.setFont(f1);
+        spinnerMinH.setFont(f1);
+        spinnerMaxH.setFont(f1);
 
         Font f2 = new Font(fontName, Font.PLAIN, size1 - 1);
-        comboBox1.setFont(f2);
-        comboBox2.setFont(f2);
+        comboBoxDurMin.setFont(f2);
+        comboBoxDurMax.setFont(f2);
 
         totalPercentage.setFont(new Font(fontName, Font.PLAIN, 18));
 
@@ -564,7 +339,7 @@ public class CustomGrid {
 
     }
 
-    private void changeLabelValueSlider1(JPanel p, JSlider s){
+    private void changeLabelValueSlider(JPanel p, JSlider s){
         Color c = ((TitledBorder) p.getBorder()).getTitleColor();
         p.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), s.getValue() + "%", TitledBorder.CENTER, TitledBorder.CENTER));
         ((TitledBorder) p.getBorder()).setTitleColor(c);
@@ -588,8 +363,8 @@ public class CustomGrid {
         ImageIcon errorIcon = new ImageIcon(errorImg);
 
         try {
-            String minDuration = (String) comboBox1.getSelectedItem();
-            String maxDuration = (String) comboBox2.getSelectedItem();
+            String minDuration = (String) comboBoxDurMin.getSelectedItem();
+            String maxDuration = (String) comboBoxDurMax.getSelectedItem();
 
             String[] array1 = minDuration.split("/");
             String[] array2 = maxDuration.split("/");
@@ -610,11 +385,11 @@ public class CustomGrid {
             boolean checkToSumOfPitchSlider = getSumOfPitchSpinners() == 100;
             boolean checkToLunghezzaBrano = ((int) spinnerLunghezzaBrano.getValue() > 0);
             boolean checkToNumeroStrumenti = ((int) spinnerNumeroStrumenti.getValue() > 0);
-            boolean checkToMinAltezza = ((int) spinner8.getValue() > 0);
-            boolean checkToMinMaxAltezza = ((int) spinner9.getValue() > (int) spinner8.getValue());
+            boolean checkToMinAltezza = ((int) spinnerMinH.getValue() > 0);
+            boolean checkToMinMaxAltezza = ((int) spinnerMaxH.getValue() > (int) spinnerMinH.getValue());
             boolean checkToCheckBoxes = (onlyNoteCheckBox.isSelected() || onlyRestCheckBox.isSelected() || bothRestNoteCheckBox.isSelected());
-            boolean checkToMinMaxDurata = (fromFractionToDecimal((String) comboBox1.getSelectedItem()) < fromFractionToDecimal((String) comboBox2.getSelectedItem()));
-            boolean checkToDestinazioneSpecificata = !textField4.getText().equals("");
+            boolean checkToMinMaxDurata = (fromFractionToDecimal((String) comboBoxDurMin.getSelectedItem()) < fromFractionToDecimal((String) comboBoxDurMax.getSelectedItem()));
+            boolean checkToDestinazioneSpecificata = !textFieldDestination.getText().equals("");
 
 
             if(!checkToLunghezzaBrano){
@@ -648,8 +423,8 @@ public class CustomGrid {
             }
 
             if(!checkToDestinazioneSpecificata){
-                //textField4.setText(" Specificare la destinazione");
-                //textField4.setForeground(new Color(191, 0, 40));
+                //textFieldDestination.setText(" Specificare la destinazione");
+                //textFieldDestination.setForeground(new Color(191, 0, 40));
                 errorDestinazione.setIcon(errorIcon);
                 errorDestinazione.setToolTipText("Specificare la destinazione");
             }
@@ -679,7 +454,7 @@ public class CustomGrid {
                 while (line != null) {
                     String[] id_value = line.split(":");
                     //System.out.println(id_value[0] + "  " + id_value[1]);
-                    setValueFromConfig(id_value[0], id_value[1]);
+                    if(!setValueFromConfig(id_value[0], id_value[1])) break;
                     line = reader.readLine();
                 }
                 reader.close();
@@ -691,7 +466,7 @@ public class CustomGrid {
         }
     }
 
-    private void setValueFromConfig(String id, String value) {
+    private boolean setValueFromConfig(String id, String value) {
         try {
             value = value.trim();
             String type = mainPanel.getClientProperty(id).getClass().getName();
@@ -709,14 +484,16 @@ public class CustomGrid {
                 if (value.equals("true")) ((JCheckBox) component).setSelected(true);
                 else ((JCheckBox) component).setSelected(false);
             }
+            return true;
         } catch(Exception e){
             JOptionPane.showMessageDialog(mainPanel, "File di configurazione non corretto!", "Messaggio", JOptionPane.INFORMATION_MESSAGE);
+            return false;
         }
     }
 
     private int getSumOfPitchSpinners(){
-        return (slider1.getValue()) + (slider2.getValue()) + (slider3.getValue()) + (slider4.getValue()) +
-        (slider5.getValue()) + (slider6.getValue()) + (slider7.getValue());
+        return (sliderC.getValue()) + (sliderD.getValue()) + (sliderE.getValue()) + (sliderF.getValue()) +
+        (sliderG.getValue()) + (sliderA.getValue()) + (sliderB.getValue());
     }
 
     public void setColorOfLabel(Color c){
@@ -783,9 +560,9 @@ public class CustomGrid {
 
         panelSalvataggio.setBackground(background);
         panelButton.setBackground(background);
-        textField4.setBackground(background);
-        textField4.setForeground(Color.white);
-        textField4.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.WHITE));
+        textFieldDestination.setBackground(background);
+        textFieldDestination.setForeground(Color.white);
+        textFieldDestination.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.WHITE));
         cartellaDiDestinazioneButton.setBackground(c);
         generaIEEE1599Button.setBackground(c);
         cartellaDiDestinazioneButton.setForeground(Color.WHITE);
@@ -799,7 +576,7 @@ public class CustomGrid {
          }
 
          /*if(errorDestinazione.getIcon() != null){
-             textField4.setForeground(new Color(191, 0, 40));
+             textFieldDestination.setForeground(new Color(191, 0, 40));
          }*/
     }
 
@@ -835,9 +612,9 @@ public class CustomGrid {
 
         panelSalvataggio.setBackground(Color.white);
         panelButton.setBackground(Color.white);
-        textField4.setBackground(Color.white);
-        textField4.setForeground(Color.black);
-        textField4.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
+        textFieldDestination.setBackground(Color.white);
+        textFieldDestination.setForeground(Color.black);
+        textFieldDestination.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 
         cartellaDiDestinazioneButton.setBackground(Color.LIGHT_GRAY);
         generaIEEE1599Button.setBackground(Color.LIGHT_GRAY);
@@ -851,7 +628,7 @@ public class CustomGrid {
 
         /*panelSalvataggio.setBackground(c);
         panelButton.setBackground(c);
-        textField4.setBackground(c);*/
+        textFieldDestination.setBackground(c);*/
 
         authorPanel.setBackground(new Color(243, 240, 240));
         //labelAuthor.setText("");
@@ -860,7 +637,7 @@ public class CustomGrid {
 
 
         /*if(errorDestinazione.getIcon() != null){
-            textField4.setForeground(new Color(191, 0, 40));
+            textFieldDestination.setForeground(new Color(191, 0, 40));
         }*/
     }
 
@@ -930,26 +707,264 @@ public class CustomGrid {
         }
         durationValue = sortByValue(durationValue);
         for (String name: durationValue.keySet()){
-            comboBox1.addItem(name);
-            comboBox2.addItem(name);
+            comboBoxDurMin.addItem(name);
+            comboBoxDurMax.addItem(name);
         } */
         String s1 = "1/1";
         for(int j = 1; j < 5; j++) {
             for (int i = 0; i < 8; i++) {
                 String s = j + "/" + (int) Math.pow(2, i);
-                comboBox1.addItem(s);
-                if(fromFractionToDecimal(s) > fromFractionToDecimal(s1))  comboBox2.addItem(s);
+                comboBoxDurMin.addItem(s);
+                if(fromFractionToDecimal(s) > fromFractionToDecimal(s1))  comboBoxDurMax.addItem(s);
             }
         }
     }
 
     private void resetValueOfJSlider(){
-        slider1.setValue(0); //changeLabelValueSlider1(parentC, slider1);
-        slider2.setValue(0); //changeLabelValueSlider1(parentD, slider2);
-        slider3.setValue(0); //changeLabelValueSlider1(parentE, slider3);
-        slider4.setValue(0); //changeLabelValueSlider1(parentF, slider4);
-        slider5.setValue(0); //changeLabelValueSlider1(parentG, slider5);
-        slider6.setValue(0); //changeLabelValueSlider1(parentA, slider6);
-        slider7.setValue(0); //changeLabelValueSlider1(parentB, slider7);
+        sliderC.setValue(0); //changeLabelValueSlider(parentC, sliderC);
+        sliderD.setValue(0); //changeLabelValueSlider(parentD, sliderD);
+        sliderE.setValue(0); //changeLabelValueSlider(parentE, sliderE);
+        sliderF.setValue(0); //changeLabelValueSlider(parentF, sliderF);
+        sliderG.setValue(0); //changeLabelValueSlider(parentG, sliderG);
+        sliderA.setValue(0); //changeLabelValueSlider(parentA, sliderA);
+        sliderB.setValue(0); //changeLabelValueSlider(parentB, sliderB);
+    }
+
+
+    private void initializeToolbar() throws IOException {
+        toolbar1.setFloatable(false);
+        toolbar1.setMargin(new Insets(10, 10, 5, 0));
+
+        JButton save = new JButton();
+        BufferedImage saveImg = ImageIO.read(ClassLoader.getSystemResource("disk.png"));
+        ImageIcon saveIcon = new ImageIcon(saveImg);
+        save.setIcon(saveIcon);
+
+        save.setToolTipText("Salva configurazione parametri");
+        toolbar1.add(save);
+        toolbar1.addSeparator(new Dimension(15, 10));
+
+        JButton open = new JButton();
+        open.setToolTipText("Apri configurazione parametri");
+
+        BufferedImage openImg = ImageIO.read(ClassLoader.getSystemResource("open.png"));
+        ImageIcon openIcon = new ImageIcon(openImg);
+        open.setIcon(openIcon);
+        toolbar1.add(open);
+        toolbar1.addSeparator(new Dimension(15, 10));
+
+        switchB = new JButton();
+        switchB.setBorder(BorderFactory.createEmptyBorder(5,10,5,50));
+        switchB.setContentAreaFilled(false);
+
+        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_on.png"));
+        ImageIcon switchIcon = new ImageIcon(switchImg);
+        switchB.setIcon(switchIcon);
+        switchB.setToolTipText("Cambia tema");
+
+        toolbar1.add(switchB);
+
+        switchB.setBorder(BorderFactory.createEmptyBorder());
+        open.setBorder(BorderFactory.createEmptyBorder());
+        save.setBorder(BorderFactory.createEmptyBorder());
+
+        addListenersToSwitchButton(switchB);
+        addListenersToOpenButton(open);
+        addListenersToSaveButton(save);
+
+    }
+
+    private void addListenersToSaveButton(JButton save){
+        save.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {}
+
+            @Override
+            public void mousePressed(MouseEvent e) { }
+
+            @Override
+            public void mouseReleased(MouseEvent e) { }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                try {
+                    BufferedImage saveImg = ImageIO.read(ClassLoader.getSystemResource("dark_disk.png"));
+                    ImageIcon saveIcon = new ImageIcon(saveImg);
+                    save.setIcon(saveIcon);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                try {
+                    BufferedImage saveImg = ImageIO.read(ClassLoader.getSystemResource("disk.png"));
+                    ImageIcon saveIcon = new ImageIcon(saveImg);
+                    save.setIcon(saveIcon);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+        });
+
+        save.addActionListener(e -> {
+            JFrame parentFrame = new JFrame();
+            UIManager.put("text", Color.BLACK);
+            JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.home")));
+            fileChooser.setDialogTitle("Specifica dove salvare il file di configurazione");
+
+            int userSelection = fileChooser.showSaveDialog(parentFrame);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                File fileToSave = fileChooser.getSelectedFile();
+
+                File params = new File(fileToSave.getAbsolutePath());
+                FileWriter myWriter;
+                try {
+                    myWriter = new FileWriter(fileToSave.getAbsolutePath());
+                    String p1 = "sliderC:" + sliderC.getValue();
+                    String p2 = "sliderD:" + sliderD.getValue();
+                    String p3 = "sliderE:" + sliderE.getValue();
+                    String p4 = "sliderF:" + sliderF.getValue();
+                    String p5 = "sliderG:" + sliderG.getValue();
+                    String p6 = "sliderA:" + sliderA.getValue();
+                    String p7 = "sliderB:" + sliderB.getValue();
+                    String p8 = "spinnerLunghezzaBrano:" + spinnerLunghezzaBrano.getValue() + "\n";
+                    String p9 = "spinnerNumeroStrumenti:" + spinnerNumeroStrumenti.getValue() + "\n";
+                    String p10 = "comboBoxDurMin:" + comboBoxDurMin.getSelectedItem() + "\n";
+                    String p11 = "comboBoxDurMax:" + comboBoxDurMax.getSelectedItem() + "\n";
+                    String p12 = "spinnerMinH:" + spinnerMinH.getValue() + "\n";
+                    String p13 = "spinnerMaxH:" + spinnerMaxH.getValue() + "\n";
+                    String p14 = "onlyNoteCheckBox:" + onlyNoteCheckBox.isSelected() + "\n";
+                    String p15 = "onlyRestCheckBox:" + onlyRestCheckBox.isSelected() + "\n";
+                    String p16 = "bothRestNoteCheckBox:" + bothRestNoteCheckBox.isSelected();
+
+                    String[] ps = {p1 + "\n", p2 + "\n", p3 + "\n", p4 + "\n", p5 + "\n", p6 + "\n", p7 + "\n", p8, p9, p10, p11, p12, p13, p14, p15, p16};
+
+                    for (String p : ps) {
+                        myWriter.write(p);
+                    }
+                    myWriter.close();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+
+                System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+                JOptionPane.showMessageDialog(mainPanel, "Configurazione salvata correttamente!", "Messaggio", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+    }
+
+    private void addListenersToOpenButton(JButton open){
+        open.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) { }
+
+            @Override
+            public void mousePressed(MouseEvent e) { }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                open.setContentAreaFilled(false);
+                try {
+                    BufferedImage openImg = ImageIO.read(ClassLoader.getSystemResource("dark_open.png"));
+                    ImageIcon openIcon = new ImageIcon(openImg);
+                    open.setIcon(openIcon);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                try {
+                    BufferedImage openImg = ImageIO.read(ClassLoader.getSystemResource("open.png"));
+                    ImageIcon openIcon = new ImageIcon(openImg);
+                    open.setIcon(openIcon);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+        });
+
+        open.addActionListener(e -> {
+            JFileChooser fs = new JFileChooser(new File(System.getProperty("user.home")));
+            UIManager.put("text", Color.BLACK);
+            fs.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            fs.setDialogTitle("Seleziona file di configurazione");
+            fs.showOpenDialog(mainPanel);
+            File fi = fs.getSelectedFile();
+            if (fi != null) {
+                setParametersFromFileConfiguration(fi.getPath());
+            }
+        });
+    }
+
+
+    private void addListenersToSwitchButton(JButton switchB){
+        switchB.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {}
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                switchB.setContentAreaFilled(false);
+                try {
+                    if(flagMode[0] == 1) {
+                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_off.png"));
+                        ImageIcon switchIcon = new ImageIcon(switchImg);
+                        switchB.setIcon(switchIcon);
+                    }
+                    else {
+                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_on_white.png"));
+                        ImageIcon switchIcon = new ImageIcon(switchImg);
+                        switchB.setIcon(switchIcon);
+                    }
+
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                switchB.setContentAreaFilled(false);
+                try {
+                    if(flagMode[0] == 1) {
+                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_on.png"));
+                        ImageIcon switchIcon = new ImageIcon(switchImg);
+                        switchB.setIcon(switchIcon);
+                    }
+                    else{
+                        BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_off_white.png"));
+                        ImageIcon switchIcon = new ImageIcon(switchImg);
+                        switchB.setIcon(switchIcon);
+                    }
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+        });
+
+        switchB.addActionListener(e -> {
+            if(flagMode[0] == 1) {
+                flagMode[0] = 0;
+                darkBlueTheme();
+            }
+            else{
+                flagMode[0] = 1;
+                darkYellowTheme();
+            }
+        });
     }
 }
