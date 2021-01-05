@@ -16,5 +16,4 @@ public class SplashScreen {
         imageBackground.add(picLabel);
     }
 
-
 }

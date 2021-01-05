@@ -144,20 +144,6 @@ public class Parameter {
         this.max_duration = max_duration;
     }
 
-    /*public String[] generate_duration(){
-        String[] min_duration_split = min_duration.split("/");
-        int min_num = Integer.parseInt(min_duration_split[0]);
-        int min_den = Integer.parseInt(min_duration_split[1]);
-        double min = (Math.round((((float)min_num)/min_den) * 10) / 10.0);
-
-        String[] max_duration_split = max_duration.split("/");
-        int max_num = Integer.parseInt(max_duration_split[0]);
-        int max_den = Integer.parseInt(max_duration_split[1]);
-        double max = (Math.round((((float)max_num)/max_den) * 10) / 10.0);
-
-        Random r = new Random();
-        return convertDecimalToFraction(min + (Math.round(r.nextFloat() * 10) / 10.0) * (max - min)).split("/");
-    }*/
 
     public String[] generate_duration(){
         ArrayList<String> validDuration = new ArrayList<>();

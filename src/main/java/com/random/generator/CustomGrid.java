@@ -32,29 +32,24 @@ public class CustomGrid {
     private JPanel parentAltezzaMassima; private JPanel parentSoloNote; private JPanel parentSoloPause; private JPanel parentEntrambe;
     private JPanel panelButton; private JPanel authorPanel;
 
-    private JLabel labelDestinazione;
-
-    private JLabel labelAuthor;
+    private JLabel labelDestinazione; private JLabel labelAuthor;
     private JLabel label1; private JLabel label2; private JLabel label3; private JLabel label4;
     private JLabel label5; private JLabel label6; private JLabel label7; private JLabel label8;
     private JLabel label9; private JLabel label10; private JLabel label11; private JLabel label12; private JLabel label13;
 
     private JSlider sliderC; private JSlider sliderD; private JSlider sliderE; private JSlider sliderF;
     private JSlider sliderG; private JSlider sliderA; private JSlider sliderB;
-    private JLabel errorLunghezzaBrano;
-    private JLabel errorNumeroStrumenti;
-    private JLabel errorDurata;
-    private JLabel errorNotePause;
-    private JLabel errorAltezza;
-    private JLabel errorDestinazione;
-    private JPanel afterToolbarPanel;
-    private JPanel afterNotePausePanel;
+
+    private JLabel errorLunghezzaBrano; private JLabel errorNumeroStrumenti;
+    private JLabel errorDurata; private JLabel errorNotePause;
+    private JLabel errorAltezza; private JLabel errorDestinazione;
+
+    private JPanel afterToolbarPanel; private JPanel afterNotePausePanel;
 
     private JButton switchB;
     private Random r = new Random();
 
-    private final int[] flagMode = {1}; // 1 for dark blue mode, 0 for dark yellow mode
-
+    private boolean flagTheme = true; // true for dark mode, false for light mode
 
     public CustomGrid() throws IOException {
         BufferedImage playImg = ImageIO.read(ClassLoader.getSystemResource("play.png"));
@@ -102,7 +97,7 @@ public class CustomGrid {
             @Override
             public void actionPerformed(ActionEvent e) {
                 errorDestinazione.setText(""); errorDestinazione.setIcon(null); textFieldDestination.setText("");
-                if(flagMode[0] == 1) textFieldDestination.setForeground(Color.BLACK);
+                if(flagTheme) textFieldDestination.setForeground(Color.BLACK);
                 else textFieldDestination.setForeground(Color.WHITE);
                 JFileChooser fs = new JFileChooser(new File(System.getProperty("user.home")));
                 UIManager.put("text", Color.BLACK);
@@ -223,43 +218,43 @@ public class CustomGrid {
     private void setListenersToSliders(){
         sliderC.addChangeListener(e -> {
             changeLabelValueSlider(parentC, sliderC);
-            jSliderStateChanged(flagMode[0], sliderD, sliderE, sliderF, sliderG, sliderA, sliderB);
+            jSliderStateChanged(sliderD, sliderE, sliderF, sliderG, sliderA, sliderB);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         sliderD.addChangeListener(e -> {
             changeLabelValueSlider(parentD, sliderD);
-            jSliderStateChanged(flagMode[0], sliderC, sliderE, sliderF, sliderG, sliderA, sliderB);
+            jSliderStateChanged(sliderC, sliderE, sliderF, sliderG, sliderA, sliderB);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         sliderE.addChangeListener(e -> {
             changeLabelValueSlider(parentE, sliderE);
-            jSliderStateChanged(flagMode[0], sliderD, sliderC, sliderF, sliderG, sliderA, sliderB);
+            jSliderStateChanged(sliderD, sliderC, sliderF, sliderG, sliderA, sliderB);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         sliderF.addChangeListener(e -> {
             changeLabelValueSlider(parentF, sliderF);
-            jSliderStateChanged(flagMode[0], sliderD, sliderE, sliderC, sliderG, sliderA, sliderB);
+            jSliderStateChanged(sliderD, sliderE, sliderC, sliderG, sliderA, sliderB);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         sliderG.addChangeListener(e -> {
             changeLabelValueSlider(parentG, sliderG);
-            jSliderStateChanged(flagMode[0], sliderD, sliderE, sliderF, sliderC, sliderA, sliderB);
+            jSliderStateChanged(sliderD, sliderE, sliderF, sliderC, sliderA, sliderB);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         sliderA.addChangeListener(e -> {
             changeLabelValueSlider(parentA, sliderA);
-            jSliderStateChanged(flagMode[0], sliderD, sliderE, sliderF, sliderG, sliderC, sliderB);
+            jSliderStateChanged(sliderD, sliderE, sliderF, sliderG, sliderC, sliderB);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
 
         sliderB.addChangeListener(e -> {
             changeLabelValueSlider(parentB, sliderB);
-            jSliderStateChanged(flagMode[0], sliderD, sliderE, sliderF, sliderG, sliderA, sliderC);
+            jSliderStateChanged(sliderD, sliderE, sliderF, sliderG, sliderA, sliderC);
             totalPercentage.setText("Totale: " + getSumOfPitchSpinners() + "%");
         });
     }
@@ -516,8 +511,8 @@ public class CustomGrid {
         b.setTitleColor(c);
     }
 
-    private void jSliderStateChanged(int mode, JSlider s1, JSlider s2, JSlider s3, JSlider s4, JSlider s5, JSlider s6) {
-        if(mode == 1) totalPercentage.setForeground(Color.BLACK);
+    private void jSliderStateChanged(JSlider s1, JSlider s2, JSlider s3, JSlider s4, JSlider s5, JSlider s6) {
+        if(flagTheme) totalPercentage.setForeground(Color.BLACK);
         else totalPercentage.setForeground(Color.WHITE);
         totalPercentage.setIcon(null);
         totalPercentage.setToolTipText("Percentuale totale specificata");
@@ -920,7 +915,7 @@ public class CustomGrid {
             public void mouseEntered(MouseEvent e) {
                 switchB.setContentAreaFilled(false);
                 try {
-                    if(flagMode[0] == 1) {
+                    if(flagTheme) {
                         BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_off.png"));
                         ImageIcon switchIcon = new ImageIcon(switchImg);
                         switchB.setIcon(switchIcon);
@@ -940,7 +935,7 @@ public class CustomGrid {
             public void mouseExited(MouseEvent e) {
                 switchB.setContentAreaFilled(false);
                 try {
-                    if(flagMode[0] == 1) {
+                    if(flagTheme) {
                         BufferedImage switchImg = ImageIO.read(ClassLoader.getSystemResource("dark_mode_on.png"));
                         ImageIcon switchIcon = new ImageIcon(switchImg);
                         switchB.setIcon(switchIcon);
@@ -957,12 +952,12 @@ public class CustomGrid {
         });
 
         switchB.addActionListener(e -> {
-            if(flagMode[0] == 1) {
-                flagMode[0] = 0;
+            if(flagTheme) {
+                flagTheme = false;
                 darkBlueTheme();
             }
             else{
-                flagMode[0] = 1;
+                flagTheme = true;
                 darkYellowTheme();
             }
         });

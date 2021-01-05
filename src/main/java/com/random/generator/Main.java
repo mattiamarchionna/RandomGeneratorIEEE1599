@@ -8,15 +8,12 @@ import java.io.IOException;
 
 
 public class Main {
-
-    static CustomGrid grid;
-
     public static void main(String[] args) throws IOException {
         System.setProperty("sun.java2d.uiScale", "1.0");
 
+        CustomGrid grid;
 
         // SPLASH SCREEN //
-
         SplashScreen splash = new SplashScreen();
 
         JFrame splashFrame = new JFrame();
@@ -29,13 +26,12 @@ public class Main {
         splashFrame.setLocation(dim.width/2-splashFrame.getSize().width/2, dim.height/2-splashFrame.getSize().height/2);
         splashFrame.setResizable(false);
 
-
-
-        JFrame jframe = new JFrame("Generatore random file IEEE1599");
+        // MAIN FRAME
+        JFrame mainFrame = new JFrame("Generatore random file IEEE1599");
 
         BufferedImage ieee1599Img = ImageIO.read(ClassLoader.getSystemResource("ieee1599.png"));
         ImageIcon ieee1599Icon = new ImageIcon(ieee1599Img);
-        jframe.setIconImage(ieee1599Icon.getImage());
+        mainFrame.setIconImage(ieee1599Icon.getImage());
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -55,18 +51,14 @@ public class Main {
         JPanel p = new JPanel();
         p.setLayout(new BorderLayout());
 
-        jframe.add(grid.mainPanel);
-        jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jframe.setResizable(false);
-        //jframe.setSize(1100, 765);
-        jframe.setSize(1110, 785);
+        mainFrame.add(grid.mainPanel);
+        mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        mainFrame.setResizable(false);
+        mainFrame.setSize(1110, 785);
 
-        //System.out.println(dim.width);
-        //System.out.println(dim.height);
+        //mainFrame.setSize((int)(dim.width/1.75), (int)(dim.height/1.38));
 
-        //jframe.setSize((int)(dim.width/1.75), (int)(dim.height/1.38));
-
-        jframe.setLocation(dim.width/2-jframe.getSize().width/2, dim.height/2-jframe.getSize().height/2);
+        mainFrame.setLocation(dim.width/2-mainFrame.getSize().width/2, dim.height/2-mainFrame.getSize().height/2);
 
         try {
             Thread.sleep(3000);
@@ -75,6 +67,6 @@ public class Main {
             e.printStackTrace();
         }
 
-        jframe.setVisible(true);
+        mainFrame.setVisible(true);
     }
 }
